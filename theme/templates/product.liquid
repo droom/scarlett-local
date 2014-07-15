@@ -1,11 +1,3 @@
-<style>
-	li{
-		font-family: monospace;
-		font-size: 11px;
-		float:left;
-	}
-</style>
-
 {% include '__has-variables' %}
 {% capture vars %}
 {% if product.featured_image == blank %}
@@ -17,86 +9,202 @@
 {% endcapture %}
 {% endif %}
 {% endcapture %}
-
 <section id="product-wrap" class="section-wrap">
-
 	<div class="visible-xs">
+		<small class="product-section">
+			<strong>{{ collection.title | upcase }}</strong> &mdash; {{ collection.description }}
+		</small>
 		<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
 	</div>
-
 	<form id="product-form" action="/cart/add" method="post" role="form">
 		<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
-
 			<!-- images col -->
+			<div class="col-sm-8 {% if settings.product-page-image-placement == 'right' %}col-sm-push-4{% endif %}">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 centreCopy" >
 
-			<div class="col-xs-12 col-sm-12">
-				<div class="thumbnail product-main-image">
+						<div class="thumbnail product-main-image">
+							<div class="productHero-feature">
+								{% for image in product.images %}
+								{% if image contains '_Feature' %}
+								<img src="{{ image.src | product_img_url: 'original' }}" />
+								{% endif %} 
+								{% endfor %}
+							</div>
+							<div class="productHero-360">
+								{% for image in product.images %}
+								{% if image contains '_360_' %}
+								<img src="{{ image.src | product_img_url: 'original' }}" />
+								{% endif %} 
+								{% endfor %}
+							</div>
+							<div class="productHero-life">
+								{% for image in product.images %}
+								{% if image contains '_Life_' %}
+								<img src="{{ image.src | product_img_url: 'original' }}" />
+								{% endif %} 
+								{% endfor %}
+							</div>
+						</div>
 
-					<div class="spritespin"></div>
+						<p>Views: 
+							<a href="#" class="productSwitch productSwitch-feature">Image</a> 
+							| 
+							<a href="#" class="productSwitch productSwitch-360">360°</a> 
+							| 
+							<a href="#" class="productSwitch productSwitch-life">Model</a>
+						</p>
+
+					</div>
+
+
 
 				</div>
-			</div>
-
-
-			<ul class="three">
-			{% for image in product.images %}
-				<!-- {% if image.src contains '360' %} -->
-				<!-- <img src="{{ image.src | product_img_url: 'compact' }}" /> -->
-				<li class="items">
-					{{ image.src | product_img_url: 'small' }}
-				</li>
-				<!-- {% endif %} -->
-			{% endfor %}
-			</ul>	
-
-
+			</div> 
 			<!-- details col -->
-			<div class="col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-6{% endif %}">
+			<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
+				<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
 				<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
-				{% if has_prices %}
+				<!-- {% if has_prices %} -->
+
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-					<span id="price-field">{% include 'product-price' with product.price %}</span>
-					<del id="compare-at-price-field" class="text-muted"></del>
-					<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-					<meta itemprop="currency" content="{{ shop.currency }}" />
-					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
-				</div>
-				{% endif %}
-				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
 
-				{% include 'product-specs' %}
+				<!-- 					
+					{% for variant in product.variants %}
+					{% if variant.title contains 'Buy Now' %}
+					{% endif %}
+					{% endfor %}
+				-->
+				
+				<!-- <span id="price-field">{% include 'product-price' with product.price %}</span> -->
 
-				<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+
+				<del id="compare-at-price-field" class="text-muted"></del>
+				<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+				<meta itemprop="currency" content="{{ shop.currency }}" />
+				<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
 			</div>
+			{% endif %}
+			<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+
+			{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
+			{% include 'product-specs' %}
+
+			<div class="centreCopy">
+				<p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
+			</div>	
+			<!-- <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div> -->
 		</div>
-	</form>
+		<div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+			<h3>Scarlett of Soho Design Hallmarks</h3>
+			<p>Explore the little details that distinguish our frames from the rest of the pack</p>
+		</div>
+		<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
+			{% for image in product.images %}
+			{% if image contains '_Info_01' %}
+			<img src="{{ image.src | product_img_url: 'original' }}" />
+			{% endif %} 
+			{% endfor %}
+		</div>
+		<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
+			{% for image in product.images %}
+			{% if image contains '_Info_02' %}
+			<img src="{{ image.src | product_img_url: 'original' }}" />
+			{% endif %} 
+			{% endfor %}
+		</div>
+		<div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+			{% for image in product.images %}
+			{% if image contains '_Info_03' %}
+			<img src="{{ image.src | product_img_url: 'original' }}" />
+			{% endif %} 
+			{% endfor %}
+		</div>
+	</div>
+</form>
 </section>
 
-{% include 'product-footer' %}
+<div> 
+	<script>
 
-<script type="text/javascript">
-	
-	$(document).ready(function() {
+		$( document ).ready(function() {
 
-		var listItems = $('li.items');
-		var listString = ($.trim(listItems[0].innerHTML));
-		var cachebuster = 13;
-		var position360 = listString.indexOf("360");
-		var url1 = listString.slice(0, position360+4);
-		var url2 = listString.slice(position360+6, (position360+30)-cachebuster);
 
-		$('.spritespin').spritespin({
-			
-			source: SpriteSpin.sourceArray(url1+'{frame}'+url2, { frame: [1, listItems.length ], digits: 2 }),
 
-			width: 160,
-			height: 100,
-			sense: -1,
-			renderer: 'image'
-			
-			});
+			var selectCallback = function(variant, selector){
+		// set vars so we dont need to call the elements repeatedly
+		var purchaseButton = jQuery(document.getElementById('purchase'));
+		var priceField = jQuery(document.getElementById('price-field'));
+		var saleField = jQuery(document.getElementById('sale-field'));
+		var compareAtPriceField = jQuery(document.getElementById('compare-at-price-field'));
 
-	})
+		var unavailableStr = '{% include '__localize' with 'Unavailable' %}';
+		var addToCartStr = '{% include '__localize' with 'Add to cart' %}';
+		var soldOutStr = '{% include '__localize' with 'Sold out' %}';
 
+		// disable purchase button
+		purchaseButton.removeClass('btn-primary').addClass('disabled').attr('disabled', 'disabled').val(unavailableStr);
+		priceField.addClass('text-muted');
+		saleField.hide();
+		compareAtPriceField.html('').hide();
+
+		if(variant){
+		  // we have a variant so update the price
+		  var moneyFormat = "{% if settings.show-currency-with-prices %}{{ shop.money_with_currency_format }}{% else %}{{ shop.money_format }}{% endif %}"; // we still need the correct money format if the currency converter is off
+		  var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat); 
+		  priceField.html('<span class="money">'+formattedMoney+'</span>'); // we need to refresh the the money span to invoke the currency converter if it is on
+		  
+		  if(variant.compare_at_price > 0){
+		    // variant is on sale
+		    var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
+		    compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
+		    saleField.show();
+		}
+
+		if(variant.available){
+		    // the variant is available for purchase so enable the button
+		    purchaseButton.removeAttr('disabled').removeClass('disabled').addClass('btn-primary').val(addToCartStr);
+		    priceField.removeClass('text-muted');
+		} else {
+		    // sold out
+		    purchaseButton.val(soldOutStr);
+		}
+	}
+};
+
+
+$("input[value='Try it']").click(function(e){
+	$("input[value='Try it']").parents('form').attr('id', "add-item-form");
+	$("input[value='Add to cart']").parents('form').attr('id', "add-item-form-100");
+});
+
+$("input[value='Add to cart']").click(function(e){
+	$("input[value='Try it']").parents('form').attr('id', "add-item-form-100");
+	$("input[value='Add to cart']").parents('form').attr('id', "add-item-form");
+});
+
+
+
+var anchors_and_divs = {
+	'.productSwitch-360'     :  '.productHero-360',
+	'.productSwitch-life'    :  '.productHero-life',
+	".productSwitch-feature" :  '.productHero-feature'
+}
+
+function hide_rest(element_to_show) {
+	$(element_to_show).click(function(){
+		console.log(element_to_show);
+		var div_to_show = anchors_and_divs[element_to_show];
+		$('.productHero-feature').hide();
+		$('.productHero-360').hide();
+		$('.productHero-life').hide();
+		$(div_to_show).show();
+	});
+}
+
+hide_rest('.productSwitch-360' );
+hide_rest('.productSwitch-life' );
+hide_rest('.productSwitch-feature' );
+
+});
 </script>

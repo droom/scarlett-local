@@ -1,20 +1,35 @@
 {% include '__has-variables' %}
 
 <section id="collection-intro" class="section-wrap">
-	<h1 class="page-header">{{ page_title }}</h1>
+  <h1 class="page-header">{{ page_title }}</h1>
 
-	{% unless collection.description == blank %}{{ collection.description }}{% endunless %}
+  <p>{% unless collection.description == blank %}{{ collection.description }}{% endunless %}</p>
 
-{% if settings.tag-placement == 'main-content' or settings.show-product-sorter %}
-<div class="clearfix">
-  {% if settings.tag-placement == 'main-content' %}
-  <div class="pull-left">
-    {% include 'tag-buttons' %}
-  </div>
-  {% endif %}
+  {% if settings.tag-placement == 'main-content' or settings.show-product-sorter %}
+  <div class="clearfix">
+    {% if settings.tag-placement == 'main-content' %}
+    <div class="pull-left">
+      {% include 'tag-buttons' %}
+    </div>
+    {% endif %}
 
-  {% if settings.show-product-sorter %}
-  <div class="pull-right">
+    {% if settings.show-product-sorter %}
+    <div class="pull-left">
+      <label for="sort-by">Sort by</label> 
+      <select id="sort-by">
+        <option value="manual">Featured</option>
+        <option value="price-ascending">Price: Low to High</option>
+        <option value="price-descending">Price: High to Low</option>
+        <option value="title-ascending">A-Z</option>
+        <option value="title-descending">Z-A</option>
+        <option value="created-ascending">Oldest to Newest</option>
+        <option value="created-descending">Newest to Oldest</option>
+        <option value="best-selling">Best Selling</option>
+      </select>
+    </div>
+
+<!--
+    <div class="pull-right">
     <label for="sort-by">Sort by</label> 
     <select id="sort-by">
       <option value="manual">Featured</option>
@@ -26,8 +41,11 @@
       <option value="created-descending">Newest to Oldest</option>
       <option value="best-selling">Best Selling</option>
     </select>
-  </div>
-  <script>
+  </div> 
+-->
+
+
+<script>
   Shopify.queryParams = {};
   if (location.search.length) {
     for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
@@ -43,26 +61,28 @@
     Shopify.queryParams.sort_by = jQuery(this).val();
     location.search = jQuery.param(Shopify.queryParams);
   });
-  </script>
-  {% endif %}
+</script>
+{% endif %}
 </div>
+
 <hr>
+
 {% endif %}
 
 {% if collection.all_products_count == 0 %}
 <section class="section-wrap">
-	<p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
+  <p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
 </section>
 {% elsif collection.products_count == 0 %}
 <section class="section-wrap">
-	<h2>Whoops! You might need to broaden your search.</h2>
-	<p>There {{ collection.all_products_count | pluralize: 'is', 'are' }}<strong> {{ collection.all_products_count | count }} {{ collection.all_products_count | pluralize: 'style', 'styles' }} of {% include '__localize' with 'Products' %}</strong> in the {{ collection.title }} collection&mdash;try removing some filters.</p>
-	<ul>
-		{% for tag in current_tags %}
-		<li>{{ tag }} ({{ 'remove' | link_to_remove_tag: tag }})</li>
-		{% endfor %}
-	</ul>
-	<p><br>Or, view <strong><a href="{{ collection.url }}">all {{ collection.all_products_count }} {% include '__localize' with 'Products' %} in the {{ collection.title }} {% include '__localize' with 'Collection' %}</a></strong>.</p>
+  <h2>Whoops! You might need to broaden your search.</h2>
+  <p>There {{ collection.all_products_count | pluralize: 'is', 'are' }}<strong> {{ collection.all_products_count | count }} {{ collection.all_products_count | pluralize: 'style', 'styles' }} of {% include '__localize' with 'Products' %}</strong> in the {{ collection.title }} collection&mdash;try removing some filters.</p>
+  <ul>
+    {% for tag in current_tags %}
+    <li>{{ tag }} ({{ 'remove' | link_to_remove_tag: tag }})</li>
+    {% endfor %}
+  </ul>
+  <p><br>Or, view <strong><a href="{{ collection.url }}">all {{ collection.all_products_count }} {% include '__localize' with 'Products' %} in the {{ collection.title }} {% include '__localize' with 'Collection' %}</a></strong>.</p>
 </section>
 {% else %}
 {% include '__default-pagination' %}

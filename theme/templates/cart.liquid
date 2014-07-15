@@ -1,76 +1,224 @@
 {% include '__has-variables' %}
-<section id="cart-wrap" class="section-wrap">
-  <h1 class="page-header">{{ page_title }}</h1>
-  {% if has_cart and cart.item_count > 0 %}
-  <script type="text/javascript">
-  function remove_item(id) {
-    document.getElementById('updates_'+id).value = 0;
-    document.getElementById('cart').submit();
-  }
-  </script>
 
-  <div class="text-left">
-    <form action="/cart" method="post" id="cart">
-      <div class="row">
-        <div class="{% if settings.show-shipping-estimator %}col-md-9{% else %}col-md-12{% endif %}">
-          <h3>{% include '__localize' with 'Your items' %}</h3>
-          <table class="table {% include '__table-formatting' %}">
-            <tbody>
-              {% for i in cart.items %}
-              <tr>
-                <td class="col-sm-2 hidden-xs"><img src="{{ i.product.featured_image | product_img_url: 'medium' }}"></td>
-                <td>
-                  <h4>
-                    {{ i.product.title | link_to: i.product.url }}
-                    <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
-                  </h4>
-                </td>
-                <td><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
-                <td class="text-center col-xs-2">
-                  <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
-                </td>
-                <td><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+<div class="col-cart-left">
+  <!-- {% include '__formatted-content' %} -->
+  <section id="cart-wrap" class="section-wrap">
+    <h1 class="page-header">{{ page_title }}</h1>
+    {% if has_cart %}
+    <script type="text/javascript">
+      function remove_item(id) {
+        document.getElementById('updates_'+id).value = 0;
+        document.getElementById('cart').submit();
+      }
+    </script>
+    <div id="cart">
+      {% if cart.item_count == 0 %}
+      <h2>Your cart is empty! Please add some items.</h2>
+      {% else %}
+      <form action="/cart" method="post" id="cartform1">
+        <h3>Home Try On—Buy now</h3>
+        <hr />
+        {% for item in cart.items %}
+        {% unless item.variant.title contains 'Home Try On' %}
+        <div class="checkout_buy clearfix">
+          <div class="checkout_cell1">
+            <a href="{{ item.url }}">
+              <img src="{{ item | img_url: 'small' }}"  alt="{{ item.title | escape }}" />
+            </a>
+          </div>
+          <div class="checkout_cell2">
+            <a href="{{ item.url }}">
+              <h5><strong>{{ item.product.title }}</strong></h5>
+              {% if item.product.variants.size > 1 %}
+              <p>{{ item.variant.title }}</p>
+              {% endif %} 
+            </a>
+          </div>
+          <div class="checkout_cell3">
+            <p>{{ item.line_price | money }}</p>
+          </div>
+
+          <div class="checkout_cell4">
+            <p>{{ item.quantity }}</p>
+            <!-- <input type="text" size="4" data-id ="{{item.variant.id}}" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" onfocus="this.select();" class="tc item-quantity" /> -->
+          </div>
+
+          <div class="checkout_cell5">
+            <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+          </div>
+
         </div>
-        {% if settings.show-shipping-estimator %}
-        <div class="col-md-3">
-          {% include 'shipping-calculator' %}
+
+        {% endunless %}
+        {% endfor %}
+        <h3>Home Try On</h3>
+        <hr />
+
+        <div class="checkout_titles clearfix">
+
+          <div class="checkout_cell1">
+            <p>&mdash;</p>
+          </div>
+
+          <div class="checkout_cell2">
+            <p>Items</p>
+          </div>
+
+          <div class="checkout_cell3">
+            <p>Price</p>
+          </div>
+
+          <div class="checkout_cell4">
+            <p>Total</p>
+          </div>
+
+          <div class="checkout_cell5">
+            <p>Remove</p>
+          </div>
+
+          <hr />
         </div>
+
+        {% for item in cart.items %}
+        {% if item.variant.title contains 'Home Try On' %}
+
+      <!--         
+        <script type="text/javascript">
+         console.log('Hi');
+         var tries = $(".checkout_try");
+         var filled_len = $(".filled").length;
+         var elem = $(tries[filled_len]);
+         elem.addClass("filled");
+         console.log(tries.first());
+       </script> 
+     -->
+
+     <div class="checkout_try clearfix">
+      <div class="checkout_cell1">
+        <!-- <a href="{{ item.url }}"> -->
+        <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
+        <!-- </a> -->
+      </div>
+      <div class="checkout_cell2">
+        <!-- <a href="{{ item.url }}"> -->
+        <h5><strong>{{ item.product.title }}</strong></h5>
+        {% if item.product.variants.size > 1 %}
+        <p>{{ item.variant.title }}</p>
         {% endif %}
+        <!-- </a> -->
       </div>
-      <div class="row">
-        <div class="form-group col-sm-8 col-md-9">
-          <h4>{% include '__localize' with 'Any comments or special instructions?' %}</h4>
-          <div class="collapse in cart-note-action">
-            <a href="#cart-note" class="btn btn-default" data-toggle="collapse">Add note</a>
-          </div>
-          <div class="collapse cart-note" id="cart-note">
-            <textarea id="note" name="note" class="form-control" rows="3">{{ cart.note }}</textarea>
-          </div>
+
+      <div class="checkout_cell3">
+        <p>{{ item.quantity }}</p>
+      </div>
+
+      <div class="checkout_cell4">
+        <p>{{ item.line_price | money }}</p>
+      </div>
+
+      <div class="checkout_cell5">
+        <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+      </div>
+    </div>
+
+
+    {% endif %}
+    {% endfor %}
+
+
+    <!-- Start empty cells -->
+
+    <div class="checkout_try empty">
+      <p>Please select another watch</p>
+    </div>
+
+  <!--     
+    <div class="checkout_try empty">
+      <p>2. Please select another watch</p>
+    </div>
+
+    <div class="checkout_try empty">
+      <p>3. Please select another watch</p>
+    </div>
+
+    <div class="checkout_try empty">
+      <p>4. Please select another watch</p>
+    </div>
+
+    <div class="checkout_try empty">
+      <p>5. Please select another watch</p>
+    </div>
+  -->
+
+
+      <!--       
+        <div class="row checkout_total">
+          <h4><strong>{{ cart.total_price | money }}</strong></h4>
         </div>
-    
-        <div class="form-actions text-right col-sm-4 col-md-3">
-          <div class="product-price"><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></div>
-          <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary btn-block" />
-          {% if additional_checkout_buttons %}
-          <div class="additional-checkout-buttons">
-            <span class="text-muted">or</span>
-            {{ content_for_additional_checkout_buttons }}
-          </div>
+
+        <div class="row cart-buttons">
+          <hr />
+          <input type="submit" id="checkout" class="btn" name="checkout" value="Check out" />
+          <input type="submit" id="update-cart" class="btn" name="update" value="Update" />
+          {% if additional_checkout_buttons %}        
+          {{ content_for_additional_checkout_buttons }}
           {% endif %}
-        </div>
-      </div>
+        </div> 
+      -->
+
+
     </form>
   </div>
-
-  {% else %}
-  {% assign cart_message = 'Your cart is empty' %}
-  {% unless has_cart %}{% assign cart_message = 'The shopping cart is currently disabled' %}{% endunless %}
-  <p class="lead">
-    {% include '__localize' with cart_message %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all' %} {{ collections.[settings.collection-to-link-to-if-cart-empty].title }}</a>.{% endunless %}
-  </p>
+  {% endif %}
   {% endif %}
 </section>
+</div>
+
+<div class="col-cart-right">
+  <h3>Cart total</h3>
+  <h4><strong>{{ cart.total_price | money }}</strong></h4>
+<!--   
+  <div class="row checkout_total">
+    <h4><strong>{{ cart.total_price | money }}</strong></h4>
+  </div> 
+-->
+<div class="row cart-buttons">
+  <input type="submit" id="checkout" class="btn" name="checkout" value="Check out" />
+  <input type="submit" id="update-cart" class="btn" name="update" value="Update" />
+  {% if additional_checkout_buttons %}        
+  {{ content_for_additional_checkout_buttons }}
+  {% endif %}
+</div>
+
+</div>
+
+<!-- 
+<script>
+  $(document).ready(function(){
+    console.log("yo");
+    var checkout_try_required = 5; 
+    var checkout_try_array = $('.checkout_try').length;
+    var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
+    console.log(checkout_try_array);
+    console.log(checkout_try_remaining);
+    for ( var i = 0; i < checkout_try_remaining; i++ ) {
+      console.log( "try " + i );
+    } 
+  });
+</script> 
+-->
+
+
+<script>
+  $(document).ready(function(){
+    console.log("yo");
+    var checkout_try_required = 5; 
+    var checkout_try_array = $('.checkout_try').length;
+    var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
+    console.log(checkout_try_array);
+    console.log(checkout_try_remaining);
+    for ( var i = 0; i < checkout_try_remaining; i++ ) {
+      console.log( "try " + i );
+    } 
+  });
+</script>
