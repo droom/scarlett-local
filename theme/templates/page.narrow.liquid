@@ -1,0 +1,26 @@
+{% include '__has-variables' %}
+
+<section id="page-wrap" class="section-wrap">
+	<h1 class="page-header">{{ page_title }}</h1>
+
+
+	<div class="col-md-8 col-md-pull-0">
+		{% include '__formatted-content' with page.content %}
+	</div>
+
+	<div class="col-md-4 col-md-pull-0">
+		<!-- START Static sidebar content. Make dynamic -->
+		<h2>
+			Customer Service
+		</h2>
+		<p>
+			If you need help, please don't hesitate to contact us!<br />
+			Call 020 7281 4269<br />
+			Monday to Friday<br />
+			9:00am - 6:00pm GMT
+		</p>
+		<!-- END Static sidebar content. Make dynamic -->
+
+	</div>
+
+</section>

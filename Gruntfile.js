@@ -122,7 +122,12 @@ module.exports = function(grunt) {
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_carousel.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_utilities.scss',
           'bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_responsive-utilities.scss',
-          'dist/scss/bootstrapify_overrides.scss.liquid'
+          'dist/scss/bootstrapify_overrides.scss.liquid',
+          'dist/scss/custom-variables.scss.liquid',
+          'dist/scss/custom-carousel.scss.liquid',
+          'dist/scss/custom-font.scss.liquid',
+          'dist/scss/custom-category.scss.liquid',
+          'dist/scss/custom.scss.liquid'
         ],
         dest: 'theme/assets/_base.scss.liquid'
       }
