@@ -33,31 +33,10 @@
 
 
 
-						<h2>spritespin360</h2>
-						<div class="spritespin360"></div>
-
-						<h2>spritespinLife</h2>
-						<div class="spritespinLife"></div>
-
-
-
-						{% for image in product.images %}
-						{% if image contains '_Life_' %}
-						<p class="spinLife">{{ image.src | product_img_url: 'original' }}</p>
-						{% endif %} 
-						{% endfor %}
-
-
-
-						{% for image in product.images %}
-						{% if image contains '_360_' %}
-						<p class="spin360">{{ image.src | product_img_url: 'original' }}</p>
-						{% endif %} 
-						{% endfor %}
-
 
 
 						<div class="thumbnail product-main-image">
+
 							<div class="productHero-feature">
 								{% for image in product.images %}
 								{% if image contains '_Feature' %}
@@ -65,35 +44,46 @@
 								{% endif %} 
 								{% endfor %}
 							</div>
+
 							<div class="productHero-360">
+
+								<div class="spritespin360"></div>
+
+							<!-- 							
 								{% for image in product.images %}
 								{% if image contains '_360_' %}
-								<img src="{{ image.src | product_img_url: 'original' }}" />
+									<img src="{{ image.src | product_img_url: 'original' }}" />
 								{% endif %} 
-								{% endfor %}
-							</div>
-							<div class="productHero-life">
+								{% endfor %} 
+							-->
+						</div>
+						<div class="productHero-life">
+
+							<div class="spritespinLife"></div>
+
+							<!-- 		
 								{% for image in product.images %}
 								{% if image contains '_Life_' %}
-								<img src="{{ image.src | product_img_url: 'original' }}" />
+									<img src="{{ image.src | product_img_url: 'original' }}" />
 								{% endif %} 
-								{% endfor %}
-							</div>
-						</div> 
+								{% endfor %} 
+							-->
+						</div>
+					</div> 
 
 
-
-					</div>
 
 				</div>
-			</div> 
-			<!-- details col -->
-			<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
-				<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
-				<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
-				<!-- {% if has_prices %} -->
 
-				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+			</div>
+		</div> 
+		<!-- details col -->
+		<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
+			<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
+			<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
+			<!-- {% if has_prices %} -->
+
+			<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
 
 				<!-- 					
 					{% for variant in product.variants %}
@@ -149,6 +139,26 @@
 	</div>
 </form>
 </section>
+
+
+
+
+
+{% for image in product.images %}
+{% if image contains '_Life_' %}
+<p class="spinLife">{{ image.src | product_img_url: 'original' }}</p>
+{% endif %} 
+{% endfor %}
+
+{% for image in product.images %}
+{% if image contains '_360_' %}
+<p class="spin360">{{ image.src | product_img_url: 'original' }}</p>
+{% endif %} 
+{% endfor %}
+
+
+
+
 
 <div> 
 	<script>
