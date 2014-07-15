@@ -1,5 +1,8 @@
 {% if settings.logo-image %}
-  <img src="{{ 'logo-image-file.png' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
-{% else %}
-  {{ shop.name }}
+<img src="{{ 'logo-image-file.png' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
+{% else %} 
+<img src="{{ 'sos-logo.svg' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
+<!--
+	{{ shop.name }}
+-->
 {% endif %}

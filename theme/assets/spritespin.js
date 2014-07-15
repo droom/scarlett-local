@@ -438,7 +438,7 @@ console.log("spritespin called");
 
     // bind auto start function to load event.
     bind(target, 'onLoad', function(e, data){
-      Spin.setAnimation(data);
+      //Spin.setAnimation(data);
     });
 
     // bind all user events that have been passed on initialization

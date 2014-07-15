@@ -33,18 +33,27 @@
 
 
 
+						<h2>spritespin360</h2>
+						<div class="spritespin360"></div>
 
-						<hr />
-						<h4>Sprite spin test</h4>
-						<div class="spritespin"></div>
-						<h4>360 Test</h4>
+						<h2>spritespinLife</h2>
+						<div class="spritespinLife"></div>
+
+
+
+						{% for image in product.images %}
+						{% if image contains '_Life_' %}
+						<p class="spinLife">{{ image.src | product_img_url: 'original' }}</p>
+						{% endif %} 
+						{% endfor %}
+
+
+
 						{% for image in product.images %}
 						{% if image contains '_360_' %}
 						<p class="spin360">{{ image.src | product_img_url: 'original' }}</p>
 						{% endif %} 
 						{% endfor %}
-						<hr />
-
 
 
 
@@ -71,11 +80,6 @@
 								{% endfor %}
 							</div>
 						</div> 
-
-
-
-
-
 
 
 
@@ -155,23 +159,41 @@
 			var listItems = $('.spin360');
 			var listItemsLength = listItems.length;
 			var listString = ($.trim(listItems[0].innerHTML));
-
 			var position360 = listString.indexOf("360");
 
 			var url_part1 = listString.slice(0, position360+4);
 			var url_part2 = listString.slice(position360+4, position360+6);
 			var url_part3 = listString.slice(position360+6, listString.length);
 
-			console.log(position360);
-			console.log(listString);
 
+			console.log("position360 is "+position360);
+			console.log("listString is "+listString);
 			console.log("url_part1 is "+url_part1);
 			console.log("url_part2 is "+url_part2);
 			console.log("url_part3 is "+url_part3);
 
 
+			var listItemsLife = $('.spinLife');
+			var listItemsLifeLength = listItemsLife.length;
+			var listStringLife = ($.trim(listItemsLife[0].innerHTML));
+			var positionLife = listStringLife.indexOf("Life");
 
-			$('.spritespin').spritespin({
+
+			var url_Life_part1 = listStringLife.slice(0, positionLife+5);
+			var url_Life_part2 = listStringLife.slice(positionLife+5, positionLife+7);
+			var url_Life_part3 = listStringLife.slice(positionLife+7, listStringLife.length);
+
+			console.log("positionLife is "+positionLife);
+			console.log("listItemsLife is "+listItemsLife);
+			console.log("listItemsLifeLength is "+listItemsLifeLength);
+
+			console.log("url_Life_part1 is "+url_Life_part1);
+			console.log("url_Life_part2 is "+url_Life_part2);
+			console.log("url_Life_part3 is "+url_Life_part3);
+
+
+
+			$('.spritespin360').spritespin({
 				source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
 				width: 480,
 				height: 327,
@@ -179,46 +201,40 @@
 				renderer: 'image'
 			});
 
-
-			// var listString = ($.trim(listItems[0].innerHTML));
-			// var cachebuster = 13;
-			// var position360 = listString.indexOf("360");
-			// var url1 = listString.slice(0, position360+4);
-			// var url2 = listString.slice(position360+6, (position360+30)-cachebuster);
-			// $('.spritespin').spritespin({
-			// 	source: SpriteSpin.sourceArray(url1+'{frame}'+url2, { frame: [1, listItems.length ], digits: 2 }),
-			// 	width: 160,
-			// 	height: 100,
-			// 	sense: -1,
-			// 	renderer: 'image'
-			// });
+			$('.spritespinLife').spritespin({
+				source: SpriteSpin.sourceArray(url_Life_part1+'{frame}'+url_Life_part3, { frame: [01,listItemsLifeLength], digits: 2 }),
+				width: 480,
+				height: 327,
+				sense: -1,
+				renderer: 'image'
+			});
 
 
 
-var anchors_and_divs = {
-	'.productSwitch-360'     :  '.productHero-360',
-	'.productSwitch-life'    :  '.productHero-life',
-	".productSwitch-feature" :  '.productHero-feature'
-}
+			var anchors_and_divs = {
+				'.productSwitch-360'     :  '.productHero-360',
+				'.productSwitch-life'    :  '.productHero-life',
+				".productSwitch-feature" :  '.productHero-feature'
+			}
 
 
 
-function hide_rest(element_to_show) {
-	$(element_to_show).click(function(){
-		console.log(element_to_show);
-		var div_to_show = anchors_and_divs[element_to_show];
-		$('.productHero-feature').hide();
-		$('.productHero-360').hide();
-		$('.productHero-life').hide();
-		$(div_to_show).show();
-	});
-}
+			function hide_rest(element_to_show) {
+				$(element_to_show).click(function(){
+					console.log(element_to_show);
+					var div_to_show = anchors_and_divs[element_to_show];
+					$('.productHero-feature').hide();
+					$('.productHero-360').hide();
+					$('.productHero-life').hide();
+					$(div_to_show).show();
+				});
+			}
 
-hide_rest('.productSwitch-360' );
-hide_rest('.productSwitch-life' );
-hide_rest('.productSwitch-feature' );
+			hide_rest('.productSwitch-360' );
+			hide_rest('.productSwitch-life' );
+			hide_rest('.productSwitch-feature' );
 
-var selectCallback = function(variant, selector){
+			var selectCallback = function(variant, selector){
 			// set vars so we dont need to call the elements repeatedly
 			var purchaseButton = jQuery(document.getElementById('purchase'));
 			var priceField = jQuery(document.getElementById('price-field'));
