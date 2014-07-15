@@ -1,0 +1,14 @@
+{
+  "name": "jquery-instagram",
+  "homepage": "https://github.com/potomak/jquery-instagram",
+  "version": "0.3.0",
+  "_release": "0.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.0",
+    "commit": "9a5e33c9a760b93fcf518d25a67794cf44f50076"
+  },
+  "_source": "https://github.com/potomak/jquery-instagram.git",
+  "_target": "~0.3.0",
+  "_originalSource": "https://github.com/potomak/jquery-instagram.git"
+}

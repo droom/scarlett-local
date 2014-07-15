@@ -1,0 +1,13 @@
+{
+  "name": "orderly",
+  "homepage": "https://github.com/luciddesign/orderly",
+  "_release": "4b3d745f67",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4b3d745f67f3033e027a637893b8397431f3b7fa"
+  },
+  "_source": "https://github.com/luciddesign/orderly.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/luciddesign/orderly.git"
+}

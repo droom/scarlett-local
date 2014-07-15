@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include 'meta' %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {{ '_base.scss.css' | asset_url | stylesheet_tag }}
+  {{ "Avenir.css"  | asset_url | stylesheet_tag }}
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    {% assign respond_js_secret_key = (shop.domain | md5) %}
+    {{ 'respond.min.js' | asset_url | script_tag }}
+    <link href="{{ 'respond-proxy.html' | asset_url | split: '?' | first }}" id="respond-proxy" rel="respond-proxy" />
+    <link href="{{ shop.url }}/search?q={{ respond_js_secret_key }}" id="respond-redirect" rel="respond-redirect" />
+    <script src="{{ shop.url }}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
+    <![endif]-->
+
+    {{ 'jquery.min.js' | asset_url | script_tag }}
+    <script type="text/javascript">
+      $('html').addClass('has-js');
+    </script>
+    {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+    {{ 'bootstrapify-option-selection.min.js' | asset_url | script_tag }}
+
+    {% if template contains 'customers' %}
+    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+    {% endif %}
+
+    {{ "add_product.js"  | shopify_asset_url | script_tag }}
+
+
+    {% if settings.custom-header-code != '' %}
+    {{ settings.custom-header-code }}
+    {% endif %}
+
+    {{ content_for_header }}
+  </head>
+
+  {% include '__has-variables' %}
+  <body class="{% include '__body-classes' %}">
+
+    <div id="wrap">
+      {% include 'navbar' with 'top' %}
+
+      {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
+
+      {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
+      
+      <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
+       
+        {% if has_main_menu %}{% include 'navbar' with 'main' %}{% endif %}
+        
+        {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
+        
+        {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
+        
+        <div{% unless settings.site-wide-thumbnail-container %} class="row"{% endunless %}>
+        <div class="main-content {% include '__main-span' %}">
+          {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
+          {{ content_for_layout }}
+        </div>
+        {% include 'sidebar' %}
+      </div>
+    </div>
+  </div>
+
+  {% include 'footer' %}
+  {% include 'currencies' %}
+
+  {{ '_base.js' | asset_url | script_tag }}
+  {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
+  {{ 'jquery.orderly.min.js' | asset_url | script_tag }}
+  {{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
+  {{ 'transition.js' | asset_url | script_tag }}
+  {{ 'button.js' | asset_url | script_tag }}
+  {{ 'carousel.js' | asset_url | script_tag }}
+  {{ 'collapse.js' | asset_url | script_tag }}
+  {{ 'dropdown.js' | asset_url | script_tag }}
+  {{ 'modal.js' | asset_url | script_tag }}
+  {{ 'tooltip.js' | asset_url | script_tag }}
+  {{ 'popover.js' | asset_url | script_tag }}
+  {{ 'typeahead.js' | asset_url | script_tag }}
+  {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
+
+  <script type="text/javascript">
+    {% unless current_handle == blank %}
+    $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
+    {% endunless %}
+    
+    {% if thumbnail_layout == 'masonry' %}
+    $('.masonry-collection').isotope({
+      itemSelector: '.masonry',
+      layoutMode: 'masonry'
+    });
+    {% else %}
+    var uniformThumbnailsOpts = {};
+    {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
+    {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
+    {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
+    $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
+      $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
+    });
+    {% endif %}
+    
+    $(document).ready(function(){
+      $('.search-bar').typeahead({
+        name: 'Products',
+        local: [{% include 'search-typeahead' %}]
+      }).on('typeahead:selected', function (object, datum) {
+        $(this).closest('form').submit();
+      });
+    });
+  </script>
+
+  {% if settings.custom-footer-code != '' %}
+  {{ settings.custom-footer-code }}
+  {% endif %}
+</body>
+</html>
