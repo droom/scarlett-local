@@ -1,10 +1,9 @@
-/*! SpriteSpin - v3.1.1
+/*! SpriteSpin - v3.1.5
 * Copyright (c) 2014 ; Licensed  */
 
+console.log("spritespin called");
+
 (function($) {
-
-
-  console.log("sprite spin called");
   "use strict";
 
   // The SpriteSpin object. This object wraps the core logic of SpriteSpin
@@ -88,6 +87,12 @@
     return false;
   }
 
+  function log(){
+    if (window.console && window.console.log){
+      window.console.log.apply(window.console, arguments);
+    }
+  }
+
   // Binds on the given target and event the given function.
   // The SpriteSpin namespace is attached to the event name
   function bind(target, event, func){
@@ -128,6 +133,44 @@
     }
   }
 
+  // taken from https://github.com/stomita/ios-imagefile-megapixel
+  function detectSubsampling(img, size) {
+    var iw = (size || img).width;
+    var ih = (size || img).height;
+    var canvas, context;
+    // subsampling may happen over megapixel image
+    if (iw * ih > 1024 * 1024) {
+      canvas = document.createElement('canvas');
+      if (!canvas || !canvas.getContext || !canvas.getContext('2d')){
+        return false;
+      }
+      canvas.width = canvas.height = 1;
+      context = canvas.getContext('2d');
+      context.fillStyle = "FF00FF";
+      context.fillRect(0, 0, 1, 1);
+      context.drawImage(img, -iw + 1, 0);
+      // subsampled image becomes half smaller in rendering size.
+      // check color value to confirm image is covering edge pixel or not.
+      // if color is the magenta color as set by the rectangle before the image was drawn, the image is subsampled
+      try {
+        var dat = context.getImageData(0, 0, 1, 1).data;
+        return (dat[0] === 255) && (dat[1] === 0) && (dat[2] === 255);
+      }
+      catch(err) {
+        // avoids cross origin exception for chrome when code runs without a server
+        log(err.message, err.stack);
+        return false;
+      }
+    }
+    return false;
+  }
+
+  function naturalSize(image){
+    var img = new Image();
+    img.src = image.src;
+    return { width: img.width, height: img.height };
+  }
+
   // Public Helper Functions
   // ----------
 
@@ -163,9 +206,17 @@
 
   // Measures the image frames that are used in the given data object
   Spin.measureSource = function(data){
+    var img = data.images[0];
+    var size = naturalSize(img);
+
     if (data.images.length === 1){
-      data.sourceWidth = data.images[0].width;
-      data.sourceHeight = data.images[0].height;
+
+      data.sourceWidth = size.width;
+      data.sourceHeight = size.height;
+      if (detectSubsampling(img, size)){
+        data.sourceWidth /= 2;
+        data.sourceHeight /= 2;
+      }
 
       // calculate the number of frames packed in a row
       // assume tightly packed images without any padding pixels
@@ -178,13 +229,17 @@
           var framesY = Math.ceil((data.frames * data.lanes) / data.framesX);
           data.frameHeight = Math.floor(data.sourceHeight / framesY);
         } else {
-          data.frameWidth = data.images[0].width;
-          data.frameHeight = data.images[0].height;
+          data.frameWidth = size.width;
+          data.frameHeight = size.height;
         }
       }
     } else {
-      data.sourceWidth = data.frameWidth = data.images[0].width;
-      data.sourceHeight = data.frameHeight = data.images[0].height;
+      data.sourceWidth = data.frameWidth = size.width;
+      data.sourceHeight = data.frameHeight = size.height;
+      if (detectSubsampling(img, size)){
+        data.sourceWidth = data.frameWidth = size.width / 2;
+        data.sourceHeight = data.frameHeight = size.height / 2;
+      }
       data.frames = data.frames || data.images.length;
     }
   };
@@ -634,16 +689,31 @@
     },
 
     // Starts the animations that will play until the given frame number is reached
-    playTo: function(frame){
-      this.data.animate = true;
-      this.data.loop = false;
-      this.data.stopFrame = frame;
-      SpriteSpin.setAnimation(this.data);
+    // options:
+    //   force [boolean] starts the animation, even if current frame is the target frame
+    //   nearest [boolean] animates to the direction with minimum distance to the target frame
+    playTo: function(frame, options){
+      var data = this.data;
+      options = options || {};
+      if (!options.force && data.frame === frame){
+        return;
+      }
+      if (options.nearest){
+        var a = frame - data.frame;                 // distance to the target frame
+        var b = frame > data.frame ? a - data.frames : a + data.frames;        // distance to last frame and the to target frame
+        var c = Math.abs(a) < Math.abs(b) ? a : b;  // minimum distance
+        data.reverse = c < 0;
+      }
+      data.animate = true;
+      data.loop = false;
+      data.stopFrame = frame;
+      SpriteSpin.setAnimation(data);
       return this;
     }
   });
 
 }(window.jQuery || window.Zepto || window.$));
+
 (function ($, SpriteSpin) {
   "use strict";
 
@@ -693,13 +763,21 @@
     if (data.dragging) {
       SpriteSpin.updateInput(e, data);
 
-      if (data.orientation === 'horizontal') {
-        dFrame = data.ndX * data.frames * data.sense;
-        dLane = data.ndY * data.lanes * (data.senseLane || data.sense);
+      var angle = 0;
+      if (typeof data.orientation === 'number') {
+        angle = (Number(data.orientation) || 0) * Math.PI / 180;
+      } else if (data.orientation === 'horizontal') {
+        angle = 0;
       } else {
-        dFrame = data.ndY * data.frames * data.sense;
-        dLane = data.ndX * data.lanes * (data.senseLane || data.sense);
+        angle = Math.PI / 2;
       }
+      var sn = Math.sin(angle);
+      var cs = Math.cos(angle);
+      var x = data.ndX * cs - data.ndY * sn;
+      var y = data.ndX * sn + data.ndY * cs;
+
+      dFrame = x * data.frames * data.sense;
+      dLane = y * data.lanes * (data.senseLane || data.sense);
 
       frame = Math.floor(data.clickframe + dFrame);
       lane = Math.floor(data.clicklane + dLane);
@@ -721,6 +799,18 @@
     touchcancel: dragEnd
   });
 
+  SpriteSpin.registerModule('move', {
+    mousemove: function(e){
+      dragStart.call(this, e);
+      drag.call(this, e);
+    },
+    mouseleave: dragEnd,
+
+    touchstart: dragStart,
+    touchmove: drag,
+    touchend: dragEnd,
+    touchcancel: dragEnd
+  });
 }(window.jQuery || window.Zepto || window.$, window.SpriteSpin));
 
 (function ($, SpriteSpin) {
