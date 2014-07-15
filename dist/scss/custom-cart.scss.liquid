@@ -1,0 +1,117 @@
+$sosLightGrey: #ccc;
+
+#cart {
+
+	.checkout_cell1,
+	.checkout_cell2,
+	.checkout_cell3,
+	.checkout_cell4,
+	.checkout_cell5 {
+		padding: 15px 5px;
+	}
+
+	.checkout_cell1{
+		width: 24%;
+		float: left;
+	}
+
+	.checkout_cell2{
+		width: 40%;
+		float: left;
+	}
+
+	.checkout_cell3{
+		width: 10%;
+		float: left;
+		background-color: pink;
+		text-align: center;
+	}
+
+	.checkout_cell4{
+		width: 10%;
+		float: left;
+		background-color: lightBlue;
+		text-align: center;
+	}
+
+	.checkout_cell5{
+		width: 14%;
+		float: right;
+		background-color: lightBlue;
+		text-align: center;
+	}
+
+	.checkout_titles{
+		margin-top: 10px;
+		display: block;
+		border: 1px solid $sosLightGrey;
+		min-height: 15px;
+	}
+
+	.checkout_buy,
+	.checkout_try{
+		margin-top: 10px;
+		display: block;
+		border: 1px solid $sosLightGrey;
+		min-height: 90px;
+
+		h5{
+			margin: 0;
+			padding: 0;
+		}
+
+		p{
+			margin: 0;
+			padding: 0;
+		}
+
+	}
+
+	.checkout_total{
+		margin-top: 20px;
+	}
+
+	.checkout_remove {
+		font-size: 20px;
+	}
+
+	.checkout_remove a {
+		text-decoration: none;
+		color: $sosLightGrey;
+	}
+
+	.checkout_remove a:hover {
+		text-decoration: none;
+	}
+
+}
+
+
+
+
+/*  <Phone>  */
+@media (max-width: $screen-xs-min) {
+}
+
+/*  <Tablet>  */
+@media (min-width: $screen-xs-min) {
+}
+
+/*  <Desktop Small>  */
+@media (min-width: $screen-sm-min) {
+	.col-cart-left{
+		float: left;
+		width: 65%;
+	}
+	.col-cart-right{
+		float: left;
+		width: 35%;
+	}
+}
+
+
+/*  <Desktop Large>  */
+@media (min-width: $screen-md-min) {
+}
+
+
