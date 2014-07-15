@@ -1,7 +1,6 @@
 @font-face {
 	font-family: 'Avenir-Light';
 	src: url('Avenir-Light.eot?') format('eot'), 
-	     url('Avenir-Light.woff') format('woff'), 
 	     url('Avenir-Light.ttf')  format('truetype'),
 	     url('Avenir-Light.svg#Avenir-Light') format('svg');
 }
@@ -10,7 +9,6 @@
 @font-face {
 	font-family: 'Avenir-Medium';
 	src: url('Avenir-Medium.eot?') format('eot'), 
-	     url('Avenir-Medium.woff') format('woff'), 
 	     url('Avenir-Medium.ttf')  format('truetype'),
 	     url('Avenir-Medium.svg#Avenir-Medium') format('svg');
 }
