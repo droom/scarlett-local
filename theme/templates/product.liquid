@@ -23,6 +23,22 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 centreCopy" >
 
+						<div class="thumbnail product-main-image">
+							<div class="productHero-feature">
+								{% for image in product.images %}
+								{% if image contains '_Feature' %}
+								<img src="{{ image.src | product_img_url: 'original' }}" />
+								{% endif %} 
+								{% endfor %}
+							</div>
+							<div class="productHero-360">
+								<div class="spritespin360"></div>
+							</div>
+							<div class="productHero-life">
+								<div class="spritespinLife"></div>
+							</div>
+						</div> 
+
 						<p>Views: 
 							<a href="#" class="productSwitch productSwitch-feature">Image</a> 
 							| 
@@ -32,112 +48,61 @@
 						</p>
 
 
-
-
-
-						<div class="thumbnail product-main-image">
-
-							<div class="productHero-feature">
-								{% for image in product.images %}
-								{% if image contains '_Feature' %}
-								<img src="{{ image.src | product_img_url: 'original' }}" />
-								{% endif %} 
-								{% endfor %}
-							</div>
-
-							<div class="productHero-360">
-
-								<div class="spritespin360"></div>
-
-							<!-- 							
-								{% for image in product.images %}
-								{% if image contains '_360_' %}
-									<img src="{{ image.src | product_img_url: 'original' }}" />
-								{% endif %} 
-								{% endfor %} 
-							-->
-						</div>
-						<div class="productHero-life">
-
-							<div class="spritespinLife"></div>
-
-							<!-- 		
-								{% for image in product.images %}
-								{% if image contains '_Life_' %}
-									<img src="{{ image.src | product_img_url: 'original' }}" />
-								{% endif %} 
-								{% endfor %} 
-							-->
-						</div>
-					</div> 
-
-
+					</div>
 
 				</div>
+			</div> 
+			<!-- details col -->
+			<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
+				<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
+				<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
+				<!-- {% if has_prices %} -->
 
+				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+
+					<del id="compare-at-price-field" class="text-muted"></del>
+					<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+					<meta itemprop="currency" content="{{ shop.currency }}" />
+					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
+				</div>
+				{% endif %}
+				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+
+				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
+				{% include 'product-specs' %}
+
+				<div class="centreCopy">
+					<p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
+				</div>	
+				<!-- <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div> -->
 			</div>
-		</div> 
-		<!-- details col -->
-		<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
-			<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
-			<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
-			<!-- {% if has_prices %} -->
-
-			<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-
-				<!-- 					
-					{% for variant in product.variants %}
-					{% if variant.title contains 'Buy Now' %}
-					{% endif %}
-					{% endfor %}
-				-->
-				
-				<!-- <span id="price-field">{% include 'product-price' with product.price %}</span> -->
-
-
-				<del id="compare-at-price-field" class="text-muted"></del>
-				<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-				<meta itemprop="currency" content="{{ shop.currency }}" />
-				<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
+			<div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+				<h3>Scarlett of Soho Design Hallmarks</h3>
+				<p>Explore the little details that distinguish our frames from the rest of the pack</p>
 			</div>
-			{% endif %}
-			<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
-
-			{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-			{% include 'product-specs' %}
-
-			<div class="centreCopy">
-				<p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
-			</div>	
-			<!-- <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div> -->
+			<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
+				{% for image in product.images %}
+				{% if image contains '_Info_01' %}
+				<img src="{{ image.src | product_img_url: 'original' }}" />
+				{% endif %} 
+				{% endfor %}
+			</div>
+			<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
+				{% for image in product.images %}
+				{% if image contains '_Info_02' %}
+				<img src="{{ image.src | product_img_url: 'original' }}" />
+				{% endif %} 
+				{% endfor %}
+			</div>
+			<div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+				{% for image in product.images %}
+				{% if image contains '_Info_03' %}
+				<img src="{{ image.src | product_img_url: 'original' }}" />
+				{% endif %} 
+				{% endfor %}
+			</div>
 		</div>
-		<div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
-			<h3>Scarlett of Soho Design Hallmarks</h3>
-			<p>Explore the little details that distinguish our frames from the rest of the pack</p>
-		</div>
-		<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-			{% for image in product.images %}
-			{% if image contains '_Info_01' %}
-			<img src="{{ image.src | product_img_url: 'original' }}" />
-			{% endif %} 
-			{% endfor %}
-		</div>
-		<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-			{% for image in product.images %}
-			{% if image contains '_Info_02' %}
-			<img src="{{ image.src | product_img_url: 'original' }}" />
-			{% endif %} 
-			{% endfor %}
-		</div>
-		<div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
-			{% for image in product.images %}
-			{% if image contains '_Info_03' %}
-			<img src="{{ image.src | product_img_url: 'original' }}" />
-			{% endif %} 
-			{% endfor %}
-		</div>
-	</div>
-</form>
+	</form>
 </section>
 
 
@@ -220,6 +185,19 @@
 			});
 
 
+			// http://bavotasan.com/2013/prevent-default-behaviour-of-hashed-anchor-tag-with-jquery/
+			/* <![CDATA[ */
+			( function( $ ) {
+				$( 'a[href="#"]' ).click( function(e) {
+					e.preventDefault();
+				} );
+			} )( jQuery );
+
+
+
+			/* ]]> */
+			// full 553x315
+			// 432 x 370
 
 			var anchors_and_divs = {
 				'.productSwitch-360'     :  '.productHero-360',
@@ -243,6 +221,11 @@
 			hide_rest('.productSwitch-360' );
 			hide_rest('.productSwitch-life' );
 			hide_rest('.productSwitch-feature' );
+
+
+
+
+
 
 			var selectCallback = function(variant, selector){
 			// set vars so we dont need to call the elements repeatedly

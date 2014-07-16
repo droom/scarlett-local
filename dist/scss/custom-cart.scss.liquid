@@ -2,7 +2,6 @@ $sosLightGrey: #ccc;
 
 #cart {
 
-	.checkout_cell1,
 	.checkout_cell2,
 	.checkout_cell3,
 	.checkout_cell4,
@@ -11,7 +10,7 @@ $sosLightGrey: #ccc;
 	}
 
 	.checkout_cell1{
-		width: 24%;
+		width: 26%;
 		float: left;
 	}
 
@@ -23,29 +22,49 @@ $sosLightGrey: #ccc;
 	.checkout_cell3{
 		width: 10%;
 		float: left;
-		background-color: pink;
 		text-align: center;
 	}
 
 	.checkout_cell4{
 		width: 10%;
 		float: left;
-		background-color: lightBlue;
 		text-align: center;
 	}
 
 	.checkout_cell5{
-		width: 14%;
+		width: 10%;
 		float: right;
-		background-color: lightBlue;
 		text-align: center;
 	}
 
 	.checkout_titles{
-		margin-top: 10px;
+		.checkout_cell2,
+		.checkout_cell3,
+		.checkout_cell4,
+		.checkout_cell5 {
+			padding: 0 5px;
+		}
 		display: block;
-		border: 1px solid $sosLightGrey;
-		min-height: 15px;
+	}
+
+
+	.empty{
+
+		h5{
+			text-align: center;
+		}
+		
+		background-color: #f2f2f2;
+		padding: 40px 20px;
+	}
+
+	.checkout_remove{
+		text-decoration: none;
+		color: $sosLightGrey;
+	}
+
+	.cellHide{
+		display: none;
 	}
 
 	.checkout_buy,
@@ -53,36 +72,37 @@ $sosLightGrey: #ccc;
 		margin-top: 10px;
 		display: block;
 		border: 1px solid $sosLightGrey;
-		min-height: 90px;
-
+		min-height: 95px;
 		h5{
 			margin: 0;
 			padding: 0;
 		}
-
 		p{
 			margin: 0;
 			padding: 0;
 		}
-
+		a{
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: none;
+		}
 	}
-
 	.checkout_total{
 		margin-top: 20px;
 	}
-
 	.checkout_remove {
 		font-size: 20px;
 	}
-
-	.checkout_remove a {
-		text-decoration: none;
-		color: $sosLightGrey;
+	.generate_empty_cells{
 	}
 
-	.checkout_remove a:hover {
-		text-decoration: none;
+	.priceTotal{
+		background-color: lightBlue;
+		padding: 20px;
+		text-align: center;
 	}
+
 
 }
 
@@ -102,6 +122,7 @@ $sosLightGrey: #ccc;
 	.col-cart-left{
 		float: left;
 		width: 65%;
+		padding: 0 25px 0 0;
 	}
 	.col-cart-right{
 		float: left;
