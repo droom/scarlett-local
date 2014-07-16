@@ -1,13 +1,27 @@
 #cart-wrap {
 
+	.checkout_topbar{
+		background-color: blue;
+		min-height: 10px;
+		width: 100%;
+		}
+
 	.checkout_breadcrumb li a{
 		color: #333;
-	}
+		}
 
-	.checkout_breadcrumb ul{
-		display: inline;
+	.checkout_breadcrumb{
 		padding: 0;
 		margin: 0;
+
+		li:first-child{
+			padding: 0;
+			}
+
+		li{
+			display: inline;
+			padding: 0 0 0 20px;
+			}
 	}
 
 	.empty{
@@ -50,16 +64,19 @@
 	.checkout_total{
 		margin-top: 20px;
 	}
+
 	.checkout_remove {
 		font-size: 20px;
 	}
-	.generate_empty_cells{
+
+	.generate_empty_cells {
 	}
 }
 
 
-.col-cart-right{
-	.priceTotal{
+.col-cart-right {
+
+	.priceTotal {
 		padding: 20px;
 		text-align: center;
 		border:1px solid $sosLightGrey;
@@ -69,10 +86,8 @@
 
 
 
-
-
-
 /*  <Phone>  */
+
 @media (max-width: $screen-xs-min) {
 
 	#cart-wrap {
@@ -132,6 +147,18 @@
 			min-height: 70px;
 		}
 	}
+
+	.col-cart-left{
+		float: left;
+		width: 100%;
+		padding: 25px 0 25px 0;
+	}
+
+	.col-cart-right{
+		float: left;
+		width: 100%;
+	}
+
 }
 
 /*  <Tablet>  */
@@ -149,34 +176,29 @@
 		.checkout_cell1{
 			width: 25%;
 			float: left;
-			background-color: pink;
 		}
 
 		.checkout_cell2{
 			width: 40%;
 			float: left;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell3{
 			width: 10%;
 			float: left;
 			text-align: center;
-			background-color: pink;
 		}
 
 		.checkout_cell4{
 			width: 16%;
 			float: left;
 			text-align: center;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell5{
 			width: 7%;
 			float: right;
 			text-align: center;
-			background-color: pink;
 		}
 
 		.checkout_titles{

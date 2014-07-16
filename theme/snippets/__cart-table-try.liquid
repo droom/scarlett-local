@@ -1,0 +1,55 @@
+<h3>Home Try-Ons</h3>
+<!-- Only generate if there are products in the try field -->
+<div class="checkout_titles clearfix">
+  <div class="checkout_cell1">
+    <p><strong>Items</strong></p>
+  </div>
+  <div class="checkout_cell2">
+    <p class="cellHide"><strong>Items</strong></p>
+  </div>
+  <div class="checkout_cell3">
+    <p><strong>Quantity</strong></p>
+  </div>
+  <div class="checkout_cell4">
+    <p><strong>Total</strong></p>
+  </div>
+  <div class="checkout_cell5">
+    <p class="cellHide"><strong>Remove</strong></p>
+  </div>
+</div>
+<!-- Only generate if there are products in the try field -->
+
+
+
+{% for item in cart.items %}
+{% if item.variant.title contains 'Home Try On' %}
+<div class="checkout_try clearfix">
+
+  <div class="checkout_cell1">
+    <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
+  </div>
+
+  <div class="checkout_cell2">
+    <h5><strong>{{ item.product.title }}</strong></h5>
+    {% if item.product.variants.size > 1 %}
+      <p>{{ item.variant.title }}</p>
+    {% endif %}
+  </div>
+
+  <div class="checkout_cell3">
+    <p>{{ item.quantity }}</p>
+  </div>
+
+  <div class="checkout_cell4">
+    <p>{{ item.line_price | money }}</p>
+  </div>
+
+  <div class="checkout_cell5">
+    <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+  </div>
+  
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="generate_empty_cells"></div>

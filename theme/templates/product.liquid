@@ -22,7 +22,6 @@
 			<div class="col-sm-8 {% if settings.product-page-image-placement == 'right' %}col-sm-push-4{% endif %}">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 centreCopy" >
-
 						<div class="thumbnail product-main-image">
 							<div class="productHero-feature">
 								{% for image in product.images %}
@@ -46,17 +45,18 @@
 							| 
 							<a href="#" class="productSwitch productSwitch-life">Model</a>
 						</p>
-
-
 					</div>
 
 				</div>
 			</div> 
 			<!-- details col -->
 			<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
+
 				<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
 				<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
 				<!-- {% if has_prices %} -->
+
+				{% include '__cart-social' %}
 
 				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
 
