@@ -1,6 +1,15 @@
 $sosLightGrey: #ccc;
 
-#cart {
+#cart-wrap {
+
+
+
+	.checkout_breadcrumb ul{
+		display: inline;
+		padding: 0;
+		margin: 0;
+	}
+
 
 	.checkout_cell2,
 	.checkout_cell3,
@@ -12,29 +21,38 @@ $sosLightGrey: #ccc;
 	.checkout_cell1{
 		width: 26%;
 		float: left;
+		background-color: pink;
 	}
 
 	.checkout_cell2{
 		width: 40%;
 		float: left;
+		background-color: lightBlue;
+
 	}
 
 	.checkout_cell3{
 		width: 10%;
 		float: left;
 		text-align: center;
+		background-color: pink;
+
 	}
 
 	.checkout_cell4{
 		width: 10%;
 		float: left;
 		text-align: center;
+		background-color: lightBlue;
+
 	}
 
 	.checkout_cell5{
 		width: 10%;
 		float: right;
 		text-align: center;
+		background-color: pink;
+
 	}
 
 	.checkout_titles{
@@ -64,7 +82,7 @@ $sosLightGrey: #ccc;
 	}
 
 	.cellHide{
-		display: none;
+		visibility:hidden;
 	}
 
 	.checkout_buy,
@@ -96,17 +114,17 @@ $sosLightGrey: #ccc;
 	}
 	.generate_empty_cells{
 	}
-
-	.priceTotal{
-		background-color: lightBlue;
-		padding: 20px;
-		text-align: center;
-	}
-
-
 }
 
 
+.col-cart-right{
+	.priceTotal{
+		padding: 20px;
+		text-align: center;
+		border:1px solid $sosLightGrey;
+	}
+
+}
 
 
 /*  <Phone>  */
