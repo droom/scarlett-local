@@ -8679,6 +8679,7 @@ body:after{
   }
 }
 $sosLightGrey: #c2c2c2;
+$sosRed: #a54c3a;
 .template-product {
 
 	.product-section{
@@ -8786,9 +8787,6 @@ $sosLightGrey: #c2c2c2;
 /*  <Phone>  */
 @media (max-width: $screen-xs-min) {
 
-	header {
-		border-bottom: 1px solid $sosLightGrey;
-	}
 	.col-sm-8{
 		width: 100%;
 		padding: 0;
@@ -8803,11 +8801,6 @@ $sosLightGrey: #c2c2c2;
 
 /*  <Tablet>  */
 @media (min-width: $screen-xs-min) {
-	
-
-	header {
-		border-bottom: none;
-	}
 
 	.col-sm-8{
 		width: 100%;
@@ -8824,9 +8817,7 @@ $sosLightGrey: #c2c2c2;
 
 /*  <Desktop Small>  */
 @media (min-width: $screen-sm-min) {
-	header {
-		border-bottom: none;
-	}
+
 	.col-sm-8{
 		width: 60%;
 		padding: 0;
@@ -8841,13 +8832,6 @@ $sosLightGrey: #c2c2c2;
 @media (min-width: $screen-md-min) {
 	.container {
 		width: 1000px;
-	}
-
-	body{
-	}
-
-	header {
-		border-bottom: none;
 	}
 
 	.col-sm-8{
@@ -9022,10 +9006,11 @@ select,
 }
 
 
-$sosLightGrey: #ccc;
-
 #cart-wrap {
 
+	.checkout_breadcrumb li a{
+		color: #333;
+	}
 
 	.checkout_breadcrumb ul{
 		display: inline;
@@ -9054,6 +9039,7 @@ $sosLightGrey: #ccc;
 	.checkout_try{
 		display: block;
 		border: 1px solid $sosLightGrey;
+
 		h5{
 			margin: 0;
 			padding: 0;
@@ -9107,7 +9093,7 @@ $sosLightGrey: #ccc;
 		}
 
 		.checkout_cell1 {
-			width: 25%;
+			width: 22%;
 			float: left;
 			background-color: pink;
 		}
@@ -9217,6 +9203,16 @@ $sosLightGrey: #ccc;
 			margin-top: 10px;
 			min-height: 75px;
 		}
+	}
+
+	.col-cart-left{
+		float: left;
+		width: 100%;
+		padding: 25px 0 25px 0;
+	}
+	.col-cart-right{
+		float: left;
+		width: 100%;
 	}
 
 
@@ -9441,7 +9437,9 @@ footer h4 {
 
 /*  <Phone>  */
 @media (max-width: $screen-xs-min) {
-	body {
+
+	header {
+		border-bottom: 1px solid $sosLightGrey;
 	}
 
 	.navbar-default {
@@ -9503,28 +9501,29 @@ footer h4 {
 /*  <Tablet>  */
 
 @media (min-width: $screen-xs-min) {
-		
+
+	header {
+		border-bottom: 1px solid $sosLightGrey;
+	}
 	.navbar-default {
 		background-color: #fff;
 		border-color: $sosLightGrey;
 		border-width: 1px 0 1px 0;
-		}
-
+	}
 	.navbar-collapse {
 		border: none;
-		}
+	}
 
 	.page-header {
 		border-top : 1px solid $sosLightGrey ;
 		padding: 1em 0 1em 0;
-		}
+	}
 
 	#navbar-top .container,
 	#content,
 	#footer-content{
 		padding: 0 7%;
-		}
-
+	}
 	.col-md-8{
 		width: 50%;
 		padding: 0 0 5em 0;
@@ -9534,7 +9533,6 @@ footer h4 {
 			line-height: 1.8em;
 		}
 	}
-
 	.col-md-4 {
 		width: 40%;
 		border-top: solid 1px $sosLightGrey ;
@@ -9549,12 +9547,10 @@ footer h4 {
 			margin: 1em 0 0 0 ;
 		}
 	}
-
 	.col-sm-3{
 		width: 50%;
 		float: left;
-		}
-
+	}
 	#footer-content .row > div:nth-of-type(1),
 	#footer-content .row > div:nth-of-type(2),
 	#footer-content .row > div:nth-of-type(3),
@@ -9572,16 +9568,16 @@ footer h4 {
 
 /*  <Desktop>  */
 @media (min-width: $screen-sm-min) {
-
+	header {
+		border-bottom: none;
+	}
 	.page-header {
 		border-top : none ;
 	}
-
 	#content,
 	#footer-content{
 		padding: 0;
 	}
-
 	.col-md-8{
 
 		background-color: pink;
@@ -9592,7 +9588,6 @@ footer h4 {
 			line-height: 1.8em;
 		}
 	}
-
 	.col-md-4 {
 		background-color: lightBlue;
 		border-top:solid 1px $sosLightGrey;
@@ -9603,12 +9598,10 @@ footer h4 {
 			margin: 1em 0 0 0;
 		}
 	}
-
 	.col-sm-3{
 		width: 25%;
 		float: left;
 	}
-
 	#footer-content .row > div:nth-of-type(1),
 	#footer-content .row > div:nth-of-type(2),
 	#footer-content .row > div:nth-of-type(3),
@@ -9616,12 +9609,11 @@ footer h4 {
 		padding-left: 0;
 		padding-top: 5px;
 	}
-
-
 }
 
 @media (min-width: $screen-md-min) {
-	body {
+	header {
+		border-bottom: none;
 	}
 
 	#content,
@@ -9630,7 +9622,6 @@ footer h4 {
 	}
 
 	.col-md-8{
-
 		padding: 0 5em 7em 0;
 		p {
 			padding: 0 0 0.7em 0;
@@ -9640,10 +9631,8 @@ footer h4 {
 	}
 
 	.col-md-4 {
-
 		border-top:none;
 		padding: 0;
-
 		h3{
 			margin: 0 0 0 0;
 		}

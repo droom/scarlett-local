@@ -30,8 +30,8 @@
     {% endif %}
 
     {{ "add_product.js.liquid" | asset_url | script_tag }}
-
     {{ "spritespin.js" | asset_url | script_tag }}
+    {{ "preventjump.js" | asset_url | script_tag }}
 
     {% if settings.custom-header-code != '' %}
     {{ settings.custom-header-code }}

@@ -153,7 +153,6 @@
 			var listStringLife = ($.trim(listItemsLife[0].innerHTML));
 			var positionLife = listStringLife.indexOf("Life");
 
-
 			var url_Life_part1 = listStringLife.slice(0, positionLife+5);
 			var url_Life_part2 = listStringLife.slice(positionLife+5, positionLife+7);
 			var url_Life_part3 = listStringLife.slice(positionLife+7, listStringLife.length);
@@ -165,7 +164,6 @@
 			console.log("url_Life_part1 is "+url_Life_part1);
 			console.log("url_Life_part2 is "+url_Life_part2);
 			console.log("url_Life_part3 is "+url_Life_part3);
-
 
 
 			$('.spritespin360').spritespin({
@@ -184,18 +182,6 @@
 				renderer: 'image'
 			});
 
-
-			// http://bavotasan.com/2013/prevent-default-behaviour-of-hashed-anchor-tag-with-jquery/
-			/* <![CDATA[ */
-			( function( $ ) {
-				$( 'a[href="#"]' ).click( function(e) {
-					e.preventDefault();
-				} );
-			} )( jQuery );
-
-
-
-			/* ]]> */
 			// full 553x315
 			// 432 x 370
 
@@ -204,8 +190,6 @@
 				'.productSwitch-life'    :  '.productHero-life',
 				".productSwitch-feature" :  '.productHero-feature'
 			}
-
-
 
 			function hide_rest(element_to_show) {
 				$(element_to_show).click(function(){

@@ -1,70 +1,75 @@
 {% include '__has-variables' %}
 <div class="col-cart-left">
+
+
   <!-- {% include '__formatted-content' %} -->
   <section id="cart-wrap" class="section-wrap">
-   <!-- <h1 class="page-header">{{ page_title }}</h1> -->
+    <ol class="checkout_breadcrumb">
+      <li class="step1"><a href="#">View Cart</a></li>
+      <li class="step2"><a href="#">Details &amp; Payment</a></li>
+      <li class="step3"><a href="#">Review Order</a></li>
+    </ol>
 
-   <ol class="checkout_breadcrumb">
-    <li class="step1">View Cart</li>
-    <li class="step2">Details &amp; Payment</li>
-    <li class="step3">Review Order</li>
-  </ol>
+    {% if has_cart %}
 
+    <script type="text/javascript">
+      function remove_item(id) {
+        document.getElementById('updates_'+id).value = 0;
+        document.getElementById('cart').submit();
+      }
+    </script>
 
-  {% if has_cart %}
-  <script type="text/javascript">
-    function remove_item(id) {
-      document.getElementById('updates_'+id).value = 0;
-      document.getElementById('cart').submit();
-    }
-  </script>
-  
+    <div id="cart">
 
+      {% if cart.item_count == 0 %}
+      <h2>Your cart is empty! Please add some items.</h2>
+      {% else %}
 
-  <div id="cart">
+      <!-- <form action="/cart" method="post" id="cartform1"> -->
 
-    {% if cart.item_count == 0 %}
-    <h2>Your cart is empty! Please add some items.</h2>
-    {% else %}
-
-    <form action="/cart" method="post" id="cartform1">
       <h3>Shopping Cart</h3>
-      <hr />
+
       {% for item in cart.items %}
       {% unless item.variant.title contains 'Home Try On' %}
+
       <div class="checkout_buy clearfix">
+
         <div class="checkout_cell1">
           <a href="{{ item.url }}">
             <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
           </a>
         </div>
+
         <div class="checkout_cell2">
-          <a href="{{ item.url }}">
-            <h5><strong>{{ item.product.title }}</strong></h5>
-            {% if item.product.variants.size > 1 %}
-            <p>{{ item.variant.title }}</p>
-            {% endif %} 
-          </a>
+          <h5><strong>{{ item.product.title }}</strong></h5>
+          {% if item.product.variants.size > 1 %}
+          <p>{{ item.variant.title }}</p>
+          {% endif %} 
         </div>
+
         <div class="checkout_cell3">
           <p>{{ item.quantity }}</p>
-
         </div>
 
         <div class="checkout_cell4">
-
           <p>{{ item.line_price | money }}</p>
-
-          <!-- <input type="text" size="4" data-id ="{{item.variant.id}}" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" onfocus="this.select();" class="tc item-quantity" /> -->
         </div>
 
         <div class="checkout_cell5">
-          <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+          <p>
+            <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a>
+          </p>
         </div>
+
       </div>
+
       {% endunless %}
       {% endfor %}
+
       <h3>Home Try-Ons</h3>
+
+
+      <!-- Only generate if there are products in the try field -->
       <div class="checkout_titles clearfix">
         <div class="checkout_cell1">
           <p><strong>Items</strong></p>
@@ -76,28 +81,27 @@
           <p><strong>Quantity</strong></p>
         </div>
         <div class="checkout_cell4">
-        <p><strong>Total</strong></p>
+          <p><strong>Total</strong></p>
         </div>
         <div class="checkout_cell5">
           <p class="cellHide"><strong>Remove</strong></p>
         </div>
       </div>
-      <hr />
+      <!-- Only generate if there are products in the try field -->
+
+
       {% for item in cart.items %}
       {% if item.variant.title contains 'Home Try On' %}
       <div class="checkout_try clearfix">
         <div class="checkout_cell1">
-          <!-- <a href="{{ item.url }}"> -->
           <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
-          <!-- </a> -->
         </div>
+
         <div class="checkout_cell2">
-          <!-- <a href="{{ item.url }}"> -->
           <h5><strong>{{ item.product.title }}</strong></h5>
           {% if item.product.variants.size > 1 %}
           <p>{{ item.variant.title }}</p>
           {% endif %}
-          <!-- </a> -->
         </div>
 
         <div class="checkout_cell3">
@@ -112,58 +116,38 @@
           <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
         </div>
       </div>
-
       {% endif %}
       {% endfor %}
 
-      <div class="generate_empty_cells">
-      </div>
+      <!-- Generate empty cells -->
+      <div class="generate_empty_cells"></div>
 
-      <!-- 
-      <input type="submit" id="checkout" class="btn btn-primary" name="checkout" value="Proceed to Details &amp; Payment" /> 
-    -->
-
-
-<!--       
-</form>
--->
-</div>
-{% endif %}
-{% endif %}
-</section>
+      <!-- </form> -->
+    </div>
+    {% endif %}
+    {% endif %}
+  </section>
 </div>
 
 
 <div class="col-cart-right">
   <h3>Cart total</h3>
-
   <div class="priceTotal">
     <h4><strong>{{ cart.total_price | money }}</strong></h4>
   </div>
   <div class="row cart-buttons">
-  <!-- 
-   <input type="submit" id="checkout" class="btn btn-primary" name="checkout" value="Proceed to Details &amp; Payment" /> 
- -->
- <h4>Spoof button, next fieldset</h4>
- <a href="#" class="btn btn-primary btnForm2">GO TO FORM SET</a>
+   <h4>Spoof button, next fieldset</h4>
+   <a href="#" class="btn btn-primary btnContinue">CONTINUE &#x2192;</a>
+   <h4>Proceed to checkout form button</h4>
+   <input type="submit" id="checkout" class="btn btn-primary" name="checkout" value="Proceed to Details &amp; Payment" />
+   <!-- <input type="submit" id="update-cart" class="btn" name="update" value="Update" /> -->
+   {% if additional_checkout_buttons %}        
+   {{ content_for_additional_checkout_buttons }}
+   {% endif %}
+ </div>
 
 
- <h4>Proceed to checkout form button</h4>
- <input type="submit" id="checkout" class="btn btn-primary" name="checkout" value="Proceed to Details &amp; Payment" />
-
- <!-- 
- <input type="submit" id="update-cart" class="btn" name="update" value="Update" /> 
--->
-
-</form>
-
-{% if additional_checkout_buttons %}        
-{{ content_for_additional_checkout_buttons }}
-{% endif %}
-</div>
-
-
-<h3>
+ <h3>
   Customer Service
 </h3>
 <p>
@@ -193,36 +177,61 @@
 
 </div>
 
-
 <script>
 
   $(document).ready(function(){
 
-    $('.checkout_breadcrumb .step1').css('color', '#a54c3a');
+    var activeColor = '#a54c3a' ;
+    var inactiveColor = '#333' ;
 
-    $('.btnForm2').click(function(){
-      alert("hey!");
-
-    });    
-
-
-
+    var checkout_form_position = 1;
     var checkout_try_required = 5;
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
 
-    // console.log("checkout_try_required is "+checkout_try_required);
-    // console.log("checkout_try_array is "+checkout_try_array);
-    // console.log("checkout_try_remaining is "+checkout_try_remaining);
+
+    //$('.checkout_breadcrumb .step1 a').css('color', activeColor );
+
+    $('.btnContinue').click(function(){
+      checkout_section();
+    });    
+
+    $('.checkout_breadcrumb .step1').click(function(){
+      checkout_section(".step1");
+    });    
+
+    $('.checkout_breadcrumb .step2').click(function(){
+      checkout_section(".step2");
+    });    
+
+    $('.checkout_breadcrumb .step3').click(function(){
+      checkout_section(".step3");
+    });    
+
+    function checkout_section(stepValue){
+
+      console.log("hey you clicked on "+stepValue);
+
+      $('.checkout_breadcrumb .step1 a').css('color', inactiveColor);
+      $('.checkout_breadcrumb .step2 a').css('color', inactiveColor);
+      $('.checkout_breadcrumb .step3 a').css('color', inactiveColor);
+
+      $('.checkout_breadcrumb '+stepValue+' a').css('color', activeColor);
+
+      // alert("hey!");
+      // $('.checkout_breadcrumb .step1 a').css('color', inactiveColor );
+      // $('.checkout_breadcrumb .step2 a').css('color', activeColor );
+
+    };
+
+
+
+
     
     for ( var i = 0; i < checkout_try_remaining; i++ ) {
-
       var numberStamp = i + 1 + checkout_try_array;
       console.log( "generate cell " + i );
-
       $( "<div class=\"checkout_try empty\"><h5 id=\'test\'><strong>"+numberStamp+"</stroxng>. Please add another frame</h5></div>").appendTo( ".generate_empty_cells");
-
-
     }
 
 
