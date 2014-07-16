@@ -26,7 +26,7 @@
     {% if cart.item_count == 0 %}
     <h2>Your cart is empty! Please add some items.</h2>
     {% else %}
-  
+
     <form action="/cart" method="post" id="cartform1">
       <h3>Shopping Cart</h3>
       <hr />
@@ -62,42 +62,29 @@
           <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
         </div>
       </div>
-
       {% endunless %}
       {% endfor %}
       <h3>Home Try-Ons</h3>
       <div class="checkout_titles clearfix">
-
-
         <div class="checkout_cell1">
-          <p>Items</p>
-
+          <p><strong>Items</strong></p>
         </div>
-
-
         <div class="checkout_cell2">
-          <p class="cellHide">&mdash;</p>
+          <p class="cellHide"><strong>Items</strong></p>
         </div>
-
         <div class="checkout_cell3">
-          <p>Quantity</p>
+          <p><strong>Quantity</strong></p>
         </div>
-
         <div class="checkout_cell4">
-          <p>Total</p>
+        <p><strong>Total</strong></p>
         </div>
-        
         <div class="checkout_cell5">
-          <p>Remove</p>
+          <p class="cellHide"><strong>Remove</strong></p>
         </div>
       </div>
-
       <hr />
-
-
       {% for item in cart.items %}
       {% if item.variant.title contains 'Home Try On' %}
-
       <div class="checkout_try clearfix">
         <div class="checkout_cell1">
           <!-- <a href="{{ item.url }}"> -->

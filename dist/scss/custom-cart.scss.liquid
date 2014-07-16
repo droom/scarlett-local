@@ -3,75 +3,16 @@ $sosLightGrey: #ccc;
 #cart-wrap {
 
 
-
 	.checkout_breadcrumb ul{
 		display: inline;
 		padding: 0;
 		margin: 0;
 	}
 
-
-	.checkout_cell2,
-	.checkout_cell3,
-	.checkout_cell4,
-	.checkout_cell5 {
-		padding: 15px 5px;
-	}
-
-	.checkout_cell1{
-		width: 26%;
-		float: left;
-		background-color: pink;
-	}
-
-	.checkout_cell2{
-		width: 40%;
-		float: left;
-		background-color: lightBlue;
-
-	}
-
-	.checkout_cell3{
-		width: 10%;
-		float: left;
-		text-align: center;
-		background-color: pink;
-
-	}
-
-	.checkout_cell4{
-		width: 10%;
-		float: left;
-		text-align: center;
-		background-color: lightBlue;
-
-	}
-
-	.checkout_cell5{
-		width: 10%;
-		float: right;
-		text-align: center;
-		background-color: pink;
-
-	}
-
-	.checkout_titles{
-		.checkout_cell2,
-		.checkout_cell3,
-		.checkout_cell4,
-		.checkout_cell5 {
-			padding: 0 5px;
-		}
-		display: block;
-	}
-
-
 	.empty{
-
 		h5{
 			text-align: center;
 		}
-		
 		background-color: #f2f2f2;
 		padding: 40px 20px;
 	}
@@ -87,10 +28,8 @@ $sosLightGrey: #ccc;
 
 	.checkout_buy,
 	.checkout_try{
-		margin-top: 10px;
 		display: block;
 		border: 1px solid $sosLightGrey;
-		min-height: 95px;
 		h5{
 			margin: 0;
 			padding: 0;
@@ -129,14 +68,196 @@ $sosLightGrey: #ccc;
 
 /*  <Phone>  */
 @media (max-width: $screen-xs-min) {
+
+	#cart-wrap {
+
+		.checkout_cell2,
+		.checkout_cell3,
+		.checkout_cell4,
+		.checkout_cell5 {
+			padding: 15px 5px;
+		}
+
+		.checkout_cell1 {
+			width: 25%;
+			float: left;
+			background-color: pink;
+		}
+
+		.checkout_cell2 {
+			width: 40%;
+			float: left;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell3{
+			width: 10%;
+			float: left;
+			text-align: center;
+			background-color: pink;
+		}
+
+		.checkout_cell4 {
+			width: 16%;
+			float: left;
+			text-align: center;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell5 {
+			width: 7%;
+			float: right;
+			text-align: center;
+			background-color: pink;
+		}
+		.checkout_titles {
+			.checkout_cell2,
+			.checkout_cell3,
+			.checkout_cell4,
+			.checkout_cell5 {
+				padding: 0 5px;
+			}
+			display: block;
+		}
+		.checkout_buy,
+		.checkout_try {
+			margin-top: 10px;
+			min-height: 95px;
+		}
+	}
 }
 
 /*  <Tablet>  */
 @media (min-width: $screen-xs-min) {
+
+	#cart-wrap {
+
+		.checkout_cell2,
+		.checkout_cell3,
+		.checkout_cell4,
+		.checkout_cell5 {
+			padding: 15px 5px;
+		}
+
+		.checkout_cell1{
+			width: 25%;
+			float: left;
+			background-color: pink;
+		}
+
+		.checkout_cell2{
+			width: 40%;
+			float: left;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell3{
+			width: 10%;
+			float: left;
+			text-align: center;
+			background-color: pink;
+		}
+
+		.checkout_cell4{
+			width: 16%;
+			float: left;
+			text-align: center;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell5{
+			width: 7%;
+			float: right;
+			text-align: center;
+			background-color: pink;
+		}
+
+		.checkout_titles{
+			.checkout_cell2,
+			.checkout_cell3,
+			.checkout_cell4,
+			.checkout_cell5 {
+				padding: 0 5px;
+			}
+			
+			display: block;
+		}
+
+		.checkout_buy,
+		.checkout_try{
+			margin-top: 10px;
+			min-height: 95px;
+		}
+	}
+
+
 }
 
 /*  <Desktop Small>  */
 @media (min-width: $screen-sm-min) {
+
+	#cart-wrap {
+
+		.checkout_cell2,
+		.checkout_cell3,
+		.checkout_cell4,
+		.checkout_cell5 {
+			padding: 15px 5px;
+		}
+
+		.checkout_cell1{
+			width: 25%;
+			float: left;
+			background-color: pink;
+		}
+
+		.checkout_cell2{
+			width: 40%;
+			float: left;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell3{
+			width: 15%;
+			float: left;
+			text-align: center;
+			background-color: pink;
+		}
+
+		.checkout_cell4{
+			width: 15%;
+			float: left;
+			text-align: center;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell5{
+			width: 5%;
+			float: right;
+			text-align: center;
+			background-color: pink;
+		}
+
+		.checkout_titles{
+			.checkout_cell2,
+			.checkout_cell3,
+			.checkout_cell4,
+			.checkout_cell5 {
+				padding: 0 5px;
+			}
+			display: block;
+		}
+
+		.checkout_buy,
+		.checkout_try{
+			margin-top: 10px;
+			min-height: 95px;
+		}
+
+	}
+
+
+
 	.col-cart-left{
 		float: left;
 		width: 65%;
@@ -151,6 +272,67 @@ $sosLightGrey: #ccc;
 
 /*  <Desktop Large>  */
 @media (min-width: $screen-md-min) {
+
+	#cart-wrap {
+
+		.checkout_cell2,
+		.checkout_cell3,
+		.checkout_cell4,
+		.checkout_cell5 {
+			padding: 15px 5px;
+		}
+
+		.checkout_cell1{
+			width: 25%;
+			float: left;
+			background-color: pink;
+		}
+
+		.checkout_cell2{
+			width: 40%;
+			float: left;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell3{
+			width: 10%;
+			float: left;
+			text-align: center;
+			background-color: pink;
+		}
+
+		.checkout_cell4{
+			width: 16%;
+			float: left;
+			text-align: center;
+			background-color: lightBlue;
+		}
+
+		.checkout_cell5{
+			width: 7%;
+			float: right;
+			text-align: center;
+			background-color: pink;
+		}
+
+		.checkout_titles{
+			.checkout_cell2,
+			.checkout_cell3,
+			.checkout_cell4,
+			.checkout_cell5 {
+				padding: 0 5px;
+			}
+
+			display: block;
+		}
+
+		.checkout_buy,
+		.checkout_try{
+			margin-top: 10px;
+			min-height: 95px;
+		}
+	}
+
 }
 
 
