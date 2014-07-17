@@ -9003,7 +9003,12 @@ h3,
 h4, 
 h5{
 	font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
-	}
+}
+
+
+h4{
+	font-weight: bold;
+}
 
 p, 
 li, 
@@ -9014,7 +9019,7 @@ select,
 .money,
 .btn{
 	font-family: 'Avenir-Light', helvetica, arial, sans-serif;
-	}
+}
 .masonary-tile{
 	margin: 25px 0 0 0;
 }
@@ -9041,17 +9046,77 @@ select,
 }
 
 
+//$cellWidth: percentage(100/6);
+
+
+
+/* Boundary object */	
+
+
+
+
+.checkout_cell1,
+.checkout_cell2,
+.checkout_cell3,
+.checkout_cell4,
+.checkout_cell5,
+.checkout_cell6
+{
+	float: left;
+	width: 16%;
+}
+
+
+
+.checkout_titles {
+	.checkout_cell2,
+	.checkout_cell3,
+	.checkout_cell4,
+	.checkout_cell5,
+	.checkout_cell6 {
+		padding: 0 5px;
+	}
+	border-bottom: 1px $sosLightGrey solid;
+}
+
+
+.checkout_cell3,
+.checkout_cell4,
+.checkout_cell5,
+.checkout_cell6{
+	text-align: center;
+}
+
+
+.checkout_main{
+	background-color: red;
+
+
+	h2{
+		margin: 10px 0 20px 0;
+	}
+
+	h4{
+		margin: 60px 0 20px 0;
+		padding: 8px 0;	
+		border-bottom: $sosLightGrey 1px solid;
+	}
+
+}
+
+
 #cart-wrap {
 
+
+
 	.checkout_topbar{
-		background-color: blue;
 		min-height: 10px;
 		width: 100%;
-		}
+	}
 
 	.checkout_breadcrumb li a{
 		color: #333;
-		}
+	}
 
 	.checkout_breadcrumb{
 		padding: 0;
@@ -9059,13 +9124,14 @@ select,
 
 		li:first-child{
 			padding: 0;
-			}
+		}
 
 		li{
 			display: inline;
 			padding: 0 0 0 20px;
-			}
+		}
 	}
+
 
 	.empty{
 		h5{
@@ -9083,6 +9149,8 @@ select,
 	.cellHide{
 		visibility:hidden;
 	}
+
+
 
 	.checkout_buy,
 	.checkout_try{
@@ -9116,17 +9184,12 @@ select,
 	}
 }
 
-
 .col-cart-right {
-
 	.priceTotal {
 		padding: 20px;
 		text-align: center;
-		border:1px solid $sosLightGrey;
 	}
-
 }
-
 
 
 /*  <Phone>  */
@@ -9138,50 +9201,37 @@ select,
 		.checkout_cell2,
 		.checkout_cell3,
 		.checkout_cell4,
-		.checkout_cell5 {
+		.checkout_cell5,
+		.checkout_cell6 {
 			padding: 5px 5px;
 		}
 
 		.checkout_cell1 {
-			width: 22%;
-			float: left;
-			background-color: pink;
 		}
 
 		.checkout_cell2 {
-			width: 40%;
-			float: left;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell3{
-			width: 10%;
-			float: left;
-			text-align: center;
-			background-color: pink;
 		}
 
 		.checkout_cell4 {
-			width: 16%;
-			float: left;
-			text-align: center;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell5 {
-			width: 7%;
-			float: right;
-			text-align: center;
-			background-color: pink;
 		}
+
+		.checkout_cell6 {
+		}
+
+
 		.checkout_titles {
 			.checkout_cell2,
 			.checkout_cell3,
 			.checkout_cell4,
-			.checkout_cell5 {
-				padding: 0 5px;
+			.checkout_cell5,
+			.checkout_cell6 {
 			}
-			display: block;
 		}
 
 		.checkout_buy,
@@ -9207,51 +9257,46 @@ select,
 /*  <Tablet>  */
 @media (min-width: $screen-xs-min) {
 
+
+
 	#cart-wrap {
 
 		.checkout_cell2,
 		.checkout_cell3,
 		.checkout_cell4,
-		.checkout_cell5 {
+		.checkout_cell5,
+		.checkout_cell6 {
 			padding: 15px 5px;
 		}
 
 		.checkout_cell1{
-			width: 25%;
-			float: left;
 		}
 
 		.checkout_cell2{
-			width: 40%;
-			float: left;
 		}
 
 		.checkout_cell3{
-			width: 10%;
-			float: left;
-			text-align: center;
 		}
 
 		.checkout_cell4{
-			width: 16%;
-			float: left;
-			text-align: center;
 		}
 
 		.checkout_cell5{
-			width: 7%;
-			float: right;
-			text-align: center;
+		}
+
+		.checkout_cell6{
 		}
 
 		.checkout_titles{
 			.checkout_cell2,
 			.checkout_cell3,
 			.checkout_cell4,
-			.checkout_cell5 {
+			.checkout_cell5,
+			.checkout_cell6
+			{
 				padding: 0 5px;
 			}
-			
+
 			display: block;
 		}
 
@@ -9278,6 +9323,8 @@ select,
 /*  <Desktop Small>  */
 @media (min-width: $screen-sm-min) {
 
+
+
 	#cart-wrap {
 
 		.checkout_cell2,
@@ -9288,43 +9335,30 @@ select,
 		}
 
 		.checkout_cell1{
-			width: 25%;
-			float: left;
-			background-color: pink;
 		}
 
 		.checkout_cell2{
-			width: 40%;
-			float: left;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell3{
-			width: 15%;
-			float: left;
-			text-align: center;
-			background-color: pink;
 		}
 
 		.checkout_cell4{
-			width: 15%;
-			float: left;
-			text-align: center;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell5{
-			width: 5%;
-			float: right;
-			text-align: center;
-			background-color: pink;
+		}
+
+		.checkout_cell6{
 		}
 
 		.checkout_titles{
 			.checkout_cell2,
 			.checkout_cell3,
 			.checkout_cell4,
-			.checkout_cell5 {
+			.checkout_cell5,
+			.checkout_cell6 
+			{
 				padding: 0 5px;
 			}
 			display: block;
@@ -9353,53 +9387,58 @@ select,
 /*  <Desktop Large>  */
 @media (min-width: $screen-md-min) {
 
+	.col-cart-left{
+		float: left;
+		padding: 0 60px 0 0;
+	}
+	.col-cart-right{
+		float: left;
+		width: 35%;
+	}
+
+	// .template-cart {
+
+	// 	.container{
+	// 		width: 90%;
+	// 		max-width: 1100px;
+	// 	}
+	// }
+
+
 	#cart-wrap {
 
 		.checkout_cell2,
 		.checkout_cell3,
 		.checkout_cell4,
-		.checkout_cell5 {
-			padding: 15px 5px;
+		.checkout_cell5,
+		.checkout_cell6 {
+			padding: 30px 5px;
 		}
 
 		.checkout_cell1{
-			width: 25%;
-			float: left;
-			background-color: pink;
 		}
 
 		.checkout_cell2{
-			width: 40%;
-			float: left;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell3{
-			width: 10%;
-			float: left;
-			text-align: center;
-			background-color: pink;
 		}
 
 		.checkout_cell4{
-			width: 16%;
-			float: left;
-			text-align: center;
-			background-color: lightBlue;
 		}
 
 		.checkout_cell5{
-			width: 7%;
-			float: right;
-			text-align: center;
-			background-color: pink;
+		}
+
+		.checkout_cell6{
 		}
 
 		.checkout_titles{
 			.checkout_cell2,
 			.checkout_cell3,
 			.checkout_cell4,
-			.checkout_cell5 {
+			.checkout_cell5,
+			.checkout_cell6 {
 				padding: 0 5px;
 			}
 
@@ -9472,6 +9511,14 @@ select,
 }
 
 
+.btn-secondary {
+	border: none;
+	color: #7d7c74;
+	background-color: #efedec;
+}
+
+
+
 hr {
 	margin:  0;
 	padding: 0;
@@ -9515,7 +9562,7 @@ footer h4 {
 	}
 	
 	.page-header {
-		border-top : 1px solid $sosLightGrey ;
+		border-top : none;
 	}
 
 	#navbar-top .container,
@@ -9565,9 +9612,16 @@ footer h4 {
 
 @media (min-width: $screen-xs-min) {
 
+	.container{
+		width: 90%;
+		max-width: 1100px;
+	}
+
+
 	header {
 		border-bottom: 1px solid $sosLightGrey;
 	}
+
 	.navbar-default {
 		background-color: #fff;
 		border-color: $sosLightGrey;
@@ -9578,7 +9632,6 @@ footer h4 {
 	}
 
 	.page-header {
-		border-top : 1px solid $sosLightGrey ;
 		padding: 1em 0 1em 0;
 	}
 
@@ -9631,6 +9684,13 @@ footer h4 {
 
 /*  <Desktop>  */
 @media (min-width: $screen-sm-min) {
+
+
+	.container{
+		width: 95%;
+		max-width: 1100px;
+	}
+
 	header {
 		border-bottom: none;
 	}
@@ -9642,7 +9702,8 @@ footer h4 {
 		padding: 0;
 	}
 	.col-md-8{
-
+		float: left;
+		width: 60%;
 		background-color: pink;
 		padding: 0 0 7em 0;
 		p {
@@ -9652,6 +9713,8 @@ footer h4 {
 		}
 	}
 	.col-md-4 {
+		float: left;
+		width:40%;
 		background-color: lightBlue;
 		border-top:solid 1px $sosLightGrey;
 		padding: 0 0 7em;
@@ -9661,6 +9724,8 @@ footer h4 {
 			margin: 1em 0 0 0;
 		}
 	}
+
+
 	.col-sm-3{
 		width: 25%;
 		float: left;
@@ -9675,6 +9740,12 @@ footer h4 {
 }
 
 @media (min-width: $screen-md-min) {
+
+	.container{
+		width: 90%;
+		max-width: 1100px;
+	}
+
 	header {
 		border-bottom: none;
 	}

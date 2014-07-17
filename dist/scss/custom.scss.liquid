@@ -53,6 +53,14 @@
 }
 
 
+.btn-secondary {
+	border: none;
+	color: #7d7c74;
+	background-color: #efedec;
+}
+
+
+
 hr {
 	margin:  0;
 	padding: 0;
@@ -96,7 +104,7 @@ footer h4 {
 	}
 	
 	.page-header {
-		border-top : 1px solid $sosLightGrey ;
+		border-top : none;
 	}
 
 	#navbar-top .container,
@@ -146,9 +154,16 @@ footer h4 {
 
 @media (min-width: $screen-xs-min) {
 
+	.container{
+		width: 90%;
+		max-width: 1100px;
+	}
+
+
 	header {
 		border-bottom: 1px solid $sosLightGrey;
 	}
+
 	.navbar-default {
 		background-color: #fff;
 		border-color: $sosLightGrey;
@@ -159,7 +174,6 @@ footer h4 {
 	}
 
 	.page-header {
-		border-top : 1px solid $sosLightGrey ;
 		padding: 1em 0 1em 0;
 	}
 
@@ -212,6 +226,13 @@ footer h4 {
 
 /*  <Desktop>  */
 @media (min-width: $screen-sm-min) {
+
+
+	.container{
+		width: 95%;
+		max-width: 1100px;
+	}
+
 	header {
 		border-bottom: none;
 	}
@@ -223,7 +244,8 @@ footer h4 {
 		padding: 0;
 	}
 	.col-md-8{
-
+		float: left;
+		width: 60%;
 		background-color: pink;
 		padding: 0 0 7em 0;
 		p {
@@ -233,6 +255,8 @@ footer h4 {
 		}
 	}
 	.col-md-4 {
+		float: left;
+		width:40%;
 		background-color: lightBlue;
 		border-top:solid 1px $sosLightGrey;
 		padding: 0 0 7em;
@@ -242,6 +266,8 @@ footer h4 {
 			margin: 1em 0 0 0;
 		}
 	}
+
+
 	.col-sm-3{
 		width: 25%;
 		float: left;
@@ -256,6 +282,12 @@ footer h4 {
 }
 
 @media (min-width: $screen-md-min) {
+
+	.container{
+		width: 90%;
+		max-width: 1100px;
+	}
+
 	header {
 		border-bottom: none;
 	}

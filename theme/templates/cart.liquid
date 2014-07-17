@@ -4,28 +4,33 @@
   {% include '__cart-breadcrumb' %}
 
 
-  <div class="col-cart-left">
+  <div class="checkout_main">
 
-    {% include '__formatted-content' %}
+    <div class="col-cart-left">
 
-    {% if has_cart %}
+      {% include '__formatted-content' %}
 
-    {% if cart.item_count == 0 %}
-    <h2>Your cart is empty! Please add some items.</h2>
-    {% else %}
-    <!-- <form action="/cart" method="post" id="cartform1"> -->
-    {% include '__cart-table-buy' %}
-    {% include '__cart-table-try' %}
-    <!-- </form> -->
-    {% endif %}
-    {% endif %}
+      {% if has_cart %}
+
+      {% if cart.item_count == 0 %}
+      <h2>Your cart is empty! Please add some items.</h2>
+      {% else %}
+      <!-- <form action="/cart" method="post" id="cartform1"> -->
+      {% include '__cart-table-buy' %}
+      {% include '__cart-table-try' %}
+      <!-- </form> -->
+      {% endif %}
+      {% endif %}
+
+    </div>
+
+    <div class="col-cart-right">
+      {% include '__cart-price' %}
+      {% include '__cart-customer' %}
+    </div>
 
   </div>
 
-  <div class="col-cart-right">
-    {% include '__cart-price' %}
-    {% include '__cart-customer' %}
-  </div>
 
   <!-- </div> -->
 
