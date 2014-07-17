@@ -5,11 +5,9 @@
 {% for item in cart.items %}
 {% if item.variant.title contains 'Home Try On' %}
 <div class="checkout_try clearfix">
-
   <div class="checkout_cell1">
     <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
   </div>
-
   <div class="checkout_cell2">
     <h5><strong>{{ item.product.title }}</strong></h5>
     {% if item.product.variants.size > 1 %}

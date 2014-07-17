@@ -6,23 +6,62 @@
   <input type="submit" class="btn btn-default" value="Search" style="visibility: hidden; width: 0; height: 0; margin: 0; padding: 0; border-width: 0; float: right;" />
 </form>
 {% endif %}
-  
+
 <div class="hidden-xs">
   <ul class="nav navbar-nav navbar-right">
     {% if has_cart %}
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
-        <ul class="dropdown-menu">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
+      <ul class="dropdown-menu">
         {% if settings.quick-cart %}
-          
+  
         {% else %}
-          <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> <span class="badge">{% include '__cart-count' %}</span></a></li>
-          {% if cart.item_count > 0 %}
-          <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
-          {% endif %}
+
+        <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> <span class="badge">{% include '__cart-count' %}</span></a></li>
+        <hr />
+
+
+        <p><strong>Buy Now</strong></p>
+        {% for item in cart.items %}
+        {% if item.variant.title contains 'Buy Now' %}
+        <img src="{{ item | img_url: 'small' }}"  alt="{{ item.title | escape }}" />
+        {{ item.product.title }}
+        {% if item.product.variants.size > 1 %}
+        {{ item.variant.title }}
         {% endif %}
-        </ul>
-      </li>
+        {{ item.quantity }}
+        {{ item.line_price | money }}
+
+        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a>
+        {% endif %}
+        {% endfor %}
+
+
+        <p><strong>Try-On</strong></p>
+        {% for item in cart.items %}
+        {% if item.variant.title contains 'Home Try On' %}
+        <img src="{{ item | img_url: 'small' }}"  alt="{{ item.title | escape }}" />
+        {{ item.product.title }}
+        {% if item.product.variants.size > 1 %}
+        {{ item.variant.title }}
+        {% endif %}
+        {{ item.quantity }}
+        {{ item.line_price | money }}
+
+        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a>
+        {% endif %}
+        {% endfor %}
+
+        <hr />
+
+
+
+        {% if cart.item_count > 0 %}
+        <li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>
+        {% endif %}
+        {% endif %}
+      </ul>
+    </li>
     {% endif %}
     {% if shop.customer_accounts_enabled %}
     <li class="dropdown">
@@ -47,13 +86,13 @@
     {% if cart.item_count > 0 %}<li><a href="/checkout" title="{% include '__localize' with 'Checkout' %}">{% include '__localize' with 'Checkout' %}</a></li>{% endif %}
     {% endif %}
     {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-      <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
-      <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
-      {% else %}
-      <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
-      <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
-      {% endif %}
+    {% if customer %}
+    <li><a href="/account">Welcome, {{ customer.first_name }}!</a></li>
+    <li>{% capture logout %}{% include '__localize' with 'Log out' %}{% endcapture %}{{ logout | customer_logout_link }}</li>
+    {% else %}
+    <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
+    <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
+    {% endif %}
     {% endif %}
   </ul>
 </div>
