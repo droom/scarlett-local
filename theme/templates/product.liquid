@@ -22,6 +22,7 @@
 			<div class="col-sm-8 {% if settings.product-page-image-placement == 'right' %}col-sm-push-4{% endif %}">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 centreCopy" >
+
 						<div class="thumbnail product-main-image">
 							<div class="productHero-feature">
 								{% for image in product.images %}
@@ -69,13 +70,14 @@
 				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
 
 				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-				{% include 'product-specs' %}
 
 				<div class="centreCopy">
 					<p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
 				</div>	
-				<!-- <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div> -->
+		
 			</div>
+
+			
 			<div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
 				<h3>Scarlett of Soho Design Hallmarks</h3>
 				<p>Explore the little details that distinguish our frames from the rest of the pack</p>
@@ -185,6 +187,17 @@
 			// full 553x315
 			// 432 x 370
 
+
+
+			( function( $ ) {
+				$( 'a[href="#"]' ).click( function(e) {
+					e.preventDefault();
+				} );
+			} );
+
+
+
+
 			var anchors_and_divs = {
 				'.productSwitch-360'     :  '.productHero-360',
 				'.productSwitch-life'    :  '.productHero-life',
@@ -205,10 +218,6 @@
 			hide_rest('.productSwitch-360' );
 			hide_rest('.productSwitch-life' );
 			hide_rest('.productSwitch-feature' );
-
-
-
-
 
 
 			var selectCallback = function(variant, selector){
@@ -249,8 +258,6 @@
 			    // sold out
 			    purchaseButton.val(soldOutStr);
 			}
-
-
 
 
 			$("input[value='Try it']").click(function(e){
