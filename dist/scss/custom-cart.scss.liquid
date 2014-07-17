@@ -1,10 +1,4 @@
-//$cellWidth: percentage(100/6);
-
-
-
 /* Boundary object */	
-
-
 
 
 .checkout_cell1,
@@ -19,6 +13,31 @@
 }
 
 
+.checkout_stage1,
+.checkout_stage2,
+.checkout_stage3{
+	margin-top: 20px;
+	padding: 20px;
+	display: block;
+}
+
+
+.checkout_stage1{
+	background-color: pink;
+}
+
+.checkout_stage2{
+	background-color: lightBlue;
+}
+.checkout_stage3{
+	background-color: yellow;
+}
+
+
+
+.checkout_buy_wrap{
+	margin: 0 0 50px 0;
+}
 
 .checkout_titles {
 	.checkout_cell2,
@@ -29,6 +48,10 @@
 		padding: 0 5px;
 	}
 	border-bottom: 1px $sosLightGrey solid;
+
+	p {
+		margin: 0 0 4px;
+	}
 }
 
 
@@ -41,11 +64,9 @@
 
 
 .checkout_main{
-	background-color: red;
-
 
 	h2{
-		margin: 10px 0 20px 0;
+		margin: 15px 0 30px 0;
 	}
 
 	h4{
@@ -138,6 +159,7 @@
 
 .col-cart-right {
 	.priceTotal {
+		font-size: 20px;
 		padding: 20px;
 		text-align: center;
 	}

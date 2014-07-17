@@ -1,36 +1,69 @@
 {% include '__has-variables' %}
 <section id="cart-wrap" class="section-wrap">
+  <form action="/cart" method="post" id="cartform1">
+    {% include '__cart-breadcrumb' %}
+    <div class="checkout_main">
+      <div class="col-cart-left">
+        <div class="checkout_stage1">
+          {% include '__formatted-content' %}
+          {% if has_cart %}
+          {% if cart.item_count == 0 %}
+          <h2>Your cart is empty! Please add some items.</h2>
+          {% else %}
+          {% include '__cart-table-buy' %}
+          {% include '__cart-table-try' %}
+          {% endif %}
+          {% endif %}
+        </div>
 
-  {% include '__cart-breadcrumb' %}
+        <div class="checkout_stage2">
+          <h2>Prescription</h2>
+          <h3>What kind of glasses do you need?</h3>
 
+          <ul>
+            <li>Prescription</li>
+            <li>Readers</li>
+            <li>Non-RX</li>
+          </ul>
 
-  <div class="checkout_main">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
 
-    <div class="col-cart-left">
+          <h3>How would you like to send us your prescription?</h3>
 
-      {% include '__formatted-content' %}
+          <ul>
+            <li>Upload a picture</li>
+            <li>Call my doctor</li>
+            <li>Send letter</li>
+          </ul>
 
-      {% if has_cart %}
+          <h3>Do you want ultra high-index?</h3>
+  
+          <ul>
+            <li>Yes</li>
+            <li>No</li>
+          </ul>
 
-      {% if cart.item_count == 0 %}
-      <h2>Your cart is empty! Please add some items.</h2>
-      {% else %}
-      <!-- <form action="/cart" method="post" id="cartform1"> -->
-      {% include '__cart-table-buy' %}
-      {% include '__cart-table-try' %}
-      <!-- </form> -->
-      {% endif %}
-      {% endif %}
+        </div>
+
+        <div class="checkout_stage3">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="col-cart-right">
+        {% include '__cart-price' %}
+        {% include '__cart-customer' %}
+      </div>
 
     </div>
 
-    <div class="col-cart-right">
-      {% include '__cart-price' %}
-      {% include '__cart-customer' %}
-    </div>
 
-  </div>
-
+  </form>
 
   <!-- </div> -->
 
@@ -39,43 +72,73 @@
 
 <script>
   $(document).ready(function(){
+
     var activeColor = '#a54c3a' ;
     var inactiveColor = '#333' ;
-    var checkout_form_position = 1;
+    var checkout_section_position = 0;
     var checkout_try_required = 5;
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
 
     $('.checkout_breadcrumb .step1 a').css('color', activeColor);
 
+    console.log(checkout_section_position);
+
     $('.btnContinue').click(function(){
-      checkout_section();
+      //checkout_section_next();
+      checkout_section_position++;
+      if ( checkout_section_position == 1 ){
+        checkout_section();
+      }
+      if ( checkout_section_position == 2 ){
+      }
+      if ( checkout_section_position == 3 ){
+      }
+
+      console.log("checkout_section_position is "+checkout_section_position)
+
     });    
 
     $('.checkout_breadcrumb .step1').click(function(){
       checkout_section(".step1");
+      checkout_section_position = 1;
     });    
 
     $('.checkout_breadcrumb .step2').click(function(){
       checkout_section(".step2");
+      checkout_section_position = 2;
     });    
 
     $('.checkout_breadcrumb .step3').click(function(){
       checkout_section(".step3");
+      checkout_section_position = 3;
     });    
 
 
     function checkout_section(stepValue){
 
       console.log("hey you clicked on "+stepValue);
+      console.log("checkout_section_position "+checkout_section_position);
 
       $('.checkout_breadcrumb .step1 a').css('color', inactiveColor);
       $('.checkout_breadcrumb .step2 a').css('color', inactiveColor);
       $('.checkout_breadcrumb .step3 a').css('color', inactiveColor);
-
+      
       $('.checkout_breadcrumb '+stepValue+' a').css('color', activeColor);
 
+      $('.checkout_stage1').css('display', 'none');
+      $('.checkout_stage2').css('display', 'none');
+      $('.checkout_stage3').css('display', 'none');
+
+      $('.checkout_stage'+checkout_section_position).css('display', 'block');
+
     };
+
+
+
+
+
+
 
     function remove_item(id) {
       document.getElementById('updates_'+id).value = 0;
