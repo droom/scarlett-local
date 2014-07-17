@@ -1,6 +1,8 @@
 {% include '__has-variables' %}
 <section id="cart-wrap" class="section-wrap">
+
   <form action="/cart" method="post" id="cartform1">
+
     {% include '__cart-breadcrumb' %}
     <div class="checkout_main">
       <div class="col-cart-left">
@@ -8,7 +10,8 @@
           {% include '__formatted-content' %}
           {% if has_cart %}
           {% if cart.item_count == 0 %}
-          <h2>Your cart is empty! Please add some items.</h2>
+          <h2>Your cart is empty!</h2>
+          <p>Please add some items.</p>
           {% else %}
           {% include '__cart-table-buy' %}
           {% include '__cart-table-try' %}
@@ -20,52 +23,75 @@
           <h2>Prescription</h2>
           <h3>What kind of glasses do you need?</h3>
 
-          <ul>
-            <li>Prescription</li>
-            <li>Readers</li>
-            <li>Non-RX</li>
-          </ul>
+          <hr />
+          <input type="text" name="attributes[your-pet-name]" value="{{ cart.attributes.your-pet-name }}" />
+          <hr />
 
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
 
-          <h3>How would you like to send us your prescription?</h3>
 
-          <ul>
-            <li>Upload a picture</li>
-            <li>Call my doctor</li>
-            <li>Send letter</li>
-          </ul>
+          <p>My favorite meal of the day is...</p>
+          {% assign attribute = 'favorite-meal' %}
+          <!-- Below, set the upper-bound number to the number of radios -->
+          {% for i in (1..3) %}
+          <!-- List your options here, captain... -->
+          {% capture option %}{% cycle 'Breakfast', 'Lunch', 'Dinner' %}{% endcapture %}
+          <input type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+          <label for="{{ option }}-{{ i }}">{{ option }}</label>
+          {% endfor %}
 
-          <h3>Do you want ultra high-index?</h3>
-  
-          <ul>
-            <li>Yes</li>
-            <li>No</li>
-          </ul>
+          <hr/>
 
-        </div>
+       <!-- 
+       <h5>File upload</h5>
+          <script type="text/javascript" src="https://secure.jotform.me/jsform/41972030603446"></script>
+        -->
 
-        <div class="checkout_stage3">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
+        <ul>
+          <li>Prescription</li>
+          <li>Readers</li>
+          <li>Non-RX</li>
+        </ul>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+        <h3>How would you like to send us your prescription?</h3>
+
+        <ul>
+          <li>Upload a picture</li>
+          <li>Call my doctor</li>
+          <li>Send letter</li>
+        </ul>
+
+        <h3>Do you want ultra high-index?</h3>
+
+        <ul>
+          <li>Yes</li>
+          <li>No</li>`
+        </ul>
 
       </div>
 
-      <div class="col-cart-right">
-        {% include '__cart-price' %}
-        {% include '__cart-customer' %}
+      <div class="checkout_stage3">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
       </div>
 
     </div>
 
+    <div class="col-cart-right">
+      {% include '__cart-price' %}
+      {% include '__cart-customer' %}
+    </div>
 
-  </form>
+  </div>
 
-  <!-- </div> -->
+
+</form>
+
+<!-- </div> -->
 
 </section>  
 
