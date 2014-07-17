@@ -30,10 +30,10 @@
 
           <!-- List your options here, captain... -->
           
-          <div class="radioWrap">
+          <div class="radioWrap clearfix">
             {% capture option %}{% cycle 'Prescription', 'Readers', 'Non-RX' %}{% endcapture %}
-            <input type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
-            <label for="{{ option }}-{{ i }}">{{ option }}</label>
+            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
           </div>
 
           {% endfor %}
@@ -41,18 +41,6 @@
           <hr />
 
           <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
-
-
-       <!--   
-          <input type="text" name="attributes[your-pet-name]" value="{{ cart.attributes.your-pet-name }}" />
-        -->
-
-
-
-       <!-- 
-       <h5>File upload</h5>
-          <script type="text/javascript" src="https://secure.jotform.me/jsform/41972030603446"></script>
-        -->
 
 
         <h3>How would you like to send us your prescription?</h3>
@@ -72,8 +60,11 @@
 
 
         <h3>Do you want to measure your pupil distance?</h3>
-        <p><a href="#">Launch tool</a></p>
+        <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
         <p>Please plug in your data!</p>
+
+
+
         <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
 
       </div>

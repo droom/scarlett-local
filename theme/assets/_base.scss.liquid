@@ -9198,18 +9198,33 @@ select,
 #cart-wrap {
 
 	.radioWrap{
-		padding: 30px;
-		background-color: lightBlue;
-		display: block;
-		margin: 20px;
+		margin: 3px 0 0 0;
+		width: 100%; 
+		display: inline-block;
 
-		label {
-			background-color: red;
-		}
+		.radioNode{
+			padding:10px;
+			background-color: pink;
+			}
 
-		input[type="radio"]{
-			background-color: green;
-		}
+		.radioLabel{
+			padding:10px;
+			background-color: lightBlue;
+			}
+
+
+		.Prescription:after{
+			content: " I need prescription lenses for my glasses."
+			}
+
+		.Readers:after{
+			content: " I need reading / magnifying lenses for my glasses."
+			}
+
+		.Non-RX:after{
+			content: " I need non-prescription lenses for my glasses."
+			}
+
 
 	}
 
