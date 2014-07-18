@@ -23,8 +23,11 @@
         </div>
 
         <div class="checkout_stage2">
+
           <h2>Prescription</h2>
+
           <h3>What kind of glasses do you need?</h3>
+          <hr />
 
           {% assign attribute = 'glasses-type' %}
           <!-- Below, set the upper-bound number to the number of radios -->
@@ -37,11 +40,11 @@
           </div>
           {% endfor %}
 
-          <hr />
 
 
 
           <h3>How would you like to send us your prescription?</h3>
+          <hr />
 
 
           {% assign attribute = 'prescription-method' %}
@@ -56,22 +59,27 @@
           {% endfor %}
 
 
-          <hr />
-          <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
-          <hr />
+          <div class="prescription-upload">
+            <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
+          </div>
 
-          <p>Doctor's number</p>
-          <input type="text" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+          <div class="prescription-doctor">
+            <label for="doctorContact">Doctor's number</label>
+            <input type="text" id="doctorContact" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+          </div>
 
-          <p>
-            BBC Audience Services<br />
-            PO Box 1922<br />
-            Darlington<br />
-            DL3 0UR
-          </p>
-
+          <div class="prescription-address">
+            <p>
+              Scarlett of Soho, <br /> 
+              2 Kelly Court, <br />
+              2 Garford Street, <br />
+              E14 8JQ<br />
+              United Kingdom
+            </p>
+          </div>
 
           <h3>Do you want ultra high-index?</h3>
+          <hr />
 
           {% assign attribute = 'high-index' %}
           <!-- Below, set the upper-bound number to the number of radios -->
@@ -88,13 +96,26 @@
 
 
           <h3>Do you want to measure your pupil distance?</h3>
-          <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
-          <p>Please plug in your data!</p>
-
-
           <hr />
 
-          <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+
+          {% assign attribute = 'high-index' %}
+          <!-- Below, set the upper-bound number to the number of radios -->
+          {% for i in (1..2) %}
+          <!-- List your options here, captain... -->
+          <div class="radioWrap clearfix">
+            {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
+            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
+          </div>
+          {% endfor %}
+
+
+          <div class="pd-launch">
+            <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
+            <p>Please plug in your data!</p>
+            <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+          </div>
 
         </div>
 
@@ -112,8 +133,15 @@
 
       <div class="col-cart-right">
         {% include '__cart-price' %}
-        {% include '__cart-customer' %}
-        {% include '__cart-item-list' %}
+
+        <section class="cart-customer">
+          {% include '__cart-customer' %}
+        </section>
+
+        <section class="cart-list">
+          {% include '__cart-item-list' %}
+        </section>
+
       </div>
 
     </div>
@@ -151,7 +179,7 @@
 
         $('#continue').css('display', 'none');
         $('#checkout').css('display', 'block');
-        
+
         $('.checkout_stage1').css('display', 'none');
         $('.checkout_stage2').css('display', 'block');
         $('.checkout_stage3').css('display', 'none');
@@ -159,11 +187,15 @@
         $('.checkout_breadcrumb .step1').css('color', inactiveColor);
         $('.checkout_breadcrumb .step2').css('color', activeColor);
 
+        $('.cart-customer').css('display', 'none');
+        $('.cart-list').css('display', 'block');
+
+
       }
 
 
       if ( position == 2 ){
- 
+
 
       }
 
@@ -188,6 +220,15 @@
     $('.checkout_breadcrumb .step1').css('color', activeColor);
 
 
+    // hide secondary fields
+    $('.prescription-upload').css('display', 'none');
+    $('.prescription-doctor').css('display', 'none');
+    $('.prescription-address').css('display', 'none');
+
+    $('.pd-launch').css('display', 'none');
+
+
+    $('.cart-list').css('display', 'none');
 
 
     // $('.checkout_breadcrumb .step1').click(function(){

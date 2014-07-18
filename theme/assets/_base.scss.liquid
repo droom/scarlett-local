@@ -9150,36 +9150,40 @@ select,
 
 .checkout_cell1 {
 	width: 20%;
-	}
+}
 
 .checkout_cell2 {
 	width: 32%;
-	}
+}
 
 .checkout_cell3{
 	width: 7%;
-	}
+}
 
 .checkout_cell4 {
 	width: 17.5%;
-	}
+}
+
 .checkout_cell5 {
 	width: 17.5%;
-	}
+}
+
 .checkout_cell6 {
-	width:6%;
-	}
+	width: 6%;
+}
 
 .checkout_stage1{
-	}
+}
+
 .checkout_stage2{
-	}
+}
+
 .checkout_stage3{
-	}
+}
 
 .checkout_buy_wrap{
 	margin: 0 0 50px 0;
-	}
+}
 
 .checkout_titles {
 	.checkout_cell2,
@@ -9217,23 +9221,57 @@ select,
 
 #cart-wrap {
 
+	.cart-list{
+		.checkout_buy{
+			min-height: 30px;
+			position: relative;
+			padding: 10px;
+
+			.checkout_cell1,
+			.checkout_cell2,
+			.checkout_cell3,
+			.checkout_cell4 { 
+				padding: 0;
+				margin: 0;
+			}
+
+			.checkout_cell1{
+				width: 25%;
+			}
+
+			.checkout_cell2{
+				width: 50%;
+				padding: 0 10px 0 0;
+			}
+			
+			.checkout_cell3{
+				text-align: left;
+				width: 20%;
+				padding: 0 10px 0 0;
+			}
+
+			.checkout_cell4{
+				float: right;
+				text-align: right;
+				width: 4%;
+				margin: 0;
+				padding:0;
+			}
+		}
+	}
+
 	#checkout{
 		margin:auto;
 	}
-
 	.details{
 		margin: 25px 0 0 0;
-
 		.time{
 		}
-
 		.shipping{
 		}
-
 		.returns{
 		}
 	}
-
 
 	.cart-buttons{
 		text-align:center;
@@ -9241,16 +9279,17 @@ select,
 
 
 	.radioWrap{
-		margin: 3px 0 0 0;
+		margin: 0;
 		width: 100%; 
 		display: inline-block;
 
 		.radioNode{
-			padding:10px;
+			padding: 6px;
 		}
 
 		.radioLabel{
-			padding:10px;
+			background-color: lightBlue;
+			padding: 6px;
 		}
 
 		.Prescription:after{
@@ -9262,7 +9301,7 @@ select,
 		}
 
 		.Non-RX:after{
-			contexnt: " I need non-prescription lenses for my glasses."
+			content: " I need non-prescription lenses for my glasses."
 		}
 	}
 
@@ -9289,7 +9328,6 @@ select,
 		}
 	}
 
-
 	.empty{
 		h5{
 			text-align: center;
@@ -9306,8 +9344,6 @@ select,
 	.cellHide{
 		visibility:hidden;
 	}
-
-
 
 	.checkout_buy,
 	.checkout_try{
@@ -9359,7 +9395,7 @@ select,
 
 		#content, 
 		#footer-content {
-			padding: 0;
+			padding: 0 10%;
 		}
 	}
 
@@ -9387,26 +9423,62 @@ select,
 		.checkout_cell4,
 		.checkout_cell5,
 		.checkout_cell6 {
-			padding: 5px 5px;
+			padding: 0;
 		}
 
-		.checkout_cell1 {
+		.checkout_cell2{
+			padding-top: 10px;
+		} 
+
+		.checkout_cell3,
+		.checkout_cell4,
+		.checkout_cell5{
+			text-align: left;
+			padding-bottom: 8px;
+		} 
+
+
+		.checkout_cell1{
+			width: 25%;
+			float: left;
+			clear: none;
+		} 
+
+
+		.checkout_cell1 img{
+
+			padding: 5% 0 0 0;
 		}
 
-		.checkout_cell2 {
-		}
+
+		.checkout_cell2{
+			width: 62%;
+		} 
 
 		.checkout_cell3{
+			width: 10%;
+			float: left;
+			clear: left;
+			margin-left: 25%;
 		}
 
-		.checkout_cell4 {
-		}
-
-		.checkout_cell5 {
+		.checkout_cell4,
+		.checkout_cell5{
+			width: 20%;
+			float: left;
+			clear: none;
 		}
 
 		.checkout_cell6 {
+			float: right;
+			clear: none;
+			width: 7%;
+			margin: 0;
+
+
 		}
+
+
 
 
 		.checkout_titles {
@@ -9416,6 +9488,8 @@ select,
 			.checkout_cell5,
 			.checkout_cell6 {
 			}
+
+			display: none;
 		}
 
 		.checkout_buy,
