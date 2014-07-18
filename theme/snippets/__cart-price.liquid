@@ -1,20 +1,21 @@
 <h4>Cart total</h4>
 <div class="priceTotal">
-  <p><strong>{{ cart.total_price | money }}</strong></p>
+	<p><strong>{{ cart.total_price | money }}</strong></p>
 </div>
 
 <div class="row cart-buttons">
+	<a href="#" id="continue" class="btn btn-primary btnContinue">Proceed to 'Details' &#x2192;</a>
+	<input type="submit" id="checkout" class="btn btn-primary" name="checkout" value="Proceed to Review &amp; Payment &#x2192;" />
+	<!-- <input type="submit" id="update-cart" class="btn" name="update" value="Update" /> -->
+	{% if additional_checkout_buttons %}        
+	{{ content_for_additional_checkout_buttons }}
+	{% endif %}
 
-  <h4>Spoof button, next fieldset</h4>
-  <a href="#" class="btn btn-primary btnContinue">CONTINUE &#x2192;</a>
-  
-  <h4>Proceed to checkout form button</h4>
-  <input type="submit" id="checkout" class="btn btn-primary" name="checkout" value="Proceed to Details &amp; Payment" />
-  <!-- <input type="submit" id="update-cart" class="btn" name="update" value="Update" /> -->
-  {% if additional_checkout_buttons %}        
-  {{ content_for_additional_checkout_buttons }}
-  {% endif %}
-
-  <p>2&ndash;4 Business Day Shipping | Free Shipping | Free Returns</p>
-  
+	<div class="details">
+		<p>
+			<span class="time">2&ndash;4 Business Day Shipping</span>
+			<span class="shipping">Free Shipping</span>
+			<span class="returns">Free Returns</span>
+		</p>
+	</div>
 </div>

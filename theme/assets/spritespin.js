@@ -33,7 +33,7 @@ console.log("spritespin called");
     lanes             : 1,
 
     module            : '360',        // The presentation module to use
-    behavior          : 'drag',       // The interaction module to use
+    behavior          : 'move',       // The interaction module to use
     renderer          : 'canvas',     // The rendering mode to use
 
     lane              : 0,            //

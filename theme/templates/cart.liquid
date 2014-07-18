@@ -6,7 +6,9 @@
     {% include '__cart-breadcrumb' %}
     <div class="checkout_main">
       <div class="col-cart-left">
+
         <div class="checkout_stage1">
+
           {% include '__formatted-content' %}
           {% if has_cart %}
           {% if cart.item_count == 0 %}
@@ -17,6 +19,7 @@
           {% include '__cart-table-try' %}
           {% endif %}
           {% endif %}
+
         </div>
 
         <div class="checkout_stage2">
@@ -26,68 +29,99 @@
           {% assign attribute = 'glasses-type' %}
           <!-- Below, set the upper-bound number to the number of radios -->
           {% for i in (1..3) %}
-
-
           <!-- List your options here, captain... -->
-          
           <div class="radioWrap clearfix">
             {% capture option %}{% cycle 'Prescription', 'Readers', 'Non-RX' %}{% endcapture %}
             <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
             <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
           </div>
-
           {% endfor %}
 
           <hr />
 
+
+
+          <h3>How would you like to send us your prescription?</h3>
+
+
+          {% assign attribute = 'prescription-method' %}
+          <!-- Below, set the upper-bound number to the number of radios -->
+          {% for i in (1..3) %}
+          <!-- List your options here, captain... -->
+          <div class="radioWrap clearfix">
+            {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send letter' %}{% endcapture %}
+            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
+          </div>
+          {% endfor %}
+
+
+          <hr />
           <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
+          <hr />
+
+          <p>Doctor's number</p>
+          <input type="text" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+
+          <p>
+            BBC Audience Services<br />
+            PO Box 1922<br />
+            Darlington<br />
+            DL3 0UR
+          </p>
 
 
-        <h3>How would you like to send us your prescription?</h3>
+          <h3>Do you want ultra high-index?</h3>
 
-        <ul>
-          <li>Upload a picture</li>
-          <li>Call my doctor</li>
-          <li>Send letter</li>
-        </ul>
+          {% assign attribute = 'high-index' %}
+          <!-- Below, set the upper-bound number to the number of radios -->
+          {% for i in (1..2) %}
+          <!-- List your options here, captain... -->
+          <div class="radioWrap clearfix">
+            {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
+            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
+          </div>
+          {% endfor %}
 
-        <h3>Do you want ultra high-index?</h3>
-
-        <ul>
-          <li>Yes</li>
-          <li>No</li>`
-        </ul>
-
-
-        <h3>Do you want to measure your pupil distance?</h3>
-        <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
-        <p>Please plug in your data!</p>
+          <hr />
 
 
+          <h3>Do you want to measure your pupil distance?</h3>
+          <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
+          <p>Please plug in your data!</p>
 
-        <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+
+          <hr />
+
+          <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+
+        </div>
+
+        <div class="checkout_stage3">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+
+
+
+        <hr />
 
       </div>
 
-      <div class="checkout_stage3">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+      <div class="col-cart-right">
+        {% include '__cart-price' %}
+        {% include '__cart-customer' %}
+        {% include '__cart-item-list' %}
       </div>
 
     </div>
 
-    <div class="col-cart-right">
-      {% include '__cart-price' %}
-      {% include '__cart-customer' %}
-    </div>
 
-  </div>
+  </form>
 
-
-</form>
-
-<!-- </div> -->
+  <!-- </div> -->
 
 </section>  
 
@@ -102,39 +136,72 @@
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
 
-    $('.checkout_breadcrumb .step1 a').css('color', activeColor);
-
-    console.log(checkout_section_position);
-
     $('.btnContinue').click(function(){
-      //checkout_section_next();
       checkout_section_position++;
-      if ( checkout_section_position == 1 ){
-        checkout_section();
+      gotoNextSection(checkout_section_position);
+    });    
+
+
+
+
+    function gotoNextSection(position){
+      console.log(position);
+
+      if ( position == 1 ){
+
+        $('#continue').css('display', 'none');
+        $('#checkout').css('display', 'block');
+        
+        $('.checkout_stage1').css('display', 'none');
+        $('.checkout_stage2').css('display', 'block');
+        $('.checkout_stage3').css('display', 'none');
+
+        $('.checkout_breadcrumb .step1').css('color', inactiveColor);
+        $('.checkout_breadcrumb .step2').css('color', activeColor);
+
       }
-      if ( checkout_section_position == 2 ){
+
+
+      if ( position == 2 ){
+ 
+
       }
-      if ( checkout_section_position == 3 ){
+
+
+      if ( position == 3 ){
       }
 
-      console.log("checkout_section_position is "+checkout_section_position)
+    };    
 
-    });    
 
-    $('.checkout_breadcrumb .step1').click(function(){
-      checkout_section(".step1");
-      checkout_section_position = 1;
-    });    
+    // on load
 
-    $('.checkout_breadcrumb .step2').click(function(){
-      checkout_section(".step2");
-      checkout_section_position = 2;
-    });    
+    // on load checkout button
+    $('#checkout').css('display', 'none');
 
-    $('.checkout_breadcrumb .step3').click(function(){
-      checkout_section(".step3");
-      checkout_section_position = 3;
-    });    
+    // on load hide segment 2, 3
+    $('.checkout_stage1').css('display', 'block');
+    $('.checkout_stage2').css('display', 'none');
+    $('.checkout_stage3').css('display', 'none');
+    
+    // on load hide segment 2, 3
+    $('.checkout_breadcrumb .step1').css('color', activeColor);
+
+
+
+
+    // $('.checkout_breadcrumb .step1').click(function(){
+    //   checkout_section(".step1");
+    //   checkout_section_position = 1;
+    // });    
+    // $('.checkout_breadcrumb .step2').click(function(){
+    //   checkout_section(".step2");
+    //   checkout_section_position = 2;
+    // });    
+    // $('.checkout_breadcrumb .step3').click(function(){
+    //   checkout_section(".step3");
+    //   checkout_section_position = 3;
+    
 
 
     function checkout_section(stepValue){
@@ -145,28 +212,26 @@
       $('.checkout_breadcrumb .step1 a').css('color', inactiveColor);
       $('.checkout_breadcrumb .step2 a').css('color', inactiveColor);
       $('.checkout_breadcrumb .step3 a').css('color', inactiveColor);
-      
       $('.checkout_breadcrumb '+stepValue+' a').css('color', activeColor);
-
       $('.checkout_stage1').css('display', 'none');
       $('.checkout_stage2').css('display', 'none');
       $('.checkout_stage3').css('display', 'none');
-
       $('.checkout_stage'+checkout_section_position).css('display', 'block');
 
     };
 
 
-
-
-
+    $('.launch').click(function(event) {
+      event.preventDefault();
+      window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
+    });
 
 
     function remove_item(id) {
       document.getElementById('updates_'+id).value = 0;
       document.getElementById('cart').submit();
     }
-    
+
     for ( var i = 0; i < checkout_try_remaining; i++ ) {
       var numberStamp = i + 1 + checkout_try_array;
       console.log( "generate cell " + i );

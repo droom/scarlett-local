@@ -60,6 +60,16 @@
 }
 
 
+.col-md-4 {
+
+	h2{
+		margin: 1em 0 1.3em 0;
+	}
+
+}
+
+
+
 
 hr {
 	margin:  0;
@@ -94,8 +104,6 @@ footer h4 {
 		border-bottom: 1px solid $sosLightGrey;
 	}
 
-
-
 	.navbar-default {
 		background-color: #fff;
 		border-color: $sosLightGrey;
@@ -116,6 +124,7 @@ footer h4 {
 	}
 
 	.col-md-8{
+		width: 100%;
 		padding: 0 0 7em 0;
 
 		p {
@@ -125,13 +134,11 @@ footer h4 {
 		}
 	}
 	.col-md-4 {
+		width: 100%;
 		border-top: solid 1px $sosLightGrey ;
 		padding: 1.25em 0 7em;
 		line-height: 1.75em;
 
-		h3{
-			margin: 1em 0 0 0;
-		}
 	}
 
 	.masonary-tile{
@@ -161,7 +168,6 @@ footer h4 {
 		max-width: 1100px;
 	}
 
-
 	header {
 		border-bottom: 1px solid $sosLightGrey;
 	}
@@ -185,7 +191,10 @@ footer h4 {
 		padding: 0 7%;
 	}
 	.col-md-8{
-		width: 50%;
+
+		width: 100%;
+		float: left;
+
 		padding: 0 0 5em 0;
 		p {
 			padding: 0 0 0.7em 0;
@@ -194,19 +203,13 @@ footer h4 {
 		}
 	}
 	.col-md-4 {
-		width: 40%;
+		width: 100%;
+		float: right;
 		border-top: solid 1px $sosLightGrey ;
 		padding: 1.25em 0 7em;
 		line-height: 1.75em ;
-		
-		h2 { 
-			margin: 0;
-		}
-
-		h3 {
-			margin: 1em 0 0 0 ;
-		}
 	}
+
 	.col-sm-3{
 		width: 50%;
 		float: left;
@@ -222,14 +225,10 @@ footer h4 {
 		float: left;
 		width: 50%;
 	}
-
 }
 
-
-/*  <Desktop>  */
+/*  <Desktop Small>  */
 @media (min-width: $screen-sm-min) {
-
-
 	.container{
 		width: 95%;
 		max-width: 1100px;
@@ -238,17 +237,19 @@ footer h4 {
 	header {
 		border-bottom: none;
 	}
+
 	.page-header {
 		border-top : none ;
 	}
+
 	#content,
 	#footer-content{
 		padding: 0;
 	}
+
 	.col-md-8{
+		width: 56%;
 		float: left;
-		width: 60%;
-		background-color: pink;
 		padding: 0 0 7em 0;
 		p {
 			padding: 0 0 0.7em 0;
@@ -256,24 +257,24 @@ footer h4 {
 			line-height: 1.8em;
 		}
 	}
+
 	.col-md-4 {
-		float: left;
-		width:40%;
-		background-color: lightBlue;
-		border-top:solid 1px $sosLightGrey;
-		padding: 0 0 7em;
+		width:38%;
+		float: right;
+		border-top: none;
+		padding: 0 0 7em 0;
 		line-height: 1.75em;
 
-		h3{
-			margin: 1em 0 0 0;
+		h2{
+			margin: 0 0 1.3em 0;
 		}
 	}
-
 
 	.col-sm-3{
 		width: 25%;
 		float: left;
 	}
+
 	#footer-content .row > div:nth-of-type(1),
 	#footer-content .row > div:nth-of-type(2),
 	#footer-content .row > div:nth-of-type(3),
@@ -282,6 +283,8 @@ footer h4 {
 		padding-top: 5px;
 	}
 }
+
+/*  <Desktop Large>  */
 
 @media (min-width: $screen-md-min) {
 
@@ -306,14 +309,16 @@ footer h4 {
 			font-size: 1.25em;
 			line-height: 1.8em;
 		}
+
+		h2{
+			margin: 0 0 1.3em 0;
+			padding: 0;
+		}
 	}
 
 	.col-md-4 {
 		border-top:none;
 		padding: 0;
-		h3{
-			margin: 0 0 0 0;
-		}
 	}
 
 	#footer-content .row > div:nth-of-type(1),

@@ -1,37 +1,45 @@
-/* Boundary object */	
-
-
-
-
 .checkout_cell1,
 .checkout_cell2,
 .checkout_cell3,
 .checkout_cell4,
 .checkout_cell5,
-.checkout_cell6
-{
+.checkout_cell6{
 	float: left;
 	width: 16%;
 }
 
-.checkout_stage1,
-.checkout_stage2,
-.checkout_stage3{
-	margin-top: 20px;
-	padding: 20px;
-	display: block;
-}
+.checkout_cell1 {
+	width: 20%;
+	}
+
+.checkout_cell2 {
+	width: 32%;
+	}
+
+.checkout_cell3{
+	width: 7%;
+	}
+
+.checkout_cell4 {
+	width: 17.5%;
+	}
+.checkout_cell5 {
+	width: 17.5%;
+	}
+.checkout_cell6 {
+	width:6%;
+	}
 
 .checkout_stage1{
-}
+	}
 .checkout_stage2{
-}
+	}
 .checkout_stage3{
-}
+	}
 
 .checkout_buy_wrap{
 	margin: 0 0 50px 0;
-}
+	}
 
 .checkout_titles {
 	.checkout_cell2,
@@ -69,6 +77,29 @@
 
 #cart-wrap {
 
+	#checkout{
+		margin:auto;
+	}
+
+	.details{
+		margin: 25px 0 0 0;
+
+		.time{
+		}
+
+		.shipping{
+		}
+
+		.returns{
+		}
+	}
+
+
+	.cart-buttons{
+		text-align:center;
+	}
+
+
 	.radioWrap{
 		margin: 3px 0 0 0;
 		width: 100%; 
@@ -76,33 +107,27 @@
 
 		.radioNode{
 			padding:10px;
-			background-color: pink;
-			}
+		}
 
 		.radioLabel{
 			padding:10px;
-			background-color: lightBlue;
-			}
-
+		}
 
 		.Prescription:after{
 			content: " I need prescription lenses for my glasses."
-			}
+		}
 
 		.Readers:after{
 			content: " I need reading / magnifying lenses for my glasses."
-			}
+		}
 
 		.Non-RX:after{
-			content: " I need non-prescription lenses for my glasses."
-			}
-
-
+			contexnt: " I need non-prescription lenses for my glasses."
+		}
 	}
 
-
 	.checkout_topbar{
-		min-height: 10px;
+		min-height: 80px;
 		width: 100%;
 	}
 
@@ -111,7 +136,7 @@
 	}
 
 	.checkout_breadcrumb{
-		padding: 0;
+		padding: 15px 0 0 0;
 		margin: 0;
 
 		li:first-child{
@@ -155,7 +180,8 @@
 		}
 		p{
 			margin: 0;
-			padding: 0;
+			padding: 2px 0 0 0;
+			line-height: 1.1em;
 		}
 		a{
 			text-decoration: none;
@@ -189,7 +215,32 @@
 
 @media (max-width: $screen-xs-min) {
 
+	.template-cart {
+
+		#content, 
+		#footer-content {
+			padding: 0;
+		}
+	}
+
+
 	#cart-wrap {
+		.details{
+			.time{
+				display: inline;
+			}
+			.shipping{
+				display: inline;
+			}
+			.returns{
+				display: inline;
+			}
+			.shipping:before,
+			.returns:before{
+				content:"\007C";
+				margin: 0 10px 0 8px;
+			}
+		}
 
 		.checkout_cell2,
 		.checkout_cell3,
@@ -230,7 +281,10 @@
 		.checkout_buy,
 		.checkout_try {
 			margin-top: 10px;
-			min-height: 70px;
+			min-height: 60px;
+
+
+
 		}
 	}
 
@@ -250,9 +304,34 @@
 /*  <Tablet>  */
 @media (min-width: $screen-xs-min) {
 
+	.template-cart {
 
+		#content, 
+		#footer-content {
+			padding: 0;
+
+		}
+	}
 
 	#cart-wrap {
+
+		.details{
+			.time{
+				display: inline;
+			}
+			.shipping{
+				display: inline;
+			}
+			.returns{
+				display: inline;
+			}
+
+			.shipping:before,
+			.returns:before{
+				content:"\007C";
+				margin: 0 10px 0 8px;
+			}
+		}
 
 		.checkout_cell2,
 		.checkout_cell3,
@@ -297,6 +376,10 @@
 		.checkout_try{
 			margin-top: 10px;
 			min-height: 75px;
+
+			img{
+				padding: 5px 0 0 0 ;
+			}
 		}
 	}
 
@@ -316,9 +399,31 @@
 /*  <Desktop Small>  */
 @media (min-width: $screen-sm-min) {
 
-
-
 	#cart-wrap {
+
+		.details{
+
+			.time{
+				display: block
+			}
+
+			.shipping{
+				padding-left: 0;
+				display: block
+			}
+
+			.returns{
+				padding-left: 0;
+				display: block
+			}
+
+			.shipping:before,
+			.returns:before{
+				content:none;
+				margin-left:0;
+
+			}
+		}
 
 		.checkout_cell2,
 		.checkout_cell3,
@@ -379,7 +484,6 @@
 
 /*  <Desktop Large>  */
 @media (min-width: $screen-md-min) {
-
 	.col-cart-left{
 		float: left;
 		padding: 0 60px 0 0;
@@ -389,17 +493,25 @@
 		width: 35%;
 	}
 
-	// .template-cart {
-
-	// 	.container{
-	// 		width: 90%;
-	// 		max-width: 1100px;
-	// 	}
-	// }
-
-
 	#cart-wrap {
 
+		.details{
+			.time{
+				display: inline;
+			}
+			.shipping{
+				display: inline;
+			}
+			.returns{
+				display: inline;
+			}
+
+			.shipping:before,
+			.returns:before{
+				content:"\007C";
+				margin: 0 10px 0 8px;
+			}
+		}
 		.checkout_cell2,
 		.checkout_cell3,
 		.checkout_cell4,
