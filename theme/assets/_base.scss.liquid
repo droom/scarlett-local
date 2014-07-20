@@ -9172,14 +9172,7 @@ select,
 	width: 6%;
 }
 
-.checkout_stage1{
-}
 
-.checkout_stage2{
-}
-
-.checkout_stage3{
-}
 
 .checkout_buy_wrap{
 	margin: 0 0 50px 0;
@@ -9208,9 +9201,17 @@ select,
 }
 
 .checkout_main{
+
+
 	h2{
 		margin: 15px 0 30px 0;
 	}
+
+
+	h3 {
+		margin: 40px 0 25px 0;
+	}
+
 
 	h4{
 		margin: 60px 0 20px 0;
@@ -9219,8 +9220,8 @@ select,
 	}
 }
 
-#cart-wrap {
 
+#cart-wrap {
 	.cart-list{
 		.checkout_buy{
 			min-height: 30px;
@@ -9277,32 +9278,55 @@ select,
 		text-align:center;
 	}
 
+	.prescription-doctor,
+	.prescription-address,
+	.prescription-upload{
+		margin: 10px 0 20px 10px;
+		min-height: 100px;
+	}
+
+
+	.radioOptions{
+		float: left;
+		width: 100%;
+	}
 
 	.radioWrap{
-		margin: 0;
+		float: left;
+		margin: 0 0 30px 10px;
 		width: 100%; 
 		display: inline-block;
+		width: 30%;
+		border:  $sosLightGrey 1px solid;
+		min-height: 190px;
+
+		.radioTitle{
+			text-align: center;
+			margin: 0;
+			padding: 10px;
+			border-bottom:  $sosLightGrey 1px solid;
+			z-index: -5;
+			font-size: 14px;
+			font-weight: normal;
+		}
 
 		.radioNode{
 			padding: 6px;
+			margin: auto;
+			display: none;
 		}
 
 		.radioLabel{
-			background-color: lightBlue;
-			padding: 6px;
+			width: 100%;
+			text-align: center;
+			padding: 70px 10px 60px 10px;
+			font-weight: 400;
+			margin: -34px 0 0 0;
+			z-index: 10;
 		}
 
-		.Prescription:after{
-			content: " I need prescription lenses for my glasses."
-		}
 
-		.Readers:after{
-			content: " I need reading / magnifying lenses for my glasses."
-		}
 
-		.Non-RX:after{
-			content: " I need non-prescription lenses for my glasses."
-		}
 	}
 
 	.checkout_topbar{
@@ -9589,7 +9613,7 @@ select,
 		.checkout_buy,
 		.checkout_try{
 			margin-top: 10px;
-			min-height: 75px;
+			min-height: 95px;
 
 			img{
 				padding: 5px 0 0 0 ;

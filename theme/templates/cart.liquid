@@ -19,102 +19,110 @@
           {% include '__cart-table-try' %}
           {% endif %}
           {% endif %}
-
         </div>
 
         <div class="checkout_stage2">
-
-          <h2>Prescription</h2>
-
-          <h3>What kind of glasses do you need?</h3>
-          <hr />
-
-          {% assign attribute = 'glasses-type' %}
-          <!-- Below, set the upper-bound number to the number of radios -->
-          {% for i in (1..3) %}
-          <!-- List your options here, captain... -->
-          <div class="radioWrap clearfix">
-            {% capture option %}{% cycle 'Prescription', 'Readers', 'Non-RX' %}{% endcapture %}
-            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
-            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
-          </div>
-          {% endfor %}
+          <h2>Details</h2>
+          <h3 class="clearfix">What kind of glasses do you need?</h3>
 
 
+          <div class="radioOptions clearfix stage2question1">
 
+            {% assign attribute = 'glasses-type' %}
+            {% for i in (1..3) %}
+            <div class="radioWrap clearfix">
+              {% capture option %}{% cycle 'Prescription', 'Readers', 'Non-RX' %}{% endcapture %}
+              <h4 class="radioTitle">{{ option }}</h4>
+              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
+            </div>
+            {% endfor %}
 
-          <h3>How would you like to send us your prescription?</h3>
-          <hr />
-
-
-          {% assign attribute = 'prescription-method' %}
-          <!-- Below, set the upper-bound number to the number of radios -->
-          {% for i in (1..3) %}
-          <!-- List your options here, captain... -->
-          <div class="radioWrap clearfix">
-            {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send letter' %}{% endcapture %}
-            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
-            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
-          </div>
-          {% endfor %}
-
-
-          <div class="prescription-upload">
-            <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
           </div>
 
-          <div class="prescription-doctor">
-            <label for="doctorContact">Doctor's number</label>
-            <input type="text" id="doctorContact" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+
+          <h3 class="clearfix">How would you like to send us your prescription?</h3>
+
+
+          <div class="radioOptions clearfix stage2question2">
+
+            {% assign attribute = 'prescription-method' %}
+            {% for i in (1..3) %}
+            <div class="radioWrap clearfix">
+              {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send letter' %}{% endcapture %}
+              <h4 class="radioTitle">{{ option }}</h4>
+
+              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
+            </div>
+            {% endfor %}
+
           </div>
 
-          <div class="prescription-address">
-            <p>
-              Scarlett of Soho, <br /> 
-              2 Kelly Court, <br />
-              2 Garford Street, <br />
-              E14 8JQ<br />
-              United Kingdom
-            </p>
+
+
+          <div class="radioOptions clearfix">
+
+            <div class="prescription-upload">
+              <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
+            </div>
+
+            <div class="prescription-doctor">
+              <label for="doctorContact">Doctor's number</label>
+              <input type="text" id="doctorContact" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+            </div>
+
+            <div class="prescription-address">
+              <p>
+                Scarlett of Soho, <br /> 
+                2 Kelly Court, <br />
+                2 Garford Street, <br />
+                E14 8JQ<br />
+                United Kingdom
+              </p>
+            </div>
           </div>
 
-          <h3>Do you want ultra high-index?</h3>
-          <hr />
 
-          {% assign attribute = 'high-index' %}
-          <!-- Below, set the upper-bound number to the number of radios -->
-          {% for i in (1..2) %}
-          <!-- List your options here, captain... -->
-          <div class="radioWrap clearfix">
-            {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
-            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
-            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
+          <h3 class="clearfix">Do you want ultra high-index lenses if necessary?</h3>
+
+          <div class="radioOptions clearfix stage2question3">
+            {% assign attribute = 'high-index' %}
+            {% for i in (1..2) %}
+            <div class="radioWrap clearfix">
+              {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
+              <h4 class="radioTitle">{{ option }}</h4>
+
+              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
 
-          <hr />
+          <h3 class="clearfix">Do you want to measure your pupil distance?</h3>
 
-
-          <h3>Do you want to measure your pupil distance?</h3>
-          <hr />
-
-
-          {% assign attribute = 'high-index' %}
-          <!-- Below, set the upper-bound number to the number of radios -->
-          {% for i in (1..2) %}
-          <!-- List your options here, captain... -->
-          <div class="radioWrap clearfix">
-            {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
-            <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
-            <label class="radioLabel {{ option }}" for="{{ option }}-{{ i }}">{{ option }}</label>
+          <div class="radioOptions clearfix stage2question4">
+            {% assign attribute = 'pd-tool' %}
+            {% for i in (1..2) %}
+            <div class="radioWrap clearfix">
+              {% capture option %}{% cycle 'MEASURE', 'DONTMEASURE' %}{% endcapture %}
+              <h4 class="radioTitle {{ option }}">{{ option }}</h4>
+              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
 
 
-          <div class="pd-launch">
-            <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
-            <p>Please plug in your data!</p>
-            <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+
+          <div class="radioOptions clearfix">
+
+            <div class="pd-launch">
+              <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
+              <p>Please plug in your data!</p>
+              <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+            </div>
+
           </div>
 
         </div>
@@ -125,9 +133,6 @@
           </p>
         </div>
 
-
-
-        <hr />
 
       </div>
 
@@ -164,46 +169,7 @@
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
 
-    $('.btnContinue').click(function(){
-      checkout_section_position++;
-      gotoNextSection(checkout_section_position);
-    });    
 
-
-
-
-    function gotoNextSection(position){
-      console.log(position);
-
-      if ( position == 1 ){
-
-        $('#continue').css('display', 'none');
-        $('#checkout').css('display', 'block');
-
-        $('.checkout_stage1').css('display', 'none');
-        $('.checkout_stage2').css('display', 'block');
-        $('.checkout_stage3').css('display', 'none');
-
-        $('.checkout_breadcrumb .step1').css('color', inactiveColor);
-        $('.checkout_breadcrumb .step2').css('color', activeColor);
-
-        $('.cart-customer').css('display', 'none');
-        $('.cart-list').css('display', 'block');
-
-
-      }
-
-
-      if ( position == 2 ){
-
-
-      }
-
-
-      if ( position == 3 ){
-      }
-
-    };    
 
 
     // on load
@@ -217,7 +183,7 @@
     $('.checkout_stage3').css('display', 'none');
     
     // on load hide segment 2, 3
-    $('.checkout_breadcrumb .step1').css('color', activeColor);
+    $('.checkout_breadcrumb .step1 a').css('color', activeColor);
 
 
     // hide secondary fields
@@ -227,8 +193,29 @@
 
     $('.pd-launch').css('display', 'none');
 
-
     $('.cart-list').css('display', 'none');
+
+
+
+    $("label[for='prescription-1']").text("I need prescription lenses for my glasses.");
+
+    $("label[for='readers-2']").text("I need reading / magnifying lenses for my glasses.");
+
+    $("label[for='non-rx-3']").text("I need non-prescription lenses for my glasses.");
+
+    $("label[for='upload-a-picture-1']").text("I will attach a copy of my prescription and upload it from my computer.");
+
+    $("label[for='call-my-doctor-2']").text("I would like you to call my doctor and obtin my prescription.");
+
+    $("label[for='send-letter-3']").text("I don't have my prescription right now but I will send it to Scarlett of Soho later.");
+
+    $("label[for='yes-1']").text("Please use high index lenses for an additional £30 if I have a strong prescription.");
+
+    $("label[for='no-2']").text("I would like you to call my doctor and obtain my prescription");
+
+    $("label[for='measure-1']").text("Yes please, I'd like to measure my pupil distance");
+    
+    $("label[for='dontmeasure-2']").text("No thank you");
 
 
     // $('.checkout_breadcrumb .step1').click(function(){
@@ -243,7 +230,6 @@
     //   checkout_section(".step3");
     //   checkout_section_position = 3;
     
-
 
     function checkout_section(stepValue){
 
@@ -262,11 +248,123 @@
     };
 
 
+    function gotoNextSection(position){
+      console.log(position);
+
+      if ( position == 0 ){
+
+        $('#continue').css('display', 'block');
+        $('#checkout').css('display', 'none');
+
+        $('.checkout_stage1').css('display', 'block');
+        $('.checkout_stage2').css('display', 'none');
+        $('.checkout_stage3').css('display', 'none');
+
+        $('.checkout_breadcrumb .step1 a').css('color', activeColor);
+        $('.checkout_breadcrumb .step2 a').css('color', inactiveColor);
+
+        $('.cart-customer').css('display', 'block');
+        $('.cart-list').css('display', 'none');
+      }
+
+
+      if ( position == 1 ){
+
+        $('#continue').css('display', 'none');
+        $('#checkout').css('display', 'block');
+
+        $('.checkout_stage1').css('display', 'none');
+        $('.checkout_stage2').css('display', 'block');
+        $('.checkout_stage3').css('display', 'none');
+
+        $('.checkout_breadcrumb .step1 a').css('color', inactiveColor);
+        $('.checkout_breadcrumb .step2 a').css('color', activeColor);
+
+        $('.cart-customer').css('display', 'none');
+        $('.cart-list').css('display', 'block');
+      }
+    };    
+
+
+
+    $('.btnContinue').click(function(){
+      checkout_section_position++;
+      gotoNextSection(checkout_section_position);
+    });   
+
+    $('.checkout_breadcrumb .step1 a').click(function(){
+      checkout_section_position = 0;
+      gotoNextSection(checkout_section_position);
+    });   
+
+    $('.checkout_breadcrumb .step2 a').click(function(){
+      checkout_section_position = 1;
+      gotoNextSection(checkout_section_position);
+    });   
+
+
+    $('.upload-a-picture').click(function() {
+      $('.prescription-upload').css('display', 'block');
+      $('.prescription-doctor').css('display', 'none');
+      $('.prescription-address').css('display', 'none');
+    });
+
+    $('.call-my-doctor').click(function() {
+      $('.prescription-upload').css('display', 'none');
+      $('.prescription-doctor').css('display', 'block');
+      $('.prescription-address').css('display', 'none');
+    });
+
+    $('.send-letter').click(function() {
+      $('.prescription-upload').css('display', 'none');
+      $('.prescription-doctor').css('display', 'none');
+      $('.prescription-address').css('display', 'block');
+    });
+
+
+
+
+    $('.radioWrap .radioLabel').hover(function() {
+      $('selector').css( 'cursor', 'pointer' );
+   });
+
+
+    $('.stage2question1 .radioWrap .radioLabel').click(function() {
+      $('.stage2question1 .radioWrap .radioLabel').css('font-weight', 'normal');
+      $(this).css('font-weight', 'bold');
+    });
+
+
+    $('.stage2question2 .radioWrap .radioLabel').click(function() {
+      $('.stage2question2 .radioWrap .radioLabel').css('font-weight', 'normal');
+      $(this).css('font-weight', 'bold');
+    }); 
+
+
+    $('.stage2question3 .radioWrap .radioLabel').click(function() {
+      $('.stage2question3 .radioWrap .radioLabel').css('font-weight', 'normal');
+      $(this).css('font-weight', 'bold');
+    }); 
+
+    $('.stage2question4 .radioWrap .radioLabel').click(function() {
+      $('.stage2question4 .radioWrap .radioLabel').css('font-weight', 'normal');
+      $(this).css('font-weight', 'bold');
+    }); 
+
+
+    $('.measure').click(function() {
+      $('.pd-launch').css('display', 'block');
+    });
+
+    $('.dontmeasure').click(function() {
+      $('.pd-launch').css('display', 'none');
+    });
+
+
     $('.launch').click(function(event) {
       event.preventDefault();
       window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
     });
-
 
     function remove_item(id) {
       document.getElementById('updates_'+id).value = 0;
