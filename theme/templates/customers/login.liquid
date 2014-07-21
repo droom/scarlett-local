@@ -2,10 +2,10 @@
 <section id="login-form" class="section-wrap">
 
 
-	<div class="col-md-8 col-md-pull-0">
+	<div class="login">
 
 		<div class="customer-login-form form-wrapper-horizontal">
-			<h1 class="page-header">Customer Login</h1>
+			<h1 class="page-header">Login or Register</h1>
 			{% include '_form-login' %}
 		</div>
 
@@ -32,11 +32,20 @@
 			{% endform %}
 		</div>
 		{% endif %}
-	</div>
 
-	<div class="col-md-4 col-md-pull-0">
+
+
+		<p class="login-or">or</p>
+
 		<div data-hull-component="login/shopify@hull">Loading Social Login...</div>
-	</div>
+
+
+		<!-- <div class="col-md-4 col-md-pull-0">
+	</div> -->
+
+
+</div>
+
 
 
 </section>

@@ -69,6 +69,16 @@
 }
 
 
+.noproductsfound{
+	margin: 40px 0 0 0;
+
+}
+
+
+.contact-form{
+	margin: 60px 0 0 0;
+}
+
 
 
 hr {
@@ -97,12 +107,79 @@ footer h4 {
 }
 
 
+#login-form{
+	margin-top: 25px;
+}
+
+.alert-success,
+.alert{
+	padding: 20px;
+
+}
+
+.login{
+	border:1px $sosLightGrey solid;
+	padding:0 40px 40px 30px;
+	margin:auto;
+	width: 40%;
+	text-align: center;
+
+	input{
+		text-align: center;
+	}
+
+	label{
+		display: none;
+	}
+
+	h1{
+	}
+
+	.hull-btn{
+		margin: auto;
+	}
+
+	.col-md-10{
+		width: 100%;
+	}
+
+	.login-or{
+		margin: 20px 0 0 0;
+	}
+
+	.horizontalbreak{
+		margin: 15px 0 0 0;
+		border-top: 1px solid $sosLightGrey;
+		border-bottom: 1px solid $sosLightGrey;
+
+	}
+
+	#create_customer{
+	}
+}
+
+
+
+.form-group{
+	max-width:400px;
+} 
+
+
+
 /*  <Phone>  */
 @media (max-width: $screen-xs-min) {
 
 	header {
 		border-bottom: 1px solid $sosLightGrey;
 	}
+
+
+
+	.login{
+		padding:0 40px 40px 30px;
+		width: 100%;
+	}
+
 
 	.navbar-default {
 		background-color: #fff;
@@ -112,7 +189,7 @@ footer h4 {
 	.navbar-collapse {
 		border: none;
 	}
-	
+
 	.page-header {
 		border-top : none;
 	}
@@ -162,6 +239,13 @@ footer h4 {
 /*  <Tablet>  */
 
 @media (min-width: $screen-xs-min) {
+
+
+	.login{
+		padding: 0 40px 40px 30px;
+		width: 85%;
+		max-width: 500px;
+	}
 
 	.container{
 		width: 90%;
@@ -234,6 +318,12 @@ footer h4 {
 		max-width: 1100px;
 	}
 
+
+	.login{
+		padding:0 40px 40px 30px;
+		width: 60%;
+	}
+
 	header {
 		border-bottom: none;
 	}
@@ -292,6 +382,15 @@ footer h4 {
 		width: 90%;
 		max-width: 1100px;
 	}
+
+
+	.login{
+		padding:0 40px 40px 30px;
+		width: 40%;
+		width: 400px;
+	}
+
+
 
 	header {
 		border-bottom: none;

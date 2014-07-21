@@ -25,11 +25,9 @@
 
 						<div class="thumbnail product-main-image">
 							<div class="productHero-feature">
-								{% for image in product.images %}
-								{% if image contains '_Feature' %}
-								<img src="{{ image.src | product_img_url: 'original' }}" />
-								{% endif %} 
-								{% endfor %}
+
+								<img src="{{ product.featured_image | product_img_url: "original" }}" />
+
 							</div>
 							<div class="productHero-360">
 								<div class="spritespin360"></div>
@@ -47,8 +45,10 @@
 							<a href="#" class="productSwitch productSwitch-life">Model</a>
 						</p>
 
-						<hr />
-						<h2>{include colour variants}</h2>
+						<!-- 
+							<hr />
+							<h2>{include colour variants}</h2>
+						-->
 
 					</div>
 
@@ -78,10 +78,10 @@
 				<div class="centreCopy">
 					<p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
 				</div>	
-		
+
 			</div>
 
-			
+
 			<div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
 				<h3>Scarlett of Soho Design Hallmarks</h3>
 				<p>Explore the little details that distinguish our frames from the rest of the pack</p>

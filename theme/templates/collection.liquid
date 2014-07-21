@@ -58,7 +58,7 @@
 
 {% if collection.all_products_count == 0 %}
 <section class="section-wrap">
-  <p>Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
+  <p class="noproductsfound">Sorry, no {% include '__localize' with 'products' %} were found in the {{ collection.title }} collection.</p>
 </section>
 {% elsif collection.products_count == 0 %}
 <section class="section-wrap">

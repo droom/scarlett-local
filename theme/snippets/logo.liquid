@@ -1,8 +1,21 @@
 {% if settings.logo-image %}
-<img src="{{ 'logo-image-file.png' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
-{% else %} 
+
+
+<!-- <img src="{{ 'logo-image-file.png' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}"> -->
+
+<a href="/">
 <img src="{{ 'sos-logo.svg' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
-<!--
-	{{ shop.name }}
--->
+</a>
+
+{% else %} 
+
+
+<a href="/">
+<img src="{{ 'sos-logo.svg' | asset_url }}" alt="{{ shop.name }} {% include '__localize' with 'logo' %}">
+</a>
+
+
+
+{{ shop.name }}
+
 {% endif %}

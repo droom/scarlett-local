@@ -64,15 +64,19 @@
           <div class="radioOptions clearfix">
 
             <div class="prescription-upload">
+
+              <h6>Need custom copy to introduce/explain this segment</h6>
               <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
             </div>
 
             <div class="prescription-doctor">
+              <h6>Need custom copy to introduce/explain this segment</h6>
               <label for="doctorContact">Doctor's number</label>
               <input type="text" id="doctorContact" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
             </div>
 
             <div class="prescription-address">
+              <h6>Need custom copy to introduce/explain this segment</h6>
               <p>
                 Scarlett of Soho, <br /> 
                 2 Kelly Court, <br />
@@ -105,7 +109,7 @@
             {% assign attribute = 'pd-tool' %}
             {% for i in (1..2) %}
             <div class="radioWrap clearfix">
-              {% capture option %}{% cycle 'MEASURE', 'DONTMEASURE' %}{% endcapture %}
+              {% capture option %}{% cycle 'measure', 'dont-measure' %}{% endcapture %}
               <h4 class="radioTitle {{ option }}">{{ option }}</h4>
               <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
               <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
@@ -118,6 +122,9 @@
           <div class="radioOptions clearfix">
 
             <div class="pd-launch">
+
+              <h6>Need custom copy to introduce/explain this segment/give directions</h6>
+
               <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
               <p>Please plug in your data!</p>
               <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
@@ -195,7 +202,9 @@
 
     $('.cart-list').css('display', 'none');
 
+    $("h4.measure").text("Yes");
 
+    $("h4.dont-measure").text("No");
 
     $("label[for='prescription-1']").text("I need prescription lenses for my glasses.");
 
@@ -215,7 +224,7 @@
 
     $("label[for='measure-1']").text("Yes please, I'd like to measure my pupil distance");
     
-    $("label[for='dontmeasure-2']").text("No thank you");
+    $("label[for='dont-measure-2']").text("No, thank you");
 
 
     // $('.checkout_breadcrumb .step1').click(function(){
@@ -326,7 +335,7 @@
 
     $('.radioWrap .radioLabel').hover(function() {
       $('selector').css( 'cursor', 'pointer' );
-   });
+    });
 
 
     $('.stage2question1 .radioWrap .radioLabel').click(function() {
@@ -356,7 +365,7 @@
       $('.pd-launch').css('display', 'block');
     });
 
-    $('.dontmeasure').click(function() {
+    $('.dont-measure').click(function() {
       $('.pd-launch').css('display', 'none');
     });
 
