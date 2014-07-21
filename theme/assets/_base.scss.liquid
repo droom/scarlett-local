@@ -8678,7 +8678,11 @@ body:after{
   }
 }
 $sosLightGrey: #c2c2c2;
+$sosMidGrey: #686a61;
+
 $sosRed: #a54c3a;
+$sosGreen: #4ea87a;
+
 .template-product {
 
 	.product-section{
@@ -9099,6 +9103,7 @@ textarea,
 .money,
 .btn{
 	font-family: 'Avenir-Light', helvetica, arial, sans-serif;
+	color: $sosMidGrey;
 }
 .masonary-tile{
 	margin: 25px 0 0 0;
@@ -9865,10 +9870,11 @@ textarea,
 }
 
 
+.col-md-8,
 .col-md-4 {
 
-	h2{
-		margin: 1em 0 1.3em 0;
+	h3{
+		margin: 1em 0 0.75em 0;
 	}
 
 }
@@ -9902,25 +9908,58 @@ footer .list-nav li {
 footer h4 {
 	margin-top: 1em;
 	margin-bottom: 1.5em;
-}
-
+	}
 
 /* Social */
 
 #social{
 	margin: 18px 0;
-}
-
+	}
 
 #login-form{
 	margin-top: 25px;
+	}
+
+
+.col-md-8 {
+	ol{
+		margin: 30px 0;
+
+		li{
+			margin-bottom: 10px; 
+		}
+	}
+
+
+	.alert-success,
+	.alert{
+		padding: 18px 22px;
+		width: 400px;
+		margin-bottom: 25px;
+		border: none;
+		border-radius: 0px;
+	}
+
+	.alert-success{
+		color: white;
+		background-color: $sosGreen;
+	}
+
+
+
+	.alert-success p,
+	.alert p {
+		line-height: 1.6em;
+		padding: 0;
+
+	}
 }
 
-.alert-success,
-.alert{
-	padding: 20px;
-
+#contactFormMessage{
+	padding: 12px;
+	min-height: 200px;
 }
+
 
 .login{
 	border:1px $sosLightGrey solid;
@@ -10009,10 +10048,10 @@ footer h4 {
 		width: 100%;
 		padding: 0 0 7em 0;
 
-		p {
+		p, li {
 			padding: 0 0 0.7em 0;
 			font-size: 1.25em;
-			line-height: 1.8em;
+			line-height: 1.7em;
 		}
 	}
 	.col-md-4 {
@@ -10085,10 +10124,16 @@ footer h4 {
 		float: left;
 
 		padding: 0 0 5em 0;
-		p {
+
+		p, li {
 			padding: 0 0 0.7em 0;
 			font-size: 1.25em;
-			line-height: 1.8em;
+			line-height: 1.7em;
+		}
+
+		img{
+			margin-top: 20px;
+
 		}
 	}
 	.col-md-4 {
@@ -10146,10 +10191,14 @@ footer h4 {
 		width: 56%;
 		float: left;
 		padding: 0 0 7em 0;
-		p {
+		p, li {
 			padding: 0 0 0.7em 0;
 			font-size: 1.25em;
-			line-height: 1.8em;
+			line-height: 1.7em;
+		}
+
+		img{
+			margin-top: 20px;
 		}
 	}
 
@@ -10158,7 +10207,7 @@ footer h4 {
 		float: right;
 		border-top: none;
 		padding: 0 0 7em 0;
-		line-height: 1.75em;
+		line-height: 1.7em;
 
 		h2{
 			margin: 0 0 1.3em 0;
@@ -10208,10 +10257,10 @@ footer h4 {
 
 	.col-md-8{
 		padding: 0 5em 7em 0;
-		p {
+		p, li {
 			padding: 0 0 0.7em 0;
 			font-size: 1.25em;
-			line-height: 1.8em;
+			line-height: 1.7em;
 		}
 
 		h2{

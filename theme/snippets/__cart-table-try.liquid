@@ -3,7 +3,7 @@
 {% include '__cart-table-titles' %}
 
 {% for item in cart.items %}
-{% if item.variant.title contains 'Home Try On' %}
+{% if item.variant.title contains 'Home Try-On' %}
 <div class="checkout_try clearfix">
   <div class="checkout_cell1">
     <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />

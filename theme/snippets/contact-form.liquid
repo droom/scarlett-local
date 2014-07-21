@@ -4,7 +4,10 @@
 <!-- CONTACT FORM CONFIRMATION -->
 {% if form.posted_successfully? %}
 <div class="alert alert-success">
-	<p>Thanks for contacting us! We'll get back to you as soon as possible.</p>
+	<p>
+		<strong>Thanks for contacting us!</strong>
+		<br/>We'll get back to you as soon as possible.
+	</p>
 </div>
 {% endif %}
 
@@ -18,7 +21,7 @@
 	{% endfor %}
 </p>
 {% endif %}
-		
+
 <!-- CONTACT FORM INPUTS -->
 <fieldset>
 	<div class="form-group">

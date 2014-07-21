@@ -3,7 +3,7 @@
 <div class="checkout_buy_wrap">
   {% include '__cart-table-titles' %}
   {% for item in cart.items %}
-  {% unless item.variant.title contains 'Home Try On' %}
+  {% unless item.variant.title contains 'Home Try-On' %}
   <div class="checkout_buy clearfix">
     <div class="checkout_cell1">
       <a href="{{ item.url }}">
