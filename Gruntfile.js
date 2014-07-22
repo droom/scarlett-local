@@ -127,7 +127,7 @@ module.exports = function(grunt) {
           'dist/scss/custom-product.scss.liquid',
           'dist/scss/custom-carousel.scss.liquid',
           'dist/scss/custom-font.scss.liquid',
-          'dist/scss/custom-category.scss.liquid',
+          'dist/scss/custom-collection.scss.liquid',
           'dist/scss/custom-cart.scss.liquid',
           'dist/scss/custom.scss.liquid'
         ],
