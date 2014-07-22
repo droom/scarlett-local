@@ -41,7 +41,7 @@ console.log("spritespin called");
     frameTime         : 40,           // Time between updates. Set to 40 which is 25 frames per second
     animate           : true,         // Runs animation
     reverse           : false,        // If true animation is played backward
-    loop              : true,         // Loops the animation
+    loop              : false,         // Loops the animation
     stopFrame         : 0,            // Stops the animation at this frame if loop is disabled
 
     wrap              : true,         // Same as 'loop' but for user interaction
@@ -185,10 +185,12 @@ console.log("spritespin called");
   //      // -> [ 'http://example.com/image_01.jpg', 'http://example.com/image_02.jpg', 'http://example.com/image_03.jpg' ]
   Spin.sourceArray = function(path, opts){
     var fStart = 0, fEnd = 0, lStart = 0, lEnd = 0, digits = opts.digits || 2;
+
     if (opts.frame) {
       fStart = opts.frame[0];
       fEnd = opts.frame[1];
     }
+    console.log("fStart: " + fStart + " fEnd: " + fEnd);
     if (opts.lane) {
       lStart = opts.lane[0];
       lEnd = opts.lane[1];

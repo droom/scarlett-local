@@ -25,40 +25,43 @@
 
 						<div class="thumbnail product-main-image">
 							<div class="productHero-feature">
-
 								<img src="{{ product.featured_image | product_img_url: "original" }}" />
-
 							</div>
+							
 							<div class="productHero-360">
 								<div class="spritespin360"></div>
 							</div>
+
 							<div class="productHero-life">
-								<div class="spritespinLife"></div>
+								<div id="imageStack">
+									{% for image in product.images %}
+									{% if image contains '_Life_' %}
+									<img class="lifecycleImage" src="{{ image.src | product_img_url: 'original' }}" data-index="{{ forloop.index }}" />
+									{% endif %} 
+									{% endfor %}
+								</div>
 							</div>
 						</div> 
 
 						<p>Views: 
-							<a href="#" class="productSwitch productSwitch-feature">Image</a> 
+							<a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image</a> 
 							| 
-							<a href="#" class="productSwitch productSwitch-360">360°</a> 
+							<a href="javascript:void(0);" class="productSwitch productSwitch-360">360°</a> 
 							| 
-							<a href="#" class="productSwitch productSwitch-life">Model</a>
+							<a href="javascript:void(0);" class="productSwitch productSwitch-life">Model</a>
 						</p>
-
-						<!-- 
-							<hr />
-							<h2>{include colour variants}</h2>
-						-->
-
 					</div>
 
 				</div>
 			</div> 
-			<!-- details col -->
+
+
 			<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
 
 				<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
+				
 				<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
+
 				<!-- {% if has_prices %} -->
 
 				{% include '__cart-social' %}
@@ -115,11 +118,15 @@
 
 
 
+ 
+
 {% for image in product.images %}
 {% if image contains '_Life_' %}
 <p class="spinLife">{{ image.src | product_img_url: 'original' }}</p>
 {% endif %} 
 {% endfor %}
+
+
 
 {% for image in product.images %}
 {% if image contains '_360_' %}
@@ -147,13 +154,6 @@
 			var url_part3 = listString.slice(position360+6, listString.length);
 
 
-			console.log("position360 is "+position360);
-			console.log("listString is "+listString);
-			console.log("url_part1 is "+url_part1);
-			console.log("url_part2 is "+url_part2);
-			console.log("url_part3 is "+url_part3);
-
-
 			var listItemsLife = $('.spinLife');
 			var listItemsLifeLength = listItemsLife.length;
 			var listStringLife = ($.trim(listItemsLife[0].innerHTML));
@@ -163,30 +163,72 @@
 			var url_Life_part2 = listStringLife.slice(positionLife+5, positionLife+7);
 			var url_Life_part3 = listStringLife.slice(positionLife+7, listStringLife.length);
 
-			console.log("positionLife is "+positionLife);
-			console.log("listItemsLife is "+listItemsLife);
-			console.log("listItemsLifeLength is "+listItemsLifeLength);
-
-			console.log("url_Life_part1 is "+url_Life_part1);
-			console.log("url_Life_part2 is "+url_Life_part2);
+	
 			console.log("url_Life_part3 is "+url_Life_part3);
+
+
 
 
 			$('.spritespin360').spritespin({
 				source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
-				width: 480,
-				height: 327,
+				width: 553,
+				height: 315,
 				sense: -1,
 				renderer: 'image'
 			});
+			console.log("listItemsLifeLength: " + listItemsLifeLength);
 
 			$('.spritespinLife').spritespin({
-				source: SpriteSpin.sourceArray(url_Life_part1+'{frame}'+url_Life_part3, { frame: [01,listItemsLifeLength], digits: 2 }),
-				width: 480,
-				height: 327,
+				source: SpriteSpin.sourceArray(url_Life_part1+'{frame}'+url_Life_part3, { frame: [01,listItemsLifeLength], 	 }),
+				width: 553,
+				height: 315,
 				sense: -1,
 				renderer: 'image'
 			});
+			$("#imageStack img:nth-child(3)").show();
+
+			$("#imageStack").mousemove(function(e){
+				var parentOffset = $(this).parent().offset(); 
+				var relX = e.pageX - parentOffset.left;
+				var tWidth = $(this).width();  
+				var pos = (relX/tWidth) * 100;
+
+				$('.lifecycleImage').hide();
+				switch(true){
+					case (pos < 20):
+					// $("#imageStack").children("img[data-index=" + 6 + "]").show();
+					$("#imageStack img:nth-child(5)").show();
+					break;
+
+					case (pos < 40):
+					
+					// $("#imageStack").children("img[data-index=" + 5 + "]").show();
+					$("#imageStack img:nth-child(4)").show();
+					break;
+
+					case (pos < 60):
+					
+					// $("#imageStack").children("img[data-index=" + 4 + "]").show();
+					$("#imageStack img:nth-child(3)").show();
+					break;
+
+					case (pos < 80):
+					
+					// $("#imageStack").children("img[data-index=" + 3 + "]").show();
+					$("#imageStack img:nth-child(2)").show();
+					break;
+
+					case (pos < 100):
+					
+					// $("#imageStack").children("img[data-index=" + 2 + "]").show();
+					$("#imageStack img:nth-child(1)").show();
+					break;
+				}
+			});
+
+
+
+
 
 			// full 553x315
 			// 432 x 370
@@ -210,7 +252,7 @@
 
 			function hide_rest(element_to_show) {
 				$(element_to_show).click(function(){
-					console.log(element_to_show);
+					// console.log(element_to_show);
 					var div_to_show = anchors_and_divs[element_to_show];
 					$('.productHero-feature').hide();
 					$('.productHero-360').hide();

@@ -10073,6 +10073,8 @@ footer h4 {
 
 	input{
 		text-align: center;
+		width: 100%;
+
 	}
 
 	label{
@@ -10101,14 +10103,23 @@ footer h4 {
 
 	}
 
-	#create_customer{
+
+	.form-horizontal .form-group, 
+	.form-wrapper-horizontal #customer-register-form form .form-group, 
+	.form-wrapper-horizontal #customer-login-form form .form-group, 
+	.form-wrapper-horizontal #customer-recover-password-form form .form-group, 
+	.form-wrapper-horizontal #customer-password-form form .form-group, 
+	.form-wrapper-horizontal #customer-address-form form .form-group{
+		margin-left: 0;
 	}
+
+
 }
 
 
 
 .form-group{
-	max-width:400px;
+	width:100%;
 } 
 
 
@@ -10344,7 +10355,6 @@ footer h4 {
 	.login{
 		padding:0 40px 40px 30px;
 		width: 40%;
-		width: 400px;
 	}
 
 
@@ -10387,3 +10397,11 @@ footer h4 {
 }
 
 
+.lifecycleImage{
+	display: none;
+}
+
+#imageStack{
+	width: 553px;
+	height: 315px;
+}
