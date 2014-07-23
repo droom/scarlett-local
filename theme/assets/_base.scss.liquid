@@ -8858,7 +8858,7 @@ $sosGreen: #4ea87a;
 	}
 	.col-sm-8{
 		width: 60%;
-		padding: 0;
+		padding: 0 20px 0 0;
 	}
 	.col-sm-4{
 		width: 40%;
@@ -8874,7 +8874,7 @@ $sosGreen: #4ea87a;
 
 	.col-sm-8{
 		width: 65%;
-		padding: 0;
+		padding: 0 30px 0 0;
 	}
 
 	.col-sm-4{
@@ -9892,6 +9892,136 @@ textarea,
 
 
 
+.login{
+
+	.form-group{
+		width:100%;
+
+		.col-md-10{
+			width: 100%;
+		}
+
+
+
+		.col-lg-offset-2{
+			margin: 0;
+		}
+	} 
+
+
+
+	border:1px $sosLightGrey solid;
+	padding:0 40px 40px 30px;
+	margin:auto;
+	width: 40%;
+	text-align: center;
+
+	input{
+		text-align: center;
+		width: 100%;
+
+	}
+
+	label{
+		display: none;
+	}
+
+	h1{
+	}
+
+	.hull-btn{
+		margin: auto;
+	}
+
+
+
+	.login-or{
+		margin: 20px 0 0 0;
+	}
+
+	.horizontalbreak{
+		margin: 15px 0 0 0;
+		border-top: 1px solid $sosLightGrey;
+		border-bottom: 1px solid $sosLightGrey;
+
+	}
+
+	.form-horizontal .form-group, 
+	.form-wrapper-horizontal #customer-register-form form .form-group, 
+	.form-wrapper-horizontal #customer-login-form form .form-group, 
+	.form-wrapper-horizontal #customer-recover-password-form form .form-group, 
+	.form-wrapper-horizontal #customer-password-form form .form-group, 
+	.form-wrapper-horizontal #customer-address-form form .form-group{
+		margin-left: 0;
+	}
+
+}
+
+
+
+#login-form{
+	margin-top: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  <Phone>  */
+@media (max-width: $screen-xs-min) {
+	.login{
+		padding:0 40px 40px 30px;
+		width: 100%;
+	}
+}
+
+/*  <Tablet>  */
+
+@media (min-width: $screen-xs-min) {
+	.login{
+		padding: 0 40px 40px 30px;
+		width: 85%;
+		max-width: 500px;
+	}
+}
+
+/*  <Desktop Small>  */
+@media (min-width: $screen-sm-min) {
+	.login{
+		padding:0 40px 40px 30px;
+		width: 60%;
+	}
+
+}
+
+/*  <Desktop Large>  */
+
+@media (min-width: $screen-md-min) {
+	.login{
+		padding:0 40px 40px 30px;
+		width: 40%;
+	}
+
+}
+
+
+
+
+
+
 /*** RESET ***/
 
 .main-content{
@@ -10000,37 +10130,35 @@ footer h4 {
 	margin: 18px 0;
 }
 
-#login-form{
-	margin-top: 25px;
-}
 
 
 .col-md-8 {
 	ol{
-
-
-		margin: 30px 0;
+		margin: 40px 0 0 0 ;
+		padding: 0;
 
 		li{
 			margin-bottom: 10px; 
+			list-style: none;
+			padding-left: 70px;
+			background-repeat: no-repeat;
+			background-position: 0 5px;
 		}
 
-
-		li:before{
-			content: " ";
-			background-color: #f6981b;
-			padding: 5px 10px;
-			float: left;
-			margin-left: -20px; 	
-			height: 30px;
-			width: 30px;	
-
+		li:nth-child(1){
+			background-image: url(//cdn.shopify.com/s/files/1/0538/0205/t/1/assets/ol-list-1.png);
 		}
-
-
+		li:nth-child(2){
+			background-image: url(//cdn.shopify.com/s/files/1/0538/0205/t/1/assets/ol-list-2.png);
+		}
+		li:nth-child(3){
+			background-image: url(//cdn.shopify.com/s/files/1/0538/0205/t/1/assets/ol-list-3.png);
+		}
+		li:nth-child(4){
+			background-image: url(//cdn.shopify.com/s/files/1/0538/0205/t/1/assets/ol-list-4.png);
+		}
 
 	}
-
 
 	.alert-success,
 	.alert{
@@ -10045,8 +10173,6 @@ footer h4 {
 		color: white;
 		background-color: $sosGreen;
 	}
-
-
 
 	.alert-success p,
 	.alert p {
@@ -10064,63 +10190,6 @@ footer h4 {
 }
 
 
-.login{
-	border:1px $sosLightGrey solid;
-	padding:0 40px 40px 30px;
-	margin:auto;
-	width: 40%;
-	text-align: center;
-
-	input{
-		text-align: center;
-		width: 100%;
-
-	}
-
-	label{
-		display: none;
-	}
-
-	h1{
-	}
-
-	.hull-btn{
-		margin: auto;
-	}
-
-	.col-md-10{
-		width: 100%;
-	}
-
-	.login-or{
-		margin: 20px 0 0 0;
-	}
-
-	.horizontalbreak{
-		margin: 15px 0 0 0;
-		border-top: 1px solid $sosLightGrey;
-		border-bottom: 1px solid $sosLightGrey;
-
-	}
-
-
-	.form-horizontal .form-group, 
-	.form-wrapper-horizontal #customer-register-form form .form-group, 
-	.form-wrapper-horizontal #customer-login-form form .form-group, 
-	.form-wrapper-horizontal #customer-recover-password-form form .form-group, 
-	.form-wrapper-horizontal #customer-password-form form .form-group, 
-	.form-wrapper-horizontal #customer-address-form form .form-group{
-		margin-left: 0;
-	}
-
-
-}
-
-
-
-.form-group{
-	width:100%;
-} 
 
 
 
@@ -10130,14 +10199,6 @@ footer h4 {
 	header {
 		border-bottom: 1px solid $sosLightGrey;
 	}
-
-
-
-	.login{
-		padding:0 40px 40px 30px;
-		width: 100%;
-	}
-
 
 	.navbar-default {
 		background-color: #fff;
@@ -10197,13 +10258,6 @@ footer h4 {
 /*  <Tablet>  */
 
 @media (min-width: $screen-xs-min) {
-
-
-	.login{
-		padding: 0 40px 40px 30px;
-		width: 85%;
-		max-width: 500px;
-	}
 
 	.container{
 		width: 90%;
@@ -10281,13 +10335,6 @@ footer h4 {
 		width: 95%;
 		max-width: 1100px;
 	}
-
-
-	.login{
-		padding:0 40px 40px 30px;
-		width: 60%;
-	}
-
 	header {
 		border-bottom: none;
 	}
@@ -10351,14 +10398,6 @@ footer h4 {
 		max-width: 1100px;
 	}
 
-
-	.login{
-		padding:0 40px 40px 30px;
-		width: 40%;
-	}
-
-
-
 	header {
 		border-bottom: none;
 	}
@@ -10399,9 +10438,5 @@ footer h4 {
 
 .lifecycleImage{
 	display: none;
-}
-
-#imageStack{
-	width: 553px;
-	height: 315px;
+	width: 100%;
 }

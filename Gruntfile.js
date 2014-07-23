@@ -129,6 +129,7 @@ module.exports = function(grunt) {
           'dist/scss/custom-font.scss.liquid',
           'dist/scss/custom-collection.scss.liquid',
           'dist/scss/custom-cart.scss.liquid',
+          'dist/scss/custom-login.scss.liquid',
           'dist/scss/custom.scss.liquid'
         ],
         dest: 'theme/assets/_base.scss.liquid'
