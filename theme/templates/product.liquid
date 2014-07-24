@@ -29,7 +29,11 @@
 							</div>
 							
 							<div class="productHero-360">
-								<div class="spritespin360"></div>
+								<div class="spritespin360">
+									
+
+
+								</div>
 							</div>
 
 							<div class="productHero-life">
@@ -44,11 +48,22 @@
 						</div> 
 
 						<p>Views: 
-							<a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image</a> 
+							<a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image
+							</a> 
+
+
+							|
+							<a href="javascript:void(0);" class="productSwitch productSwitch-360">360°
+							</a>
+
+
+							{% for image in product.images %}
+							{% if image contains '_Life_01' %}
 							| 
-							<a href="javascript:void(0);" class="productSwitch productSwitch-360">360°</a> 
-							| 
-							<a href="javascript:void(0);" class="productSwitch productSwitch-life">Model</a>
+							<a href="javascript:void(0);" class="productSwitch productSwitch-life">Model
+							</a>
+							{% endif %} 
+							{% endfor %}
 						</p>
 					</div>
 
@@ -118,7 +133,7 @@
 
 
 
- 
+
 
 {% for image in product.images %}
 {% if image contains '_Life_' %}
@@ -163,7 +178,7 @@
 			var url_Life_part2 = listStringLife.slice(positionLife+5, positionLife+7);
 			var url_Life_part3 = listStringLife.slice(positionLife+7, listStringLife.length);
 
-	
+
 			console.log("url_Life_part3 is "+url_Life_part3);
 
 
@@ -178,13 +193,9 @@
 			});
 			console.log("listItemsLifeLength: " + listItemsLifeLength);
 
-			$('.spritespinLife').spritespin({
-				source: SpriteSpin.sourceArray(url_Life_part1+'{frame}'+url_Life_part3, { frame: [01,listItemsLifeLength], 	 }),
-				width: 553,
-				height: 315,
-				sense: -1,
-				renderer: 'image'
-			});
+	
+
+			
 			$("#imageStack img:nth-child(3)").show();
 
 			$("#imageStack").mousemove(function(e){
