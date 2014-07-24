@@ -29,9 +29,9 @@
           <div class="radioOptions clearfix stage2question1">
 
             {% assign attribute = 'glasses-type' %}
-            {% for i in (1..3) %}
+            {% for i in (1..2) %}
             <div class="radioWrap clearfix">
-              {% capture option %}{% cycle 'Prescription', 'Readers', 'Non-RX' %}{% endcapture %}
+              {% capture option %}{% cycle 'Prescription', 'Non-RX' %}{% endcapture %}
               <h4 class="radioTitle">{{ option }}</h4>
               <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
               <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
@@ -49,7 +49,7 @@
             {% assign attribute = 'prescription-method' %}
             {% for i in (1..3) %}
             <div class="radioWrap clearfix">
-              {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send letter' %}{% endcapture %}
+              {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send later' %}{% endcapture %}
               <h4 class="radioTitle">{{ option }}</h4>
 
               <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
@@ -65,25 +65,27 @@
 
             <div class="prescription-upload">
 
-              <h6>Need custom copy to introduce/explain this segment</h6>
+              <h6>Upload a digital copy of your most recent optical prescription.</h6>
+              <p>Select a file from your computer.</p>
               <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
             </div>
 
             <div class="prescription-doctor">
-              <h6>Need custom copy to introduce/explain this segment</h6>
-              <label for="doctorContact">Doctor's number</label>
-              <input type="text" id="doctorContact" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+              <h6>Enter your doctor’s name and contact number.</h6>
+
+
+              <label for="doctorName">Doctor's name</label>
+              <input type="text" id="doctorName" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+
+              <label for="doctorNumber">Doctor's number</label>
+              <input type="text" id="doctorNumber" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+
+
             </div>
 
             <div class="prescription-address">
-              <h6>Need custom copy to introduce/explain this segment</h6>
-              <p>
-                Scarlett of Soho, <br /> 
-                2 Kelly Court, <br />
-                2 Garford Street, <br />
-                E14 8JQ<br />
-                United Kingdom
-              </p>
+              <h6>Once you have your prescription, send it to us at <a href="mailto:hello@scarlettofosoho.com">hello@scarlettofosoho.com</a></h6>
+
             </div>
           </div>
 
@@ -103,7 +105,7 @@
             {% endfor %}
           </div>
 
-          <h3 class="clearfix">Do you want to measure your pupil distance?</h3>
+          <h3 class="clearfix">Do you want to measure your pupillary distance (PD)?</h3>
 
           <div class="radioOptions clearfix stage2question4">
             {% assign attribute = 'pd-tool' %}
@@ -123,10 +125,10 @@
 
             <div class="pd-launch">
 
-              <h6>Need custom copy to introduce/explain this segment/give directions</h6>
+              <h6>Measuring your pupillary distance (PD) is important for us to process your order and ensure the right fit for your prescription lens. Click on the tool below and follow the quick steps to measure your PD. </h6>
 
               <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
-              <p>Please plug in your data!</p>
+              <p>Copy your measurements from the tool and paste it here.</p>
               <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
             </div>
 
@@ -216,15 +218,15 @@
 
     $("label[for='call-my-doctor-2']").text("I would like you to call my doctor and obtain my prescription.");
 
-    $("label[for='send-letter-3']").text("I don't have my prescription right now but I will send it to Scarlett of Soho later.");
+    $("label[for='send-later-3']").text("I don't have my prescription right now but I will send it to Scarlett of Soho later.");
 
-    $("label[for='yes-1']").text("Please use high index lenses for an additional £30 if I have a strong prescription.");
+    $("label[for='yes-1']").text("Please use extra high index (1.67) lenses for an additional £35 if I have a high prescription.");
 
-    $("label[for='no-2']").text("I would like you to call my doctor and obtain my prescription");
+    $("label[for='no-2']").text("Please do not use extra high-index lenses for my prescription");
 
-    $("label[for='measure-1']").text("Yes please, I'd like to measure my pupil distance");
+    $("label[for='measure-1']").text("Please measure my PD ");
     
-    $("label[for='dont-measure-2']").text("No, thank you");
+    $("label[for='dont-measure-2']").text("Without PD, we’ll use the standard measurements 65mm Men and 63mm Women");
 
 
     // $('.checkout_breadcrumb .step1').click(function(){

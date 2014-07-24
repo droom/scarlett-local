@@ -1,39 +1,59 @@
+#register,
+#login-form{
+	margin-top: 30px;
+}
+
+
 .login{
 
-	.form-group{
-		width:100%;
+	.customer-login-form{
 
-		.col-md-10{
-			width: 100%;
+		#customer-login-form{
+
+			.form-group,
+			input,
+			#forgotten-password-link,
+			#login_password,
+			#login_email,
+			#customer_password,
+			.btn-primary{
+				margin: 5px 0;
+
+			}
 		}
+	}
+
+	.form-group{
 
 
+		.col-lg-10,
+		.col-lg-offset-2
+		{
+			width: 100%;
+			margin: auto;
+			float: none;
+		}
 
 		.col-lg-offset-2{
 			margin: 0;
 		}
 	} 
 
-
-
-	border:1px $sosLightGrey solid;
-	padding:0 40px 40px 30px;
-	margin:auto;
-	width: 40%;
+	border: 1px $sosLightGrey solid;
+	width: 100%;
+	padding: 0 40px 40px 40px;
+	margin: auto;
 	text-align: center;
 
 	input{
 		text-align: center;
 		width: 100%;
-
 	}
 
 	label{
 		display: none;
 	}
 
-	h1{
-	}
 
 	.hull-btn{
 		margin: auto;
@@ -42,7 +62,7 @@
 
 
 	.login-or{
-		margin: 20px 0 0 0;
+		margin: 8px 0 14px 0;
 	}
 
 	.horizontalbreak{
@@ -65,65 +85,56 @@
 
 
 
-#login-form{
-	margin-top: 25px;
-}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Max width */
 
 /*  <Phone>  */
 @media (max-width: $screen-xs-min) {
 	.login{
-		padding:0 40px 40px 30px;
-		width: 100%;
+
+		padding: 0 30px 30px 30px;
+
 	}
 }
 
 /*  <Tablet>  */
-
 @media (min-width: $screen-xs-min) {
 	.login{
-		padding: 0 40px 40px 30px;
-		width: 85%;
-		max-width: 500px;
+		max-width:420px;
 	}
 }
 
 /*  <Desktop Small>  */
 @media (min-width: $screen-sm-min) {
 	.login{
-		padding:0 40px 40px 30px;
-		width: 60%;
+		max-width:420px;
+
 	}
 
 }
 
 /*  <Desktop Large>  */
-
 @media (min-width: $screen-md-min) {
 	.login{
-		padding:0 40px 40px 30px;
-		width: 40%;
+		max-width:420px;
+
+		.form-group{
+
+
+			.col-md-10 {
+				width: 100%;
+			}
+		}
+
 	}
 
+
+
+
+
 }
-
-
 
 
 

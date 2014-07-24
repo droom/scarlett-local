@@ -8,7 +8,7 @@
         <input type="email" value="" name="customer[email]" id="customer_email" class="form-control" placeholder="Email" />
         {% if form.errors contains 'form' %}<span class="fa fa-times form-control-feedback"></span>{% endif %}
       </div>
-    </div>
+    </div>  
   
     {% if form.password_needed %}
       <div id="login_password" class="form-group {% if form.errors contains 'form' %}has-error has-feedback{% endif %}">
@@ -29,7 +29,7 @@
     <div class="form-group">
       <div class="{% include '__form-horizontal-offset' %}">
         {% if current_url %}<input type="hidden" name="checkout_url" value="{{ current_url }}" />{% endif %}
-        <input class="btn btn-primary" type="submit" value="Sign In" />
+        <input class="btn btn-primary" type="submit" value="Log In" />
         <!-- <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span> -->
       </div>
     </div>
