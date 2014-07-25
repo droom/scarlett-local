@@ -48,23 +48,35 @@
 						</div> 
 
 						<p>Views: 
-							<a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image
-							</a> 
-
-
+							<a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image</a>
 							|
-							<a href="javascript:void(0);" class="productSwitch productSwitch-360">360°
-							</a>
+							<a href="javascript:void(0);" class="productSwitch productSwitch-360">360°</a>
 
 
 							{% for image in product.images %}
 							{% if image contains '_Life_01' %}
 							| 
-							<a href="javascript:void(0);" class="productSwitch productSwitch-life">Model
-							</a>
+							<a href="javascript:void(0);" class="productSwitch productSwitch-life">Model</a>
 							{% endif %} 
 							{% endfor %}
 						</p>
+
+
+
+						<hr/>
+
+						<div id="threeSixtyStack">
+							{% for image in product.images %}
+							{% if image contains '_360_' %}
+							<img class="threeSixtyCycle" src="{{ image.src | product_img_url: 'original' }}" data-index="{{ forloop.index }}" />
+							{% endif %} 
+							{% endfor %}
+						</div>
+
+
+						<hr />
+
+
 					</div>
 
 				</div>
@@ -182,8 +194,6 @@
 			console.log("url_Life_part3 is "+url_Life_part3);
 
 
-
-
 			$('.spritespin360').spritespin({
 				source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
 				width: 553,
@@ -191,9 +201,9 @@
 				sense: -1,
 				renderer: 'image'
 			});
+
+
 			console.log("listItemsLifeLength: " + listItemsLifeLength);
-
-
 
 
 			$("#imageStack img:nth-child(3)").show();
@@ -205,6 +215,7 @@
 				var pos = (relX/tWidth) * 100;
 
 				$('.lifecycleImage').hide();
+
 				switch(true){
 					case (pos < 20):
 					// $("#imageStack").children("img[data-index=" + 6 + "]").show();
@@ -238,6 +249,61 @@
 			});
 
 
+			$("#threeSixtyStack img:nth-child(3)").show();
+
+				$('.threeSixtyCycle').hide();
+
+				$("#threeSixtyStack").mousemove(function(e){
+					var parentOffset = $(this).parent().offset(); 
+					var relX = e.pageX - parentOffset.left;
+					var tWidth = $(this).width();  
+					var pos = (relX/tWidth) * 100;
+
+					switch(true){
+					
+					case (pos < 2):
+					$("#threeSixtyStack img:nth-child(1)").show();
+					break;
+
+					case (pos < 5):
+					$("#threeSixtyStack img:nth-child(2)").show();
+					break;
+
+					case (pos < 8):
+					$("#threeSixtyStack img:nth-child(3)").show();
+					break;
+
+					case (pos < 11):
+					$("#threeSixtyStack img:nth-child(4)").show();
+					break;
+
+					case (pos < 13):
+					$("#threeSixtyStack img:nth-child(5)").show();
+					break;
+
+					case (pos < 16):
+					$("#threeSixtyStack img:nth-child(6)").show();
+					break;
+
+					case (pos < 22):
+					$("#threeSixtyStack img:nth-child(7)").show();
+					break;
+
+					case (pos < 25 ):
+					$("#threeSixtyStack img:nth-child(8)").show();
+					break;
+
+					case (pos < 27 ):
+					$("#threeSixtyStack img:nth-child(9)").show();
+					break;
+
+					case (pos < 30 ):
+					$("#threeSixtyStack img:nth-child(10)").show();
+					break;
+
+
+				}
+			});
 
 
 
