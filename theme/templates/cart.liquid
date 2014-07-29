@@ -105,9 +105,11 @@
             {% endfor %}
           </div>
 
-          <h3 class="clearfix">Do you want to measure your pupillary distance (PD)?</h3>
 
-          <div class="radioOptions clearfix stage2question4">
+
+           <h3 class="clearfix">Do you want to measure your pupillary distance (PD)?</h3>
+
+           <div class="radioOptions clearfix stage2question4">
             {% assign attribute = 'pd-tool' %}
             {% for i in (1..2) %}
             <div class="radioWrap clearfix">
@@ -136,11 +138,7 @@
 
         </div>
 
-        <div class="checkout_stage3">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
+
 
 
       </div>
@@ -173,23 +171,39 @@
 
     var activeColor = '#a54c3a' ;
     var inactiveColor = '#333' ;
+    var checkout_prescription = true;
     var checkout_section_position = 0;
     var checkout_try_required = 4;
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
 
 
+    console.log("shoppingItem", $('.shoppingItem').length);
 
 
-    // on load
+    if ($('.shoppingItem').length > 0){
+    //console.log("shoppingItem", $('.shoppingItem').length);
 
-    // on load checkout button
     $('#checkout').css('display', 'none');
+    $('#continue').css('display', 'block');
+
+  } else {
+
+    $('#checkout').css('display', 'block');
+    $('#continue').css('display', 'none');
+
+  }
+
+
+
+
+
+
 
     // on load hide segment 2, 3
-    $('.checkout_stage1').css('display', 'block');
-    $('.checkout_stage2').css('display', 'none');
-    $('.checkout_stage3').css('display', 'none');
+    $('.checkout_stage1').show();
+    $('.checkout_stage2').hide();
+
     
     // on load hide segment 2, 3
     $('.checkout_breadcrumb .step1 a').css('color', activeColor);
@@ -229,19 +243,6 @@
     $("label[for='dont-measure-2']").text("Without PD, we’ll use the standard measurements 65mm Men and 63mm Women");
 
 
-    // $('.checkout_breadcrumb .step1').click(function(){
-    //   checkout_section(".step1");
-    //   checkout_section_position = 1;
-    // });    
-    // $('.checkout_breadcrumb .step2').click(function(){
-    //   checkout_section(".step2");
-    //   checkout_section_position = 2;
-    // });    
-    // $('.checkout_breadcrumb .step3').click(function(){
-    //   checkout_section(".step3");
-    //   checkout_section_position = 3;
-    
-
     function checkout_section(stepValue){
 
       console.log("hey you clicked on "+stepValue);
@@ -251,9 +252,11 @@
       $('.checkout_breadcrumb .step2 a').css('color', inactiveColor);
       $('.checkout_breadcrumb .step3 a').css('color', inactiveColor);
       $('.checkout_breadcrumb '+stepValue+' a').css('color', activeColor);
-      $('.checkout_stage1').css('display', 'none');
-      $('.checkout_stage2').css('display', 'none');
-      $('.checkout_stage3').css('display', 'none');
+
+      $('.checkout_stage1').hide();
+      $('.checkout_stage2').hide();
+
+
       $('.checkout_stage'+checkout_section_position).css('display', 'block');
 
     };
@@ -266,14 +269,10 @@
 
         $('#continue').css('display', 'block');
         $('#checkout').css('display', 'none');
-
-        $('.checkout_stage1').css('display', 'block');
-        $('.checkout_stage2').css('display', 'none');
-        $('.checkout_stage3').css('display', 'none');
-
+        $('.checkout_stage1').fadeIn(300);
+        $('.checkout_stage2').hide();
         $('.checkout_breadcrumb .step1 a').css('color', activeColor);
         $('.checkout_breadcrumb .step2 a').css('color', inactiveColor);
-
         $('.cart-customer').css('display', 'block');
         $('.cart-list').css('display', 'none');
       }
@@ -283,14 +282,10 @@
 
         $('#continue').css('display', 'none');
         $('#checkout').css('display', 'block');
-
-        $('.checkout_stage1').css('display', 'none');
-        $('.checkout_stage2').css('display', 'block');
-        $('.checkout_stage3').css('display', 'none');
-
+        $('.checkout_stage1').hide();
+        $('.checkout_stage2').fadeIn(300);
         $('.checkout_breadcrumb .step1 a').css('color', inactiveColor);
         $('.checkout_breadcrumb .step2 a').css('color', activeColor);
-
         $('.cart-customer').css('display', 'none');
         $('.cart-list').css('display', 'block');
       }
@@ -332,25 +327,19 @@
       $('.prescription-address').css('display', 'block');
     });
 
-
-
-
     $('.radioWrap .radioLabel').hover(function() {
       $('selector').css( 'cursor', 'pointer' );
     });
-
 
     $('.stage2question1 .radioWrap .radioLabel').click(function() {
       $('.stage2question1 .radioWrap .radioLabel').css('font-weight', 'normal');
       $(this).css('font-weight', 'bold');
     });
 
-
     $('.stage2question2 .radioWrap .radioLabel').click(function() {
       $('.stage2question2 .radioWrap .radioLabel').css('font-weight', 'normal');
       $(this).css('font-weight', 'bold');
     }); 
-
 
     $('.stage2question3 .radioWrap .radioLabel').click(function() {
       $('.stage2question3 .radioWrap .radioLabel').css('font-weight', 'normal');
@@ -361,7 +350,6 @@
       $('.stage2question4 .radioWrap .radioLabel').css('font-weight', 'normal');
       $(this).css('font-weight', 'bold');
     }); 
-
 
     $('.measure').click(function() {
       $('.pd-launch').css('display', 'block');

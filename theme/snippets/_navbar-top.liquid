@@ -19,11 +19,12 @@
 
         <li><a href="/cart" title="{% include '__localize' with 'View cart' %}"><strong>{% include '__localize' with 'View cart' %}</strong> <span class="badge">{% include '__cart-count' %}</span></a></li>
 
-    <!--         
+            
+
         <hr />
         <p><strong>Buy Now</strong></p>
         {% for item in cart.items %}
-        {% if item.variant.title contains 'Buy Now' %}
+        {% if item.variant.title contains 'Prescription' %}
         <img src="{{ item | img_url: 'small' }}"  alt="{{ item.title | escape }}" />
         {{ item.product.title }}
         {% if item.product.variants.size > 1 %}
@@ -36,7 +37,7 @@
         {% endfor %}
         <p><strong>Try-On</strong></p>
         {% for item in cart.items %}
-        {% if item.variant.title contains 'Home Try On' %}
+        {% if item.variant.title contains 'Home Try-On' %}
         <img src="{{ item | img_url: 'small' }}"  alt="{{ item.title | escape }}" />
         {{ item.product.title }}
         {% if item.product.variants.size > 1 %}
@@ -48,7 +49,7 @@
         {% endif %}
         {% endfor %}
         <hr /> 
-    -->
+   
 
 
 
