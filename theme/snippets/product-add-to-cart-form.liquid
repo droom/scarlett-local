@@ -2,6 +2,7 @@
 
   {% for variant in product.variants %}
 
+
   {% unless variant.title contains 'Home Try On' %}
   <form id="add-item-form-{{variant.id}}" action="/cart/add" method="post" class="variants clearfix">
     <div class="product-options">

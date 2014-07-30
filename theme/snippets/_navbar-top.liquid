@@ -33,17 +33,15 @@
           {% endif %}
           {% endif %}
 
-
+            <h4>Shopping Cart</h4>
+            <hr />                        
 
           <div class="checkout_buy_wrap">
             {% for item in cart.items %}
             {% unless item.variant.title contains 'Home Try-On' %}
 
 
-            {% if item.product.variants.size > 1 %}
-            <h4>Shopping Cart</h4>
-            <hr />                        
-            {% endif %}
+         
 
 
             <div class="checkout_buy clearfix">
@@ -74,17 +72,15 @@
 
 
 
-
+    <h4>Home Try-On</h4>
+            <hr /> 
 
         <div class="checkout_buy_wrap">
             {% for item in cart.items %}
             {% if item.variant.title contains 'Home Try-On' %}
 
 
-            {% if item.product.variants.size > 1 %}
-            <h4>Home Try-On</h4>
-            <hr />                      
-            {% endif %}
+                             
 
 
             <div class="checkout_buy clearfix">
@@ -102,7 +98,7 @@
 
                 <div class="checkout_cell3">
 
-                    <p>QTY {{ item.quantity }}</p>
+                    <small>QTY {{ item.quantity }}</small>
                     <p><strong>{{ item.line_price | money }}</strong></p>
                 </div>
 

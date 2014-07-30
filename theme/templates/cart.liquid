@@ -107,9 +107,9 @@
 
 
 
-           <h3 class="clearfix">Do you want to measure your pupillary distance (PD)?</h3>
+          <h3 class="clearfix">Do you want to measure your pupillary distance (PD)?</h3>
 
-           <div class="radioOptions clearfix stage2question4">
+          <div class="radioOptions clearfix stage2question4">
             {% assign attribute = 'pd-tool' %}
             {% for i in (1..2) %}
             <div class="radioWrap clearfix">
@@ -176,6 +176,7 @@
     var checkout_try_required = 4;
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
+    var high_index_set = false;
 
 
     console.log("shoppingItem", $('.shoppingItem').length);
@@ -241,6 +242,50 @@
     $("label[for='measure-1']").text("Please measure my PD ");
     
     $("label[for='dont-measure-2']").text("Without PD, we’ll use the standard measurements 65mm Men and 63mm Women");
+
+
+
+    // Add High Index lenses
+
+    $(".stage2question3 label[for='yes-1']").click(function(){
+
+      if (high_index_set){
+        console.log("sudah");
+
+      } else {
+        console.log("add to checkout");
+        
+
+   jQuery.post('/cart/add.js', {
+        quantity: 1,
+        id: 763367271,
+      }).success(console.log("added lenses!"));
+
+        high_index_set = true;
+
+
+      }
+
+
+    });
+
+
+    $(".stage2question3 label[for='no-2']").click(function(){
+
+   jQuery.post('/cart/change.js', {
+        quantity: 0,
+        id: 763367271,
+      }).success(console.log("removed all lenses!"));
+
+      high_index_set = false;
+
+   
+
+    });
+
+    
+
+
 
 
     function checkout_section(stepValue){
@@ -377,5 +422,12 @@
     }
 
 
+
+
   });
+
+
 </script>
+
+
+
