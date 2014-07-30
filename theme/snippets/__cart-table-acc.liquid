@@ -2,21 +2,15 @@
 <div class="checkout_buy_wrap">
 
 
-
-
-  <h2>Shopping Cart</h2>
+  <h2>Accessories</h2>
 
 
   {% include '__cart-table-titles' %}
-  
-<!-- 
-  <p>The are no items in your shopping basket.</p> 
--->
 
 
 {% for item in cart.items %}
-{% if item.variant.title contains 'prescription' %}
-<div class="checkout_buy {{ item.product.title | handleize }} clearfix shoppingItem">
+{% if item.variant.title contains 'High-Index' %}
+<div class="checkout_acc {{ item.product.title | handleize }} clearfix">
 
 
   <div class="checkout_cell1">
@@ -35,7 +29,7 @@
   </div>
 
   <div class="checkout_cell3">
-    <p class="buy_qty">{{ item.quantity }}</p>
+    <p class="hi_qty">{{ item.quantity }}</p>
   </div>
 
   <div class="checkout_cell4">
