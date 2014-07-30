@@ -27,7 +27,6 @@
           <h2>Details</h2>
           <h3 class="clearfix">What kind of glasses do you need?</h3>
 
-
           <div class="radioOptions clearfix stage2question1">
 
             {% assign attribute = 'glasses-type' %}
@@ -171,17 +170,25 @@
 <script>
   $(document).ready(function(){
 
-    var activeColor = '#a54c3a' ;
-    var inactiveColor = '#333' ;
+    var activeColor = '#a54c3a';
+    var inactiveColor = '#333';
+
     var checkout_prescription = true;
     var checkout_section_position = 0;
     var checkout_try_required = 4;
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
+
+    var checkout_price = $("#priceFinal").text();
+    var checkout_price_sliced = checkout_price.slice(1, checkout_price.length);
+    var checkout_price_raw = parseInt(checkout_price_sliced);
+
     var high_index_set = false;
+    var high_index_price = 35;
+
+
 
     var checkout_buy_quantity = $('.shoppingItem').length;
-
 
     console.log("shoppingItem", $('.shoppingItem').length);
 
@@ -189,7 +196,6 @@
 
 
     if (checkout_buy_quantity > 0){
-
 
       $('#checkout').css('display', 'none');
       $('#continue').css('display', 'block');
@@ -244,15 +250,15 @@
     $("label[for='dont-measure-2']").text("Without PD, we’ll use the standard measurements 65mm Men and 63mm Women");
 
 
-
     // Add High Index lenses
-
     // check to see if it has already been added to the cart
     var checkout_hi_qty = parseInt($(".checkout_acc .hi_qty").text());
 
     var checkout_buy_qty = $(".checkout_buy .buy_qty").text();
 
-    var checkout_buy_qty_total = 0
+    var checkout_buy_qty_total = 0;
+
+
 
 
     console.log("checkout_buy_qty_total", checkout_buy_qty_total);
@@ -296,16 +302,29 @@
       console.log ("high index qty matches the qty of specs. stop.");
 
     } else {
+
       console.log ("high index qty DOES NOT match the qty of specs.");
+
       hi_emptycart();
       console.log ("empty cart");
+      
       hi_pushtocart();
       console.log ("add correct amount");
 
+      hi_updateprice();
     }
 
 
+    function hi_updateprice(){
 
+      //$("#priceFinal").text("£"+(checkout_hi_qty * high_index_price)+checkout_price_raw);
+      console.log ("high_index_price", high_index_price);
+
+      console.log ("checkout_hi_qty", checkout_hi_qty);
+
+      console.log ("checkout_price_raw", checkout_price_raw);
+
+    }
 
 
     function hi_emptycart(){
@@ -322,11 +341,10 @@
       id: 763367271,
     }).success(console.log("hi_pushtocart success"));
 
+
+
+
    };
-
-
-
-
 
 
 
