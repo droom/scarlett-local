@@ -293,35 +293,39 @@
 
     if (checkout_buy_qty_total == checkout_hi_qty){
 
-      console.log ("high index qty matches the qty of specs");
+      console.log ("high index qty matches the qty of specs. stop.");
 
-    } else{
-      console.log ("high index qty DOES NOT match the qty of specs");
+    } else {
+      console.log ("high index qty DOES NOT match the qty of specs.");
+      hi_emptycart();
+      console.log ("empty cart");
       hi_pushtocart();
+      console.log ("add correct amount");
 
     }
 
 
 
-    function hi_pushtocart(){
-     jQuery.post('/cart/add.js', {
-      quantity: checkout_buy_qty_total,
-      id: 763367271,
-    }).success(console.log("added lenses!"));
-
-   };
 
 
-   function hi_emptycart(){
-
+    function hi_emptycart(){
      jQuery.post('/cart/change.js', {
       quantity: 0,
       id: 763367271,
-    }).success(console.log("removed all lenses!"));
+    }).success(console.log("hi_emptycart success"));
+   };
 
 
+   function hi_pushtocart(){
+     jQuery.post('/cart/add.js', {
+      quantity: checkout_buy_qty_total,
+      id: 763367271,
+    }).success(console.log("hi_pushtocart success"));
 
    };
+
+
+
 
 
 
