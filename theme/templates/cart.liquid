@@ -174,7 +174,9 @@
     var inactiveColor = '#333';
 
     var checkout_prescription = true;
+
     var checkout_section_position = 0;
+    
     var checkout_try_required = 4;
     var checkout_try_array = $('.checkout_try').length;
     var checkout_try_remaining = parseInt(checkout_try_required - checkout_try_array);
@@ -258,44 +260,14 @@
 
     var checkout_buy_qty_total = 0;
 
-
-
-
-    console.log("checkout_buy_qty_total", checkout_buy_qty_total);
-
-    // var checkout_buy_inner = parseInt($(".checkout_buy .buy_qty").text());
-
-    for ( var i = 0; i < checkout_buy_qty.length; i++ ) {
-
-      // var thisOne = checkout_buy_qty[i];
-      console.log(checkout_buy_qty[i]);
-
-      console.log(parseInt(checkout_buy_qty[i]));
-
-      checkout_buy_qty_total += parseInt(checkout_buy_qty[i]);
-
-      console.log("checkout_buy_qty_total", checkout_buy_qty_total);
-
-      // console.log(thisOne);
-      //console.log("checkout_buy_qty parsed", parseInt(checkout_buy_qty[i]);
-
+    if(isNaN(checkout_hi_qty)){
+      console.log("checkout_hi_qty", checkout_hi_qty);
+      checkout_hi_qty = 0;
+      console.log("checkout_hi_qty", checkout_hi_qty);
     }
 
-    // for ( var i = 0; i < 5; i++ ) {
-    //   console.log( "try " + i );
-    // }
 
-
-
-
-    // var checkout_hi_qty_toString = parseInt(checkout_hi_qty);
-
-    // console.log("checkout_hi_qty", checkout_hi_qty);
-
-
-    // console.log("checkout_hi_qty_toString", checkout_hi_qty_toString);
-
-
+ if (checkout_hi_qty > 0){
 
     if (checkout_buy_qty_total == checkout_hi_qty){
 
@@ -305,24 +277,40 @@
 
       console.log ("high index qty DOES NOT match the qty of specs.");
 
-      hi_emptycart();
-      console.log ("empty cart");
-      
+      hi_emptycart();      
       hi_pushtocart();
-      console.log ("add correct amount");
-
       hi_updateprice();
+    }
+
+ } else {
+      console.log ("high index qty matches the qty of specs. stop.");
+
+
+ }
+
+
+
+
+
+
+
+    function getBuyQuantity(){
+      for ( var i = 0; i < checkout_buy_qty.length; i++ ) {
+        console.log(checkout_buy_qty[i]);
+        console.log(parseInt(checkout_buy_qty[i]));
+        checkout_buy_qty_total += parseInt(checkout_buy_qty[i]);
+      }
     }
 
 
     function hi_updateprice(){
-
-      //$("#priceFinal").text("£"+(checkout_hi_qty * high_index_price)+checkout_price_raw);
       console.log ("high_index_price", high_index_price);
-
       console.log ("checkout_hi_qty", checkout_hi_qty);
-
       console.log ("checkout_price_raw", checkout_price_raw);
+
+      $("#priceFinal").text((checkout_hi_qty * high_index_price)+checkout_price_raw);
+
+      $('#priceFinal').currency();
 
     }
 
@@ -339,9 +327,7 @@
      jQuery.post('/cart/add.js', {
       quantity: checkout_buy_qty_total,
       id: 763367271,
-    }).success(console.log("hi_pushtocart success"));
-
-
+    }).success(hi_updateprice());
 
 
    };
@@ -355,11 +341,8 @@
 
     } else {
       console.log("add to checkout");
-
       hi_pushtocart();
       high_index_set = true;
-
-
     }
 
 
@@ -511,6 +494,7 @@
     console.log( "generate cell " + i );
     $( "<div class=\"checkout_try empty\"><h5 id=\'test\'><strong>"+numberStamp+"</stroxng>. Please add another frame</h5></div>").appendTo( ".generate_empty_cells");
   }
+
 
 
 

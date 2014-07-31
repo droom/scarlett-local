@@ -14,23 +14,46 @@
      <p>Sold Out</p>
      {% else %}
      <!-- <input type="submit" id="add-to-cart" class="btn addtocart" name="add" value="Buy Now" /> -->
-     <input type="submit" id="add-to-cart" class="btn btn-primary addtocart" name="add" value="{{variant.price | money }} — {{ variant.title }}" />
-     <div id="cart-animation" style="display:none">1</div>
-     {% endunless %}
-   </div>
- </form>
 
- {% endunless %}
- {% endfor %}
- {% for variant in product.variants %}
- {% if variant.title contains 'Home Try On' %}
- {% for item in cart.items %}
- {% if item.variant.id == variant.id %}
- {% assign disabled = "disabled" %}
- {% endif %}
- {% endfor %}
+     <section class="priceBox clearfix {{ variant.title | handleize }}">
+      <div class="priceBox-price">
+        <h3>{{variant.price | money }}</h3>
+      </div>
 
- <form id="add-item-form-{{variant.id}}" action="/cart/add" method="post" class="variants clearfix">
+      <div class="priceBox-title">
+        <p>{{ variant.title }}</p>
+      </div>
+
+      <div class="priceBox-button">
+        <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
+      </div>
+
+      <div class="priceBox-arrow">
+        <p>&rarr;</p>
+      </div>
+    </section>
+<!--
+<input type="submit" id="add-to-cart" class="btn addtocart {{ variant.title | handleize }} " name="add" value="{{variant.price | money }} — {{ variant.title }}" /> 
+-->
+
+<div id="cart-animation" style="display:none">1</div>
+
+
+{% endunless %}
+</div>
+</form>
+
+{% endunless %}
+{% endfor %}
+{% for variant in product.variants %}
+{% if variant.title contains 'Home Try On' %}
+{% for item in cart.items %}
+{% if item.variant.id == variant.id %}
+{% assign disabled = "disabled" %}
+{% endif %}
+{% endfor %}
+
+<form id="add-item-form-{{variant.id}}" action="/cart/add" method="post" class="variants clearfix">
   <div class="product-options">
    <div class="select clearfix"{% if hide_default_title %} style="display:none"{% endif %}>
      <input type="hidden" name="id" value="{{variant.id}}">

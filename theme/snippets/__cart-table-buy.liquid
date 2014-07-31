@@ -9,13 +9,84 @@
 
   {% include '__cart-table-titles' %}
   
-<!-- 
-  <p>The are no items in your shopping basket.</p> 
+
+  {% for item in cart.items %}
+  {% if item.variant.title contains 'With prescription' %}
+  <div class="checkout_buy {{ item.product.title | handleize }} clearfix shoppingItem">
+
+
+    <div class="checkout_cell1">
+      <a href="{{ item.url }}">
+        <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
+      </a>
+    </div>
+
+    <div class="checkout_cell2">
+      <h5>
+        <strong>{{ item.product.title }}</strong>
+      </h5>
+      {% if item.product.variants.size > 1 %}
+      <p>{{ item.variant.title }}</p>
+      {% endif %}
+    </div>
+
+    <div class="checkout_cell3">
+      <p class="buy_qty">{{ item.quantity }}</p>
+    </div>
+
+    <div class="checkout_cell4">
+      <p>{{ item.line_price | money }}</p>
+    </div>
+
+    <div class="checkout_cell5">
+      <p><strong>{{ item.line_price | money }}</strong></p>
+    </div>
+
+    <div class="checkout_cell6">
+      <p>
+        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a>
+      </p>
+    </div>
+
+  </div>
+
+  {% endif %}
+  {% endfor %}
+
+
+
+
+
+
+  <div class="checkout_titles clearfix">
+    <div class="checkout_cell1">
+      <p>Glasses, just frames</p>
+    </div>
+
+  <!-- 
+  <div class="checkout_cell2">
+    <p class="cellHide">&#215;</p>
+  </div>
 -->
+<div class="checkout_cell3">
+  <p>QTY</p>
+</div>
+
+<div class="checkout_cell4">
+  <p>Price</p>
+</div>
+
+<div class="checkout_cell5">
+  <p>Total</p>
+</div>
+<div class="checkout_cell6">
+  <p class="cellHide">&#215;</p>
+</div>
+</div>
 
 
 {% for item in cart.items %}
-{% if item.variant.title contains 'prescription' %}
+{% if item.variant.title contains 'Without prescription' %}
 <div class="checkout_buy {{ item.product.title | handleize }} clearfix shoppingItem">
 
 
@@ -35,7 +106,7 @@
   </div>
 
   <div class="checkout_cell3">
-    <p class="buy_qty">{{ item.quantity }}</p>
+    <p>{{ item.quantity }}</p>
   </div>
 
   <div class="checkout_cell4">
@@ -56,4 +127,9 @@
 
 {% endif %}
 {% endfor %}
+
+
+
+
+
 </div>

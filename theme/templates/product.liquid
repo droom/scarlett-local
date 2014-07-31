@@ -12,8 +12,7 @@
 <section id="product-wrap" class="section-wrap">
 	<div class="visible-xs">
 		<small class="product-section">
-			<strong>{{ collection.title | upcase }}</strong> &mdash; {{ collection.description }}
-		</small>
+			<strong>{{ collection.title | upcase }}</strong> {% if collection.description != blank %}&mdash; {{ collection.description }}{% endif %}</small>
 		<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
 	</div>
 	<form id="product-form" action="/cart/add" method="post" role="form">
@@ -86,7 +85,7 @@
 
 				<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
 				
-				<h1 class="hidden-xs" itemprop="name">{{ page_title }}</h1>
+				<h1 class="hidden-xs" itemprop="name" id="productTitle">{{ page_title }}</h1>
 
 				<!-- {% if has_prices %} -->
 
@@ -190,8 +189,17 @@
 			var url_Life_part3 = listStringLife.slice(positionLife+7, listStringLife.length);
 
 
-			console.log("url_Life_part3 is "+url_Life_part3);
+			var productGrab = $('#productTitle').text();
+			var productIndex = productGrab.indexOf(" in ");
+			var productSnatchModel = productGrab.slice(0, productIndex)
+			var productSnatchColour = productGrab.slice(productIndex, productIndex.length)
 
+			console.log("productGrab", productGrab);
+			console.log("productIndex", productIndex);
+			console.log("productSnatchModel", productSnatchModel);
+			console.log("productSnatchColour", productSnatchColour);
+
+			$('#productTitle').replaceWith("<h1 class=\"hidden-xs\" itemprop=\"name\" id=\"productTitle\">"+productSnatchModel+" <span class=\"productColor\">"+productSnatchColour+"</span></h1>");
 
 			$('.spritespin360').spritespin({
 				source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
@@ -248,86 +256,74 @@
 			});
 
 
-			$("#threeSixtyStack img:nth-child(3)").show();
+$("#threeSixtyStack img:nth-child(3)").show();
 
-				$('.threeSixtyCycle').hide();
+$('.threeSixtyCycle').hide();
 
-				$("#threeSixtyStack").mousemove(function(e){
-					var parentOffset = $(this).parent().offset(); 
-					var relX = e.pageX - parentOffset.left;
-					var tWidth = $(this).width();  
-					var pos = (relX/tWidth) * 100;
+$("#threeSixtyStack").mousemove(function(e){
+	var parentOffset = $(this).parent().offset(); 
+	var relX = e.pageX - parentOffset.left;
+	var tWidth = $(this).width();  
+	var pos = (relX/tWidth) * 100;
 
-					switch(true){
-					
-					case (pos < 2):
-					$("#threeSixtyStack img:nth-child(1)").show();
-					break;
+	switch(true){
 
-					case (pos < 5):
-					$("#threeSixtyStack img:nth-child(2)").show();
-					break;
+		case (pos < 2):
+		$("#threeSixtyStack img:nth-child(1)").show();
+		break;
 
-					case (pos < 8):
-					$("#threeSixtyStack img:nth-child(3)").show();
-					break;
+		case (pos < 5):
+		$("#threeSixtyStack img:nth-child(2)").show();
+		break;
 
-					case (pos < 11):
-					$("#threeSixtyStack img:nth-child(4)").show();
-					break;
+		case (pos < 8):
+		$("#threeSixtyStack img:nth-child(3)").show();
+		break;
 
-					case (pos < 13):
-					$("#threeSixtyStack img:nth-child(5)").show();
-					break;
+		case (pos < 11):
+		$("#threeSixtyStack img:nth-child(4)").show();
+		break;
 
-					case (pos < 16):
-					$("#threeSixtyStack img:nth-child(6)").show();
-					break;
+		case (pos < 13):
+		$("#threeSixtyStack img:nth-child(5)").show();
+		break;
 
-					case (pos < 22):
-					$("#threeSixtyStack img:nth-child(7)").show();
-					break;
+		case (pos < 16):
+		$("#threeSixtyStack img:nth-child(6)").show();
+		break;
 
-					case (pos < 25 ):
-					$("#threeSixtyStack img:nth-child(8)").show();
-					break;
+		case (pos < 22):
+		$("#threeSixtyStack img:nth-child(7)").show();
+		break;
 
-					case (pos < 27 ):
-					$("#threeSixtyStack img:nth-child(9)").show();
-					break;
+		case (pos < 25 ):
+		$("#threeSixtyStack img:nth-child(8)").show();
+		break;
 
-					case (pos < 30 ):
-					$("#threeSixtyStack img:nth-child(10)").show();
-					break;
+		case (pos < 27 ):
+		$("#threeSixtyStack img:nth-child(9)").show();
+		break;
 
-
-				}
-			});
+		case (pos < 30 ):
+		$("#threeSixtyStack img:nth-child(10)").show();
+		break;
 
 
-
-			// full 553x315
-			// 432 x 370
-
-
-
-			( function( $ ) {
-				$( 'a[href="#"]' ).click( function(e) {
-					e.preventDefault();
-				} );
-			} );
+	}
+});
 
 
 
 
-			var anchors_and_divs = {
-				'.productSwitch-360'     :  '.productHero-360',
-				'.productSwitch-life'    :  '.productHero-life',
-				".productSwitch-feature" :  '.productHero-feature'
-			}
 
-			function hide_rest(element_to_show) {
-				$(element_to_show).click(function(){
+var anchors_and_divs = {
+	'.productSwitch-360'     :  '.productHero-360',
+	'.productSwitch-life'    :  '.productHero-life',
+	".productSwitch-feature" :  '.productHero-feature'
+}
+
+function hide_rest(element_to_show) {
+	$(element_to_show).click(function(){
 					// console.log(element_to_show);
 					var div_to_show = anchors_and_divs[element_to_show];
 					$('.productHero-feature').hide();
@@ -335,14 +331,14 @@
 					$('.productHero-life').hide();
 					$(div_to_show).fadeIn(300);
 				});
-			}
+}
 
-			hide_rest('.productSwitch-360' );
-			hide_rest('.productSwitch-life' );
-			hide_rest('.productSwitch-feature' );
+hide_rest('.productSwitch-360' );
+hide_rest('.productSwitch-life' );
+hide_rest('.productSwitch-feature' );
 
 
-			var selectCallback = function(variant, selector){
+var selectCallback = function(variant, selector){
 			// set vars so we dont need to call the elements repeatedly
 			var purchaseButton = jQuery(document.getElementById('purchase'));
 			var priceField = jQuery(document.getElementById('price-field'));
