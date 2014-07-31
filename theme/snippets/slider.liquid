@@ -20,15 +20,19 @@
 {% capture items %}{{ items }}
 <div id="{{ slide }}" class="item{% if s == 0 %} active{% endif %}">
 
-  <a href="{{ settings[slide_button_link] }}"><img src="{{ slide_image | append: '.jpg' | asset_url }}" alt="{% if settings[slide_heading] %}{{ settings[slide_heading] }}{% else %}Slide {{s}}{% endif %}"></a>
+  {% if settings[slide_button_link] != blank %}<a href="{{ settings[slide_button_link] }}">{% endif %}
+  <img src="{{ slide_image | append: '.jpg' | asset_url }}" alt="{% if settings[slide_heading] %}{{ settings[slide_heading] }}{% else %}Slide {{s}}{% endif %}">
+  {% if settings[slide_button_link] != blank %}</a>{% endif %}
 
   {% if settings[slide_heading] or settings[slide_caption] %}
   <div class="carousel-caption">
 
-    <a href="{{ settings[slide_button_link] }}">
-      {% if settings[slide_heading] != blank %}<h2>{{ settings[slide_heading] }}</h2>{% endif %}
-      {% if settings[slide_caption] != blank %}<p class="lead">{{ settings[slide_caption] }}</p>{% endif %}
-    </a>
+    {% if settings[slide_button_link] != blank %}<a href="{{ settings[slide_button_link] }}">{% endif %}
+    {% if settings[slide_heading] != blank %}<h2>{{ settings[slide_heading] }}</h2>{% endif %}
+    {% if settings[slide_caption] != blank %}<p class="lead">{{ settings[slide_caption] }}</p>{% endif %}
+    {% if settings[slide_button_link] != blank %}</a>{% endif %}
+
+
 
   </div>
   {% endif %}
