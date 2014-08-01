@@ -1,21 +1,42 @@
+<!-- Count how many HTO are in the cart --> 
+<div class="hiddenLogic">
+
+  {% for item in cart.items %}
+  {% if item.variant.title contains 'Home Try-On' %}
+  {% increment hto_count_total %}
+  {% endif %}
+  {% endfor %}
+
+  {% assign hto_count_unique = false %}
+
+  {% for variant in product.variants %}
+  {% if variant.title contains 'Home Try-On' %}
+  {% for item in cart.items %}
+  {% if item.variant.id == variant.id %}
+  {% assign hto_count_unique = true %}
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endfor %}
+
+
+</div>
+
 <div class="purchase">
 
   {% for variant in product.variants %}
-
-
-  {% unless variant.title contains 'Home Try On' %}
+  {% unless variant.title contains 'Home Try-On' %}
   <form id="add-item-form-{{variant.id}}" action="/cart/add" method="post" class="variants clearfix">
+
     <div class="product-options">
      <div class="select clearfix"{% if hide_default_title %} style="display:none"{% endif %}>
        <input type="hidden" name="id" value="{{variant.id}}">
-       <!-- <p>{{ variant.title }}</p> -->
      </div>
      {% unless variant.available %}
      <p>Sold Out</p>
      {% else %}
-     <!-- <input type="submit" id="add-to-cart" class="btn addtocart" name="add" value="Buy Now" /> -->
-
      <section class="priceBox clearfix {{ variant.title | handleize }}">
+
       <div class="priceBox-price">
         <h3>{{variant.price | money }}</h3>
       </div>
@@ -32,43 +53,122 @@
         <p>&rarr;</p>
       </div>
     </section>
-<!--
-<input type="submit" id="add-to-cart" class="btn addtocart {{ variant.title | handleize }} " name="add" value="{{variant.price | money }} — {{ variant.title }}" /> 
--->
-
-<div id="cart-animation" style="display:none">1</div>
 
 
-{% endunless %}
-</div>
+
+
+
+    {% endunless %}
+  </div>
 </form>
-
 {% endunless %}
 {% endfor %}
-{% for variant in product.variants %}
-{% if variant.title contains 'Home Try On' %}
-{% for item in cart.items %}
-{% if item.variant.id == variant.id %}
-{% assign disabled = "disabled" %}
-{% endif %}
-{% endfor %}
+
+
+
+
+
+
+
+{% for variant in product.variants %} 
+{% if variant.title contains 'Home Try-On' %} 
+
+
+{% if hto_count_total >= 4 %}
+
+<section class="priceBox-limit clearfix limit">
+ <h5>There are 4 Try-on glasses in your cart</h5>
+ <p>Please remove a pair to add <strong>{{ page_title }}</strong> to your basket. <a href="/cart">View your cart.</a></p>
+</section>
+
+
+{% else %} <!-- if hto_count_total >= 4 -->
+
+{% if hto_count_unique == false %}
 
 <form id="add-item-form-{{variant.id}}" action="/cart/add" method="post" class="variants clearfix">
+
   <div class="product-options">
    <div class="select clearfix"{% if hide_default_title %} style="display:none"{% endif %}>
      <input type="hidden" name="id" value="{{variant.id}}">
-     <!-- <p>{{ variant.title }}</p> -->
    </div>
-   {% unless variant.available %}
-   <p>Sold Out</p>
-   {% else %}
-   <input type="submit" id="add-to-cart" class="btn btn-primary addtocart {{disabled}}" name="add" value="Try them on at home for free" />
-   <div id="cart-animation" style="display:none">1</div>
-   {% endunless %}
+
+   <section class="priceBox clearfix {{ variant.title | handleize }}">
+
+    <div class="priceBox-price">
+      <h3>{{variant.price | money }}</h3>
+    </div>
+
+    <div class="priceBox-title">
+      <p>{{ variant.title }}</p>
+    </div>
+
+    <div class="priceBox-button">
+      <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
+    </div>
+
+    <div class="priceBox-arrow">
+      <p>&rarr;</p>
+    </div>
+
+  </section>
+</div>
+</form>
+
+
+{% else %} <!-- hto_count_unique == false -->
+
+
+
+
+<div class="product-options">
+ <div class="select clearfix"{% if hide_default_title %} style="display:none"{% endif %}>
+   <input type="hidden" name="id" value="{{variant.id}}">
  </div>
 
-</form>
-{% endif %}
-{% endfor %}
+ <section class="priceBox clearfix {{ variant.title | handleize }}">
+
+  <div class="priceBox-price">
+    <h3>{{variant.price | money }}</h3>
+  </div>
+
+  <div class="priceBox-title">
+    <p>{{ variant.title }}</p>
+  </div>
+
+  <div class="priceBox-button">
+  <p><strong>In cart</strong></p>
+  </div>
+
+
+
+</section>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endif %} <!-- hto_count_unique == false -->
+
+
+
+{% endif %} <!-- if hto_count_total >= 4 -->
+
+{% endif %} <!-- if variant.title contains 'Home Try-On' -->
+{% endfor %} <!-- for variant in product.variants -->
+
+
+
+
+
+
+
+
 </div>
 
