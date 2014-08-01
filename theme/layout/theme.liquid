@@ -43,6 +43,15 @@
     {{ content_for_header }}
 
 
+
+
+    {{ "cart_hto.js" | asset_url | script_tag }}
+
+    {{ "cart_steps.js" | asset_url | script_tag }}
+
+    {{ "cart_hil.js" | asset_url | script_tag }}
+
+
     <!-- Facebook login -->
     {% include 'hull' %} 
 
@@ -128,5 +137,26 @@
   {% if settings.custom-footer-code != '' %}
   {{ settings.custom-footer-code }}
   {% endif %}
+
+
+<!-- Limiter -->
+
+{% unless settings.limit == 'No limit' %}
+{{ 'jquery.limit.min.js' | asset_url | script_tag }}
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+Shopify.Cart.setProductHandle('{{ product.handle }}');
+Shopify.Cart.limit( { 
+    limitPer: '{{ settings.limit_per }}', 
+    limitQuantity: {{ settings.limit_quantity }}{% if settings.limit == 'Enabled for products listed' %},
+    limitProductHandles: jQuery.trim("{{ settings.limit_product_handles }}").split(/[\s,;]+/){% endif %}{% if settings.limit_per == 'cart' and settings.limit_quantity == '1' %},
+    limitSkipCartPage: {% if settings.limit_skip_cart_page %}true{% else %}false{% endif %}{% endif %}
+    } );
+//]]>
+</script>
+{% endunless %}
+
+
+
 </body>
 </html>
