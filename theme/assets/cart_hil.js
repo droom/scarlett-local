@@ -1,83 +1,118 @@
 
 $(document).ready(function(){
 
-  var checkout_price = $("#priceFinal").text();
-  var checkout_price_sliced = checkout_price.slice(1, checkout_price.length);
-  var checkout_price_raw = parseInt(checkout_price_sliced);
-  var high_index_set = false;
-  var high_index_price = 35;
-  var checkout_hi_qty = parseInt($(".checkout_acc .hi_qty").text());
-  var checkout_buy_qty = $(".checkout_buy .buy_qty").text();
-  var checkout_buy_qty_total = 0;
-  
+  // var getTitles = [];
+  var prescriptionQTY = 0;
+  var lensesQTY = 0;
 
-  // Constructor
-  if(isNaN(checkout_hi_qty)){
-    checkout_hi_qty = 0;
-  }
+  // var test = 0;
 
-  if (checkout_hi_qty > 0){
-    if (checkout_buy_qty_total == checkout_hi_qty){
-      console.log ("high index qty matches the qty of specs. stop.");
-    } else {
-      console.log ("high index qty DOES NOT match the qty of specs.");
-      hi_emptycart();      
-      hi_pushtocart();
-      hi_updateprice();
-    }
-  } else {
-    console.log ("high index qty matches the qty of specs. stop.");
-  }
+ //  function fCartEmpty(){
+ //   jQuery.post('/cart/change.js', {
+ //    quantity: 0,
+ //    id: 763367271,
+ //  }).success();
+ // };
 
 
-  // Functions
-  function getBuyQuantity(){
-    for ( var i = 0; i < checkout_buy_qty.length; i++ ) {
-      console.log(checkout_buy_qty[i]);
-      console.log(parseInt(checkout_buy_qty[i]));
-      checkout_buy_qty_total += parseInt(checkout_buy_qty[i]);
-    }
-  }
-
-  function hi_updateprice(){
-    console.log ("high_index_price", high_index_price);
-    console.log ("checkout_hi_qty", checkout_hi_qty);
-    console.log ("checkout_price_raw", checkout_price_raw);
-    $("#priceFinal").text((checkout_hi_qty * high_index_price)+checkout_price_raw);
-    $('#priceFinal').currency();
-  }
-
- // AJAX
- function hi_emptycart(){
-   jQuery.post('/cart/change.js', {
-    quantity: 0,
-    id: 763367271,
-  }).success(console.log("hi_emptycart success"));
- };
-
- function hi_pushtocart(){
+ function fCartAdd(){
    jQuery.post('/cart/add.js', {
-    quantity: checkout_buy_qty_total,
+    quantity: 5,
     id: 763367271,
-  }).success(hi_updateprice());
+  }).success();
  };
 
+ function fUpdateCart(){
+
+  // Reset
+
+  // getTitles.length = 0;
+  // prescriptionQTY = 0;
+  // lensesQTY = 0;
+
+  // Get
+
+  jQuery.getJSON('/cart.js', function(data) {
+
+    $.each(data.items, function(index, element) {
+
+      // Get Lenses
+
+      if ( element.variant_id == 763367271 ){
+
+        lensesQTY = element.quantity;
+
+        // console.log("QTY of", element.handle, element.quantity);
+        // console.log("lensesQTY", lensesQTY);
+
+      } else {
+
+        // console.log("This isn't a High-Index Lens");
+
+      }
+
+      // getTitles.push(element.title) // Grab titles
+
+      if (element.title.indexOf("With ") >= 0) {
+       
+        // console.log("YO");
+
+        // test++ 
+
+        prescriptionQTY = element.quantity;
+
+        // console.log("element.quantity", element.quantity)
+
+      };  
+
+    });
+
+    console.log("total_price", data.total_price);
+
+    //$("#priceFinal").text(data.total_price);
+
+  });
 
 
 
-// Buttons
+
+
+  // for ( var i = 0, l = getTitles.length; i < l; i++ ) {
+
+  //   if (getTitles[i].indexOf("With ") >= 0) {
+
+  //     prescriptionQTY ++;
+
+  //   } else {
+
+  //   }
+
+  // }
+
+
+
+
+
+
+  // Respond
+
+  console.log("prescriptionQTY", prescriptionQTY);
+  console.log("lensesQTY", lensesQTY);
+
+};
+
+
+
 $("#add_hil").click(function(){
-  if (high_index_set){
-  } else {
-    hi_pushtocart();
-    high_index_set = true;
-  }
+  fUpdateCart();
 });
 
-
 $("#remove_hil").click(function(){
- hi_emptycart();
- high_index_set = false;
+  fUpdateCart();
+});
+
+$("#manual_add").click(function(){
+  fCartAdd();
 });
 
 
