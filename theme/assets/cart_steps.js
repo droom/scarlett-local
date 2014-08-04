@@ -46,15 +46,14 @@
 
 
 
-
-
-
-
     $("h4.measure").text("Yes");
     $("h4.dont-measure").text("No");
+
     $("label[for='prescription-1']").text("I need prescription lenses for my glasses.");
+    $("label[for='non-rx-2']").text("I need non-prescription lenses for my glasses.");
+
+
     $("label[for='readers-2']").text("I need reading / magnifying lenses for my glasses.");
-    $("label[for='non-rx-3']").text("I need non-prescription lenses for my glasses.");
     $("label[for='upload-a-picture-1']").text("I will attach a copy of my prescription and upload it from my computer.");
     $("label[for='call-my-doctor-2']").text("I would like you to call my doctor and obtain my prescription.");
     $("label[for='send-later-3']").text("I don't have my prescription right now but I will send it to Scarlett of Soho later.");
@@ -85,22 +84,81 @@
     });
 
 
-    $('.stage2question1 .radioWrap .radioLabel').click(function() {
-    	$('.stage2question1 .radioWrap .radioLabel').css('font-weight', 'normal');
-    	$(this).css('font-weight', 'bold');
+
+
+    $('label[for=\'prescription-1\']').click(function() {
+
+        //$('.stage2question1 .radioWrap .radioLabel').css('font-weight', 'normal');
+
     });
+
+
+    function activeQuestion(whichQuestion, thisPassed){
+
+        console.log(whichQuestion, this);
+
+        console.log(whichQuestion+' .radioWrap .radioLabel');
+
+
+        $(whichQuestion+' label').css('border', '#e7e7e7 1px solid');
+
+        $(whichQuestion+' .radioWrap .radioLabel').css('-webkit-box-shadow', '1px 1px 1px #e7e7e7');
+        $(whichQuestion+' .radioWrap .radioLabel').css('-moz-box-shadow', '1px 1px 1px #e7e7e7');
+        $(whichQuestion+' .radioWrap .radioLabel').css('box-shadow', '1px 1px 1px #e7e7e7');
+
+
+        $(thisPassed).css('border', '#686a61 1px solid');
+
+        $(thisPassed).css('-webkit-box-shadow', 'inset 1px 1px 1px #e5e5e5');
+        $(thisPassed).css('-moz-box-shadow', 'inset 1px 1px 1px #e5e5e5');
+        $(thisPassed).css('box-shadow', 'inset 1px 1px 1px #e5e5e5');
+    }
+
+
+    $('.stage2question1 .radioWrap .radioLabel').click(function() {
+
+        activeQuestion('.stage2question1', $(this));
+
+
+    });
+
+
+
     $('.stage2question2 .radioWrap .radioLabel').click(function() {
-    	$('.stage2question2 .radioWrap .radioLabel').css('font-weight', 'normal');
-    	$(this).css('font-weight', 'bold');
-    }); 
+     $('.stage2question2 .radioWrap .radioLabel').css('font-weight', 'normal');
+     $(this).css('font-weight', 'bold');
+ }); 
     $('.stage2question3 .radioWrap .radioLabel').click(function() {
-    	$('.stage2question3 .radioWrap .radioLabel').css('font-weight', 'normal');
-    	$(this).css('font-weight', 'bold');
-    }); 
+     $('.stage2question3 .radioWrap .radioLabel').css('font-weight', 'normal');
+     $(this).css('font-weight', 'bold');
+ }); 
     $('.stage2question4 .radioWrap .radioLabel').click(function() {
-    	$('.stage2question4 .radioWrap .radioLabel').css('font-weight', 'normal');
-    	$(this).css('font-weight', 'bold');
-    }); 
+     $('.stage2question4 .radioWrap .radioLabel').css('font-weight', 'normal');
+     $(this).css('font-weight', 'bold');
+ }); 
+
+
+
+
+
+    // $("input[id=\'prescription-1\'").click(function(){
+    //     //show_prescription();
+    //     console.log("hey");
+    // });
+
+
+
+
+    // $("#prescription-1").click(function(){
+    //     //show_prescription();
+    //     console.log("hey");
+    // });
+
+
+    // $("input[for='non-rx-2']").click(function(){
+    //     hide_prescription();
+    // });
+
 
 
     $("label[for='prescription-1']").click(function(){
@@ -119,8 +177,6 @@
     $('.dont-measure').click(function() {
     	$('.pd-launch').css('display', 'none');
     });
-
-
 
 
     function gotoNextSection(position){
@@ -156,12 +212,21 @@
     	$('.stage2question2').fadeOut(200);
     	$('.stage2question3').fadeOut(200);
     	$('.stage2question4').fadeOut(200);
+
+        $('.prescription-upload').fadeOut(200);
+        $('.prescription-doctor').fadeOut(200);
+        $('.prescription-address').fadeOut(200);
+
+        $('.pd-launch').fadeOut(200);
     }
 
     function show_prescription(){
     	$('.stage2question2').fadeIn(200);
     	$('.stage2question3').fadeIn(200);
     	$('.stage2question4').fadeIn(200);
+
+
+
     }
 
     function checkout_section(stepValue){
