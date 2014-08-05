@@ -1,99 +1,208 @@
 {% include '__has-variables' %}
 <section id="cart-wrap" class="section-wrap">
 
+
+  <hr />
+
+
+
+
+
+  <hr />
+
+
+  <form class="cmxform" id="signupForm" method="get" action="" novalidate="novalidate">
+    <fieldset>
+
+
+      <p>
+        <label for="firstname">Firstname</label>
+        <input id="firstname" name="firstname" type="text">
+      </p>
+
+
+      <p>
+        <label for="lastname">Lastname</label>
+        <input id="lastname" name="lastname" type="text">
+      </p>
+      <p>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text">
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+      </p>
+      <p>
+        <label for="confirm_password">Confirm password</label>
+        <input id="confirm_password" name="confirm_password" type="password">
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email">
+      </p>
+      <p>
+        <label for="agree">Please agree to our policy</label>
+        <input type="checkbox" class="checkbox" id="agree" name="agree">
+      </p>
+      <p>
+        <label for="newsletter">I'd like to receive the newsletter</label>
+        <input type="checkbox" class="checkbox" id="newsletter" name="newsletter">
+      </p>
+      <fieldset id="newsletter_topics" class="gray">
+        <legend>Topics (select at least two) - note: would be hidden when newsletter isn't selected, but is visible here for the demo</legend>
+        <label for="topic_marketflash">
+          <input type="checkbox" id="topic_marketflash" value="marketflash" name="topic" disabled="disabled">Marketflash
+        </label>
+        <label for="topic_fuzz">
+          <input type="checkbox" id="topic_fuzz" value="fuzz" name="topic" disabled="disabled">Latest fuzz
+        </label>
+        <label for="topic_digester">
+          <input type="checkbox" id="topic_digester" value="digester" name="topic" disabled="disabled">Mailing list digester
+        </label>
+        <label for="topic" class="error">Please select at least two topics you'd like to receive.</label>
+      </fieldset>
+      <p>
+        <input class="submit" type="submit" value="Submit">
+      </p>
+    </fieldset>
+  </form>
+
+  <hr />
+
+
+
+
+
+  <hr />
+
+
+
+
   <form action="/cart" method="post" id="cartform1">
 
     {% include '__cart-breadcrumb' %}
     <div class="checkout_main">
       <div class="col-cart-left">
 
-        <div class="checkout_stage1">
 
-          {% include '__formatted-content' %}
-          {% if has_cart %}
-          {% if cart.item_count == 0 %}
-          <h2>Your cart is empty!</h2>
-          <p>Please add some items.</p>
-          {% else %}
-          {% include '__cart-table-buy' %}
-          {% include '__cart-table-acc' %}
-          {% include '__cart-table-try' %}
+     <!--   
+      <section class="testing">
+          <H2>TESTING</H2>
+          <p><a href="#" id="HIL-ADD">ADD LENSES</a></p>
+          <p><a href="#" id="HIL-REMOVE">REMOVE LENSES</a></p>
+        </section>
+      -->
+      
+      <div class="checkout_stage1">
 
-          {% endif %}
-          {% endif %}
-        </div>
+        {% include '__formatted-content' %}
+        {% if has_cart %}
+        {% if cart.item_count == 0 %}
+        <h2>Your cart is empty!</h2>
+        <p>Please add some items.</p>
+        {% else %}
+        {% include '__cart-table-buy' %}
+        {% include '__cart-table-acc' %}
+        {% include '__cart-table-try' %}
 
-        <div class="checkout_stage2">
-          <h2>Details</h2>
+        {% endif %}
+        {% endif %}
+      </div>
 
-          <div class="radioOptions clearfix stage2question1">
-          <h3 class="clearfix">What kind of glasses do you need?</h3>
+      <div class="checkout_stage2">
+        <h2>Details</h2>
+
+
+
+
+
+
+        <div class="radioOptions clearfix stage2question1">
+          <fieldset>
+
+            <legend class="clearfix">What kind of glasses do you need?</legend>
 
             {% assign attribute = 'glasses-type' %}
             {% for i in (1..2) %}
-            <div class="radioWrap clearfix">
+
+            <div class="radioWrap clearfix" id="{{ option | handleize }}">
               {% capture option %}{% cycle 'Prescription', 'Non-RX' %}{% endcapture %}
-              <h4 class="radioTitle">{{ option }}</h4>
-              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
-              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
+
+              <h4 class="radioTitle {{ option | handleize }}">{{ option }}</h4>
+
+
+              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">
+                {{ option }}
+              </label>
+
+              <input required class="radioNode firstname" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+
+
+
+
             </div>
             {% endfor %}
+          </fieldset>
 
-          </div>
+        </div>
 
 
-
-
-          <div class="radioOptions clearfix stage2question2">
-          <h3 class="clearfix">How would you like to send us your prescription?</h3>
-
+        <div class="radioOptions clearfix stage2question2">
+          <fieldset>
+            <legend class="clearfix">How would you like to send us your prescription?</legend>
             {% assign attribute = 'prescription-method' %}
+
             {% for i in (1..3) %}
-            <div class="radioWrap clearfix">
+
+            <div class="radioWrap">
               {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send later' %}{% endcapture %}
               <h4 class="radioTitle">{{ option }}</h4>
 
-              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+              <input class="radioNode" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
               <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
             </div>
             {% endfor %}
+          </fieldset>
+
+        </div>
+
+
+
+        <div class="radioOptions clearfix">
+
+          <div class="prescription-upload">
+
+            <p>Upload a digital copy of your most recent optical prescription.</p>
+            <p>Select a file from your computer.</p>
+            <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
+          </div>
+
+          <div class="prescription-doctor">
+            <p>Enter your doctor’s name and contact number.</p>
+
+
+            <label for="doctorName">Doctor's name</label>
+            <input type="text" id="doctorName" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+
+            <label for="doctorNumber">Doctor's number</label>
+            <input type="text" id="doctorNumber" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+
 
           </div>
 
+          <div class="prescription-address">
+            <p>Once you have your prescription, send it to us at <a href="mailto:hello@scarlettofosoho.com">hello@scarlettofosoho.com</a>.</p>
 
-
-          <div class="radioOptions clearfix">
-
-            <div class="prescription-upload">
-
-              <p>Upload a digital copy of your most recent optical prescription.</p>
-              <p>Select a file from your computer.</p>
-              <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
-            </div>
-
-            <div class="prescription-doctor">
-              <p>Enter your doctor’s name and contact number.</p>
-
-
-              <label for="doctorName">Doctor's name</label>
-              <input type="text" id="doctorName" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
-
-              <label for="doctorNumber">Doctor's number</label>
-              <input type="text" id="doctorNumber" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
-
-
-            </div>
-
-            <div class="prescription-address">
-              <p>Once you have your prescription, send it to us at <a href="mailto:hello@scarlettofosoho.com">hello@scarlettofosoho.com</a></p>
-
-            </div>
           </div>
+        </div>
 
 
 
-          <div class="radioOptions clearfix stage2question3">
-                    <h3 class="clearfix">Do you want ultra high-index lenses if necessary?</h3>
+        <div class="radioOptions clearfix stage2question3">
+          <fieldset>
+
+            <legend class="clearfix">Do you want ultra high-index lenses if necessary?</legend>
 
             {% assign attribute = 'high-index' %}
             {% for i in (1..2) %}
@@ -101,67 +210,65 @@
               {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
               <h4 class="radioTitle">{{ option }}</h4>
 
-              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+              <input class="radioNode" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
               <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
             </div>
             {% endfor %}
-          </div>
-
-
-
-
-          <div class="radioOptions clearfix stage2question4">
-          <h3 class="clearfix">Do you want to measure your pupillary distance (PD)?</h3>
-            {% assign attribute = 'pd-tool' %}
-            {% for i in (1..2) %}
-            <div class="radioWrap clearfix">
-              {% capture option %}{% cycle 'measure', 'dont-measure' %}{% endcapture %}
-              <h4 class="radioTitle {{ option }}">{{ option }}</h4>
-              <input class="radioNode" type="radio" id="{{ option }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
-              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
-            </div>
-            {% endfor %}
-          </div>
-
-
-
-          <div class="radioOptions clearfix">
-
-            <div class="pd-launch">
-
-              <h6>Measuring your pupillary distance (PD) is important for us to process your order and ensure the right fit for your prescription lens. Click on the tool below and follow the quick steps to measure your PD. </h6>
-
-              <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
-              <p>Copy your measurements from the tool and paste it here.</p>
-              <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
-            </div>
-
-          </div>
+          </fieldset>
 
         </div>
 
 
 
 
+        <div class="radioOptions clearfix stage2question4">
+          <fieldset>
+            <legend class="clearfix">Do you want to measure your pupillary distance (PD)?</legend>
+            {% assign attribute = 'pd-tool' %}
+            {% for i in (1..2) %}
+            <div class="radioWrap clearfix">
+
+              {% capture option %}{% cycle 'measure', 'dont-measure' %}{% endcapture %}
+              <h4 class="radioTitle {{ option }}">{{ option }}</h4>
+              <input class="radioNode" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} />
+
+              <label class="radioLabel {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
+
+
+            </div>
+            {% endfor %}
+          </fieldset>
+        </div>
+
+
+        <div class="radioOptions clearfix">
+          <div class="pd-launch">
+            <p>Measuring your pupillary distance (PD) is important for us to process your order and ensure the right fit for your prescription lens. Click on the tool below and follow the quick steps to measure your PD. </p>
+            <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
+            <p><strong>Copy your measurements from the tool and paste it here.</strong></p>
+            <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="col-cart-right">
-        {% include '__cart-price' %}
+    <div class="col-cart-right">
+      {% include '__cart-price' %}
 
-        <section class="cart-customer">
-          {% include '__cart-customer' %}
-        </section>
+      <section class="cart-customer">
+        {% include '__cart-customer' %}
+      </section>
 
-        <section class="cart-list">
-          {% include '__cart-item-list' %}
-        </section>
-
-      </div>
+      <section class="cart-list">
+        {% include '__cart-item-list' %}
+      </section>
 
     </div>
 
+  </div>
 
-  </form>
+
+</form>
 
 
 
@@ -179,6 +286,83 @@
     document.getElementById('cart').submit();
   }
 
+//
+
+$("#cartform1").validate({
+
+  rules: {
+    firstname: "required",
+    lastname: "required"
+  },
+
+  messages: {
+    firstname: "Please enter your firstname",
+    lastname: "Please enter your lastname"
+  }
+
+
+});
+
+
+// non-rx-2
+
+
+$("#signupForm").validate({
+
+  rules: {
+    firstname: "required",
+    lastname: "required",
+    username: {
+      required: true,
+      minlength: 2
+    },
+    password: {
+      required: true,
+      minlength: 5
+    },
+    confirm_password: {
+      required: true,
+      minlength: 5,
+      equalTo: "#password"
+    },
+    email: {
+      required: true,
+      email: true
+    },
+    topic: {
+      required: "#newsletter:checked",
+      minlength: 2
+    },
+    agree: "required"
+  },
+
+
+
+  messages: {
+    firstname: "Please enter your firstname",
+    lastname: "Please enter your lastname",
+    username: {
+      required: "Please enter a username",
+      minlength: "Your username must consist of at least 2 characters"
+    },
+    password: {
+      required: "Please provide a password",
+      minlength: "Your password must be at least 5 characters long"
+    },
+    confirm_password: {
+      required: "Please provide a password",
+      minlength: "Your password must be at least 5 characters long",
+      equalTo: "Please enter the same password as above"
+    },
+    email: "Please enter a valid email address",
+    agree: "Please accept our policy"
+  }
+});
+
+
 </script>
+
+
+
 
 
