@@ -1,0 +1,57 @@
+{% assign form-type = 'horizontal' %}
+<section id="login-form" class="section-wrap clearfix">
+
+
+	<div class="login cleafix">
+
+		<h1 class="page-header">{{ page_title }}</h1>
+
+
+		{% include '__formatted-content' with page.content %}
+
+
+		<div class="newsletter-form form-wrapper-horizontal">
+			<!-- <div class="{% include '__form-horizontal-input' %}"> -->
+
+
+
+				<!-- CONTACT FORM -->
+				{% form 'customer' %}
+
+				<!-- CONTACT FORM CONFIRMATION -->
+				{% if form.posted_successfully? %}
+				<div class="alert alert-success">
+					<p>
+						<strong>Thanks for contacting us!</strong>
+						<br/>We'll get back to you as soon as possible.
+					</p>
+				</div>
+				{% endif %}
+
+				<!-- CONTACT FORM ERROR -->
+				{% if form.errors %}
+				<p class="alert alert-error">
+					<!-- {{ form.errors.size }} or {{ form.errors | size }} -->
+					Oops, sorry. We were unable to submit your inquiry because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and submit again:<br>
+					{% for field in form.errors %}
+					The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}.
+					{% endfor %}
+				</p>
+				{% endif %}
+
+				<!-- CONTACT FORM INPUTS -->
+				<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
+				<input type="email" id="contact_email" name="contact[email]" class="form-control" />
+				<input type='submit' class="submit btn btn-primary" />
+
+
+				{% endform %}
+			<!-- </div> -->
+		</div>
+
+
+	</div>
+
+
+
+</section>

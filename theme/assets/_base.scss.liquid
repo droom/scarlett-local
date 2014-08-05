@@ -8778,7 +8778,36 @@ $sosGreen: #4ea87a;
 		display: none;
 	}
 
+
+	.priceBox-limit{
+		border:1px solid $sosLightGrey;
+		background: $sosLightGrey;
+		padding:14px 14px 6px 14px;
+
+		h5{
+			margin: 0 0 12px 0;
+			padding: 0;
+			font-size:14px;
+			font-weight: bold;
+
+		}
+
+		p{
+
+		}
+
+	}
+
+
+	disabled {
+
+		color: blue;
+
+	}
+
 	.priceBox {
+
+		min-height: 60px;
 
 		margin: 0 0 10px 0;
 
@@ -8812,6 +8841,12 @@ $sosGreen: #4ea87a;
 		}
 
 		.priceBox-button{
+			p{
+				margin: 14px 0 0 0;
+				padding: 6px 5px ;
+				font-size: 11px ;
+			}
+
 
 			float: left;
 			width: 25%;
@@ -8901,6 +8936,11 @@ $sosGreen: #4ea87a;
 		}
 
 		.priceBox-button{
+
+			p{
+				color: $sosLightGrey;
+			}
+			
 			.addtocart{
 				color: $sosLightGrey;
 			}
@@ -9008,6 +9048,35 @@ $sosGreen: #4ea87a;
 
 
 
+
+
+/*  <Phone>  */
+@media (max-width: $screen-xs-min) {
+}
+/*  <Tablet>  */
+@media (min-width: $screen-xs-min) {
+}
+/*  <Desktop Small>  */
+@media (min-width: $screen-sm-min) {
+}
+/*  <Desktop Large>  */
+@media (min-width: $screen-md-min) {
+}
+
+
+.slim {
+	width: 700px;
+	background: red;
+
+	#overview{
+		background: blue;
+
+		td{
+			background: pink;
+		}
+
+	}
+}
 
 
 .template-index{
@@ -9225,24 +9294,26 @@ h3,
 h4, 
 h5,
 h6{
-font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
-color: $sosMidGrey;
+	font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
+	color: $sosMidGrey;
 
 }
 
 
 h4{
-font-weight: bold;
-line-height: 1.6em;
+	font-weight: bold;
+	line-height: 1.6em;
 }
 
 #priceFinal{
-font-weight: bold;
+	font-weight: bold;
 
 }
 
 p, 
 li,
+td,
+legend,
 label, 
 small, 
 input, 
@@ -9250,40 +9321,43 @@ select,
 textarea,
 .money,
 .btn{
-font-family: 'Avenir-Light', helvetica, arial, sans-serif;
-color: $sosMidGrey;
+	font-family: 'Avenir-Light', helvetica, arial, sans-serif;
+	color: $sosMidGrey;
 }
 
 #navbar-top{
 
-h1, 
-h2, 
-h3, 
-h4, 
-h5,
-h6,
-p{
-font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
-color: $sosMidGrey;
+	h1, 
+	h2, 
+	h3, 
+	h4, 
+	h5,
+	h6,
+	p{
+		font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
+		color: $sosMidGrey;
 
-}
+	}
 }
 
 #navbar-footer{
 
-h1, 
-h2, 
-h3, 
-h4, 
-h5,
-h6,
-p{
-font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
-color: $sosMidGrey;
+	h1, 
+	h2, 
+	h3, 
+	h4, 
+	h5,
+	h6,
+	p{
+		font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
+		color: $sosMidGrey;
+
+	}
 
 }
 
-}
+
+
 .masonary-tile{
 	margin: 25px 0 0 0;
 }
@@ -9416,7 +9490,6 @@ color: $sosMidGrey;
 
 .checkout_cell1 {
 	width: 20%;
-
 }
 
 .checkout_cell2 {
@@ -9444,7 +9517,6 @@ color: $sosMidGrey;
 }
 
 .checkout_titles {
-
 	margin: 20px 0 10px 0;
 
 	.checkout_cell1 {
@@ -9473,6 +9545,9 @@ color: $sosMidGrey;
 	text-align: center;
 }
 
+
+
+
 .checkout_main{
 
 
@@ -9487,8 +9562,8 @@ color: $sosMidGrey;
 
 
 	h4{
-		margin: 60px 0 20px 0;
-		padding: 8px 0;	
+		margin: 20px 0 20px 0;
+		padding: 5px 0 3px 0;	
 		border-bottom: $sosLightGrey 1px solid;
 	}
 }
@@ -9640,32 +9715,75 @@ color: $sosMidGrey;
 		text-align:center;
 	}
 
+	.pd-launch,
+	.prescription-secondary{
+		margin-top: -30px;
+	}
+
+	.pd-launch,
 	.prescription-doctor,
 	.prescription-address,
-	.prescription-upload{
-		margin: 10px 0 20px 10px;
-		min-height: 80px;
+	.prescription-upload {
+
+		background: #f3f3f3;
+		margin: 10px 0 20px 0;
+		padding: 15px;
+		min-height: 70px;
+
+		label{
+			display: block;
+		}
+
+		input{
+			display: block;
+		}
+
+		p{
+			margin: 0 0 8px 0;
+			padding: 0;
+		}
 	}
 
 
 	.radioOptions{
+
+		legend {
+		}
+
+		label.error{
+			color: $sosRed;
+			padding:5px 0;
+			position: absolute;
+			top: 205px;
+			left: 0;
+		}
+
+
 		float: left;
 		width: 100%;
-	}
+		position: relative;
+		margin: 0 0 35px 0;
 
-	.radioWrap{
-		float: left;
-		margin: 0 0 30px 10px;
-		width: 100%; 
-		display: inline-block;
-		width: 30%;
-		border:  $sosLightGrey 1px solid;
-		min-height: 200px;
+		.radioWrap{
+			float: left;
+			margin-right: 10px;
+			display: inline-block;
+			width: 31.85%;
+			min-height: 170px;
+
+			text-align: center;
+		}
+
+		div.radioWrap:last-child{
+			margin-right: 0;
+
+		}
+
 
 		.radioTitle{
 			text-align: center;
 			margin: 0;
-			padding: 10px;
+			padding: 5px 2px 2px 2px;
 			border-bottom:  $sosLightGrey 1px solid;
 			z-index: -5;
 			font-size: 14px;
@@ -9673,18 +9791,26 @@ color: $sosMidGrey;
 		}
 
 		.radioNode{
-			padding: 6px;
+			// padding: 16px;
 			margin: auto;
-			display: none;
+			// display: none;
+			visibility: hidden;
 		}
 
 		.radioLabel{
 			width: 100%;
 			text-align: center;
-			padding: 70px 10px 45px 10px;
+			padding: 55px 12px 30px 12px;
 			font-weight: 400;
-			margin: -34px 0 0 0;
+			margin:-47px 0 0 0;
 			z-index: 10;
+			min-height: 160px;
+
+			border: $sosLightGrey 1px solid;
+
+			-webkit-box-shadow: 1px 1px 1px #e7e7e7;
+			-moz-box-shadow: 1px 1px 1px #e7e7e7;
+			box-shadow: 1px 1px 1px #e7e7e7;
 		}
 
 
@@ -9782,6 +9908,35 @@ color: $sosMidGrey;
 
 
 	#cart-wrap {
+
+
+		.radioOptions{
+
+			float: left;
+			width: 100%;
+
+			.radioWrap{
+				float: left;
+				margin-right: 0;
+				margin-bottom: 15px;
+				display: inline-block;
+				width: 100%;
+				min-height: 100px;
+			}
+
+			.radioLabel{
+				padding: 55px 25px 30px 25px;
+				min-height: 90px;
+			}
+
+			div.radioWrap:last-child{
+				margin-right: 0;
+				margin-bottom: 0;
+
+			}
+		}
+
+
 		.details{
 			.time{
 				display: inline;
@@ -9910,6 +10065,27 @@ color: $sosMidGrey;
 
 	#cart-wrap {
 
+
+		.radioOptions{
+
+			float: left;
+			width: 100%;
+
+			.radioWrap{
+				float: left;
+				margin-right: 11px;
+				display: inline-block;
+				width: 30%;
+				min-height: 170px;
+			}
+
+			div.radioWrap:last-child{
+				margin-right: 0;
+
+			}
+		}
+
+
 		.details{
 			.time{
 				display: inline;
@@ -9999,17 +10175,17 @@ color: $sosMidGrey;
 		.details{
 
 			.time{
-				display: block
+				display: block;
 			}
 
 			.shipping{
 				padding-left: 0;
-				display: block
+				display: block;
 			}
 
 			.returns{
 				padding-left: 0;
-				display: block
+				display: block;
 			}
 
 			.shipping:before,
@@ -10387,6 +10563,12 @@ color: $sosMidGrey;
 	margin: 60px 0 0 0;
 }
 
+.template-page-newsletter{
+	.contact-form{
+		margin: 0 0 0 0;
+	}
+}
+
 #navbar-top{
 	border-bottom: 1px $sosLightGrey solid;
 }
@@ -10423,10 +10605,29 @@ footer h4 {
 	margin: 4px 0 4px 0;
 }
 
+.newsletter-form{
 
-.addtocart{
-	width:100px;
+	margin: 20px 0 0 10px;
+
+	input{
+		width: 60%;
+		margin: auto;
+	}
+	
+	width: 100%;
+
+	
+	.contact-form {
+		margin: 0 0 0 0;
+	}
+
+	#contact_email {
+		width: 100%;
+		margin: 0 0 10px 0;
+	}
+	
 }
+
 
 .col-md-8 {
 	ol{
@@ -10494,6 +10695,10 @@ footer h4 {
 #contact_email{
 	width: 60%;
 	margin: 0 0 10px 0;
+}
+
+.hiddenLogic{
+	display:none;
 }
 
 

@@ -28,8 +28,12 @@
           {% endif %}
           {% endif %}
 
+
+
           <h4>Shopping Cart</h4>
           <hr />                        
+
+
 
           <div class="checkout_buy_wrap">
             {% for item in cart.items %}
@@ -66,7 +70,8 @@
 
 
         <h4>Home Try-On</h4>
-        <hr /> 
+        <hr />
+
 
         <div class="checkout_buy_wrap">
             {% for item in cart.items %}
@@ -157,8 +162,8 @@
 
 
 
-        {% endif %}
-    </ul>
+    {% endif %}
+</ul>
 </li>
 {% endif %}
 {% if shop.customer_accounts_enabled %}

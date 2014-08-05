@@ -10,7 +10,6 @@
 
 .checkout_cell1 {
 	width: 20%;
-
 }
 
 .checkout_cell2 {
@@ -38,7 +37,6 @@
 }
 
 .checkout_titles {
-
 	margin: 20px 0 10px 0;
 
 	.checkout_cell1 {
@@ -67,6 +65,9 @@
 	text-align: center;
 }
 
+
+
+
 .checkout_main{
 
 
@@ -81,8 +82,8 @@
 
 
 	h4{
-		margin: 60px 0 20px 0;
-		padding: 8px 0;	
+		margin: 20px 0 20px 0;
+		padding: 5px 0 3px 0;	
 		border-bottom: $sosLightGrey 1px solid;
 	}
 }
@@ -234,32 +235,75 @@
 		text-align:center;
 	}
 
+	.pd-launch,
+	.prescription-secondary{
+		margin-top: -30px;
+	}
+
+	.pd-launch,
 	.prescription-doctor,
 	.prescription-address,
-	.prescription-upload{
-		margin: 10px 0 20px 10px;
-		min-height: 80px;
+	.prescription-upload {
+
+		background: #f3f3f3;
+		margin: 10px 0 20px 0;
+		padding: 15px;
+		min-height: 70px;
+
+		label{
+			display: block;
+		}
+
+		input{
+			display: block;
+		}
+
+		p{
+			margin: 0 0 8px 0;
+			padding: 0;
+		}
 	}
 
 
 	.radioOptions{
+
+		legend {
+		}
+
+		label.error{
+			color: $sosRed;
+			padding:5px 0;
+			position: absolute;
+			top: 205px;
+			left: 0;
+		}
+
+
 		float: left;
 		width: 100%;
-	}
+		position: relative;
+		margin: 0 0 35px 0;
 
-	.radioWrap{
-		float: left;
-		margin: 0 0 30px 10px;
-		width: 100%; 
-		display: inline-block;
-		width: 30%;
-		border:  $sosLightGrey 1px solid;
-		min-height: 200px;
+		.radioWrap{
+			float: left;
+			margin-right: 10px;
+			display: inline-block;
+			width: 31.85%;
+			min-height: 170px;
+
+			text-align: center;
+		}
+
+		div.radioWrap:last-child{
+			margin-right: 0;
+
+		}
+
 
 		.radioTitle{
 			text-align: center;
 			margin: 0;
-			padding: 10px;
+			padding: 5px 2px 2px 2px;
 			border-bottom:  $sosLightGrey 1px solid;
 			z-index: -5;
 			font-size: 14px;
@@ -267,18 +311,26 @@
 		}
 
 		.radioNode{
-			padding: 6px;
+			// padding: 16px;
 			margin: auto;
-			display: none;
+			// display: none;
+			visibility: hidden;
 		}
 
 		.radioLabel{
 			width: 100%;
 			text-align: center;
-			padding: 70px 10px 45px 10px;
+			padding: 55px 12px 30px 12px;
 			font-weight: 400;
-			margin: -34px 0 0 0;
+			margin:-47px 0 0 0;
 			z-index: 10;
+			min-height: 160px;
+
+			border: $sosLightGrey 1px solid;
+
+			-webkit-box-shadow: 1px 1px 1px #e7e7e7;
+			-moz-box-shadow: 1px 1px 1px #e7e7e7;
+			box-shadow: 1px 1px 1px #e7e7e7;
 		}
 
 
@@ -376,6 +428,35 @@
 
 
 	#cart-wrap {
+
+
+		.radioOptions{
+
+			float: left;
+			width: 100%;
+
+			.radioWrap{
+				float: left;
+				margin-right: 0;
+				margin-bottom: 15px;
+				display: inline-block;
+				width: 100%;
+				min-height: 100px;
+			}
+
+			.radioLabel{
+				padding: 55px 25px 30px 25px;
+				min-height: 90px;
+			}
+
+			div.radioWrap:last-child{
+				margin-right: 0;
+				margin-bottom: 0;
+
+			}
+		}
+
+
 		.details{
 			.time{
 				display: inline;
@@ -504,6 +585,27 @@
 
 	#cart-wrap {
 
+
+		.radioOptions{
+
+			float: left;
+			width: 100%;
+
+			.radioWrap{
+				float: left;
+				margin-right: 11px;
+				display: inline-block;
+				width: 30%;
+				min-height: 170px;
+			}
+
+			div.radioWrap:last-child{
+				margin-right: 0;
+
+			}
+		}
+
+
 		.details{
 			.time{
 				display: inline;
@@ -593,17 +695,17 @@
 		.details{
 
 			.time{
-				display: block
+				display: block;
 			}
 
 			.shipping{
 				padding-left: 0;
-				display: block
+				display: block;
 			}
 
 			.returns{
 				padding-left: 0;
-				display: block
+				display: block;
 			}
 
 			.shipping:before,

@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 
   function initCallFunct(fToCall) {
-  
+
   }
 
   function fCartEmpty(fToCall){
@@ -25,7 +25,7 @@ $(document).ready(function(){
    console.log("success empty");
    //fCartAdd();
    fToCall();
-  
+
  },   "json" );
  };
 
@@ -37,9 +37,9 @@ $(document).ready(function(){
     id: 763367271
   } , function (data) {
 
-      console.log("success add");
-      console.log(fToCall);
-      fToCall();
+    console.log("success add");
+    console.log(fToCall);
+    fToCall();
 
   }, "json");
  }
@@ -48,18 +48,18 @@ $(document).ready(function(){
  function fPushPrice(){
   console.log("Batman!");
   console.log("Change totalPrice to " + totalPrice);
-  $("#priceFinal").text(totalPrice);
-       // $("#priceFinal").currency();
-  }
+  $("#priceFinal").text(totalPrice / 100);
+  $("#priceFinal").currency();
+}
 
-     function fUpdateCart(fToCall){
-      fToCall = fToCall || function(){}
-      jQuery.getJSON('/cart.js', function(data) {
-        console.log(data);
+function fUpdateCart(fToCall){
+  fToCall = fToCall || function(){}
+  jQuery.getJSON('/cart.js', function(data) {
+    console.log(data);
 
-        prescriptionQTY = 0;
+    prescriptionQTY = 0;
 
-        $.each(data.items, function(index, element) {
+    $.each(data.items, function(index, element) {
 
       // Get Lenses
 
@@ -76,16 +76,16 @@ $(document).ready(function(){
 
     });
 
-        totalPrice = data.total_price;
-        fToCall();
-      
-        console.log("totalPrice", totalPrice);
-        console.log("prescriptionQTY", prescriptionQTY);
-        console.log("lensesQTY", lensesQTY);
-        console.log("totalPrice", totalPrice); 
+    totalPrice = data.total_price;
+    fToCall();
+
+    console.log("totalPrice", totalPrice);
+    console.log("prescriptionQTY", prescriptionQTY);
+    console.log("lensesQTY", lensesQTY);
+    console.log("totalPrice", totalPrice); 
 
 
-      });
+  });
 
 
 
@@ -101,7 +101,6 @@ function fRemoveFromCart() {
 }
 
 
-
 function fAddToCart () {
  var update_n_print = function() { fUpdateCart(fPushPrice) }
  var add_n_print = function() { fCartAdd(update_n_print) }
@@ -109,31 +108,34 @@ function fAddToCart () {
  fUpdateCart(empty_n_add); 
 }
 
+
+$("label[for='yes-1']").click(function(e){
+  console.log("yes");
+  e.preventDefault();
+  fAddToCart();
+});
+
+$("label[for='no-2']").click(function(e){
+  console.log("no");
+  e.preventDefault();
+  fUpdateCart(fRemoveFromCart);
+});
+
+
+
+/*
 $("#HIL-ADD").click(function(e){
   e.preventDefault();
   fAddToCart();
-
 });
 
 $("#HIL-REMOVE").click(function(e){
   e.preventDefault();
   fUpdateCart(fRemoveFromCart);
-  // fCartEmpty();
-
 });
+*/
 
-// $.ajax({
-//   type: "POST",
-//   url: '/cart/change.js',
-//   data:  { 
-//      quantity: 0,
-//      id: 763367271
-//   },
-//   success: function(data) {
-//     console.log(data);
-//   },
-//   dataType: "json"
-// });
+
 
 
 });

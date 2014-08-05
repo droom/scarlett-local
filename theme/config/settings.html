@@ -2076,4 +2076,45 @@
         </table>
       </fieldset>
   
+<fieldset>
+  <legend>Limiting Number of Products Purchased</legend>
+  <table>
+    <tr>
+      <td><label for="limit">Limit the number of products purchased?</label></td>
+      <td>
+        <select id="limit" name="limit">
+          <option value="No limit" selected="selected">No</option>
+          <option value="Enabled for all products">Yes, and impose that limit on all products</option>
+          <option value="Enabled for products listed">Yes, but only for the products listed below</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="limit_quantity">If so, what limit do you want to impose?</label></td>
+      <td>
+        <select id="limit_quantity" name="limit_quantity">
+          <option value="0">0</option>
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <select id="limit_per" name="limit_per">
+          <option value="variant">per variant</option>
+          <option value="product" selected="selected">per product</option>
+          <option value="order">items per order</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="limit_product_handles">Enter your comma-separated product handles here:<br /><small>(Leave blank if you are imposing your limit on all products.)</small></label></td>
+      <td><textarea rows="4" cols="50" id="limit_product_handles" name="limit_product_handles" /></td>
+      </tr>
+    <tr>
+      <td><label for="limit_skip_cart_page">Skip the cart page if limit is 1 item per order?</label></td>
+      <td><input type="checkbox" id="limit_skip_cart_page" name="limit_skip_cart_page" value="1" checked="checked" /></td>
+    </tr>
+  </table>
+</fieldset>
+  
   

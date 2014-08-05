@@ -2,11 +2,12 @@
  * Shopify checkout bootstrap - extends Shopify's checkout styles with bootstrap
  */
  
-@import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
+ @import "bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
 
-/* Layout */
-#info-bar, #container, #container.slim{
+ /* Layout */
+ #info-bar, #container, #container.slim{
   @extend .container;
+  max-width: 600px;
 }
 
 #main, #container.slim #main{
@@ -171,13 +172,24 @@ input[type=submit], input.btn, #buttons input, .sign-in-area input[type=submit],
 }
 
 /* Media */
+h2{
+  font-size: 16px;
+  font-weight: bold;
+}
+
 #thumbs{
-  width: 100%;
+  width: 80%;
   margin-top: 1.5em;
 }
 #thumbs td, .slim #thumbs td{
   display: block;
   overflow: auto;
+
+  h3{
+    font-size: 15px;
+
+  }
+
   & > div{
     @extend .thumbnail;
     @extend .pull-left;

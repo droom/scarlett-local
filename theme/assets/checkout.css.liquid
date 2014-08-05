@@ -1,4 +1,3 @@
-@import url({{ "_checkout_fonts.css" | asset_url }});
 body {
   background: red; }
 
@@ -5917,6 +5916,9 @@ button.close {
   .hidden-print {
     display: none !important; } }
 /* Layout */
+#info-bar, #container, #container.slim {
+  max-width: 600px; }
+
 #main, #container.slim #main {
   margin-bottom: 80px; }
 
@@ -5975,13 +5977,19 @@ form table {
 /* Buttons */
 /* Alerts */
 /* Media */
+h2, #overview h2 {
+  font-size: 16px;
+  font-weight: bold; }
+
 #thumbs {
-  width: 100%;
+  width: 80%;
   margin-top: 1.5em; }
 
 #thumbs td, .slim #thumbs td {
   display: block;
   overflow: auto; }
+  #thumbs td h3, #thumbs td .plisthead, #thumbs td #email label, #email #thumbs td label, #thumbs td #email td.label, #email #thumbs td td.label, .slim #thumbs td h3, .slim #thumbs td .plisthead, .slim #thumbs td #email label, #email .slim #thumbs td label, .slim #thumbs td #email td.label, #email .slim #thumbs td td.label {
+    font-size: 15px; }
   #thumbs td > div, .slim #thumbs td > div {
     margin-right: 1em; }
 

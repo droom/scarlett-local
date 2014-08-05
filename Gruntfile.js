@@ -125,6 +125,7 @@ module.exports = function(grunt) {
           'dist/scss/bootstrapify_overrides.scss.liquid',
           'dist/scss/custom-variables.scss.liquid',
           'dist/scss/custom-product.scss.liquid',
+          'dist/scss/custom-receipt.scss.liquid',
           'dist/scss/custom-carousel.scss.liquid',
           'dist/scss/custom-font.scss.liquid',
           'dist/scss/custom-collection.scss.liquid',

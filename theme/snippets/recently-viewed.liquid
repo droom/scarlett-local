@@ -1,0 +1,15 @@
+{{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
+{{ 'jquery.products.min.js' | asset_url | script_tag }}
+
+<div id="recently-viewed-products" class="collection clearfix" style="display:none">
+</div>
+
+{% raw %}
+<script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
+<a href="${url}" class="btn btn-secondary">Back to Shopping</a>
+</script>
+{% endraw %}
+
+<script>
+Shopify.Products.showRecentlyViewed();
+</script>

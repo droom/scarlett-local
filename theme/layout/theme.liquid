@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+    window['friendbuy'] = window['friendbuy'] || [];
+    window['friendbuy'].push(['site', 'site-da1c6728-host']);
+    window['friendbuy'].push(['track', 'customer',
+    {
+    id: "{{customer.id}}",
+    email: "{{ customer.email }}"
+    //email: 'email@example.com' REPLACE WITH YOUR CUSTOMER'S EMAIL ADDRESS
+    }
+    ]);
+    (function (f, r, n, d, b, y) {
+    b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.src = n;y.parentNode.insertBefore(b, y);
+    })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
+    </script>
+
   {% include 'meta' %}
   <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
   {{ '_base.scss.css' | asset_url | stylesheet_tag }}
@@ -34,7 +49,6 @@
     {{ "preventjump.js" | asset_url | script_tag }}
 
 
-    {{ "jquery.currency.js" | asset_url | script_tag }}
 
     {% if settings.custom-header-code != '' %}
     {{ settings.custom-header-code }}
@@ -43,13 +57,23 @@
     {{ content_for_header }}
 
 
-
+    {{ "jquery.screwdefaultbuttonsV2.min.js" | asset_url | script_tag }}
 
     {{ "cart_hto.js" | asset_url | script_tag }}
 
     {{ "cart_steps.js" | asset_url | script_tag }}
 
     {{ "cart_hil.js" | asset_url | script_tag }}
+
+    {{ "jquery.currency.js" | asset_url | script_tag }}
+
+
+    {{ "jquery-1.11.1.js" | asset_url | script_tag }}
+    
+    {{ "jquery.validate.js" | asset_url | script_tag }}
+
+
+
 
 
     <!-- Facebook login -->
@@ -155,6 +179,20 @@ Shopify.Cart.limit( {
 //]]>
 </script>
 {% endunless %}
+
+
+
+<!-- Begin Recently Viewed Products -->
+{{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
+{{ 'jquery.products.min.js' | asset_url | script_tag }}
+{% if template contains 'product' %}
+<script>
+Shopify.Products.recordRecentlyViewed();
+</script>
+{% endif %}
+<!-- End Recently Viewed Products -->
+
+
 
 
 

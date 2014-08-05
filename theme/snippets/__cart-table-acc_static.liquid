@@ -1,0 +1,38 @@
+
+<div class="checkout_buy_wrap">
+
+
+  <h2>Accessories</h2>
+
+
+  {% include '__cart-table-titles' %}
+
+
+
+
+  <div class="checkout_acc high-index-lenses clearfix">
+    <div class="checkout_cell1">
+      <img src="//cdn.shopify.com/s/files/1/0538/0205/products/Mens-Optical-Tucker-MidnightBlue_Info_02_5fd3ae21-1b91-474f-ab15-5878ddb9b1d5_compact.jpg?" />
+    </div><div class="checkout_cell2"><h5><strong>High-Index Lenses</strong></h5></div>
+    <div class="checkout_cell3"><p class="hi_qty">
+
+
+{% for item in cart.items %}
+{% if item.variant.title contains 'High-Index' %}
+
+{{ item.quantity }}
+
+{% endif %}
+{% endfor %}
+
+    </p></div>
+    <div class="checkout_cell4"><p>£35.00</p></div><div class="checkout_cell5"><p><strong>TOTAL</strong></p></div><div class="checkout_cell6"><p><a href="/cart/change?line=1&amp;quantity=0" class="checkout_remove cart">×</a></p></div>
+    </div>
+
+
+
+
+
+    <div class="generate_hto_cells"></div>
+
+  </div>
