@@ -8805,17 +8805,49 @@ $sosGreen: #4ea87a;
 
 	}
 
+
+	#socialButtons{
+		position: relative;
+		border:none;
+		margin-top: 30px;
+
+		td{
+			width: 50%;
+		}
+
+		.friendbuy-4H-cGa{
+
+			img {
+				position: absolute;
+				top: 0;
+				left: 50%;
+			}
+
+		}
+
+	}
+
+
+	#available{
+		.available-unit{
+			margin: 0 0 15px 0;
+			display: inline-block;
+			p{
+				margin: 0;
+				padding: 0;
+			}
+		}
+		.available-unit-wrap{
+			width: auto;
+		}
+	}
 	.priceBox {
-
 		min-height: 60px;
-
 		margin: 0 0 10px 0;
-
 		input {
 			padding: 0;
 			margin: 0;	
 		}
-
 		.priceBox-price{
 			float: left;
 			width: 26%;
@@ -8953,6 +8985,9 @@ $sosGreen: #4ea87a;
 		}
 
 	}	
+
+
+
 }
 
 /*  <Phone>  */
@@ -9112,23 +9147,40 @@ $sosGreen: #4ea87a;
 		}
 	}	
 
-	.carousel-caption h2 {
-		margin: 0;
-		padding: 0;
-	}
 
-	.carousel-caption p {
-		margin: 0;
-		padding: 0;
-	}
+	.carousel-indicators {
 
-	.carousel-caption,
-	#footer-content {
-		padding: 0 7%;
-	}
+  li{
+   border: 1px solid $sosMidGrey; 
+  }
 
-	#main-nav{
-	}
+  li.active{
+   background: $sosMidGrey; 
+
+  }
+
+
+ }
+
+
+
+ .carousel-caption h2 {
+  margin: 0;
+  padding: 0;
+ }
+
+ .carousel-caption p {
+  margin: 0;
+  padding: 0;
+ }
+
+ .carousel-caption,
+ #footer-content {
+  padding: 0 7%;
+ }
+
+ #main-nav{
+ }
 
 }
 
@@ -9138,6 +9190,20 @@ $sosGreen: #4ea87a;
 
 @media (max-width: $screen-xs-min) {
 	.template-index{
+
+		.carousel-caption{
+			
+			h2{
+				font-size: 20px;
+			}
+
+			p{
+				line-height: 1.65em;
+				margin: 8px 0 0 0;
+			}
+
+
+		}
 
 		.carousel-caption,
 		#footer-content {
@@ -9827,7 +9893,7 @@ textarea,
 	}
 
 	.checkout_breadcrumb{
-		padding: 15px 0 0 0;
+		padding: 25px 0 0 0;
 		margin: 0;
 
 		li:first-child{
@@ -10332,6 +10398,17 @@ textarea,
 
 
 
+#container{
+	#main{
+		#content{
+			#overview{
+				#email{
+					background: red;
+				}
+			}
+		}
+	}
+}
 #register,
 #login-form{
 	margin-top: 30px;
@@ -10583,14 +10660,35 @@ hr {
 }
 
 
-footer .list-nav li {
-	margin-top: 0.4em;
+footer {
+
+	.list-nav li {
+		margin-top: 0.4em;
+	}
+
+	h4 {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		font-weight: normal;
+	}
+
+	a{
+		color: $sosMidGrey;
+	}
+
+	a:hover{
+		color: $sosRed;
+		text-decoration: none;
+
+	}
+
 }
 
-footer h4 {
-	margin-top: 1em;
-	margin-bottom: 1.5em;
-}
+
+
+
+
+
 
 /* Social */
 
@@ -10606,17 +10704,16 @@ footer h4 {
 }
 
 .newsletter-form{
-
 	margin: 20px 0 0 10px;
 
 	input{
 		width: 60%;
 		margin: auto;
 	}
-	
+
 	width: 100%;
 
-	
+
 	.contact-form {
 		margin: 0 0 0 0;
 	}
@@ -10625,7 +10722,7 @@ footer h4 {
 		width: 100%;
 		margin: 0 0 10px 0;
 	}
-	
+
 }
 
 

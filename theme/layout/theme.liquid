@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
+  <script>
     window['friendbuy'] = window['friendbuy'] || [];
     window['friendbuy'].push(['site', 'site-da1c6728-host']);
     window['friendbuy'].push(['track', 'customer',
     {
-    id: "{{customer.id}}",
-    email: "{{ customer.email }}"
+      id: "{{customer.id}}",
+      email: "{{ customer.email }}"
     //email: 'email@example.com' REPLACE WITH YOUR CUSTOMER'S EMAIL ADDRESS
-    }
-    ]);
+  }
+  ]);
     (function (f, r, n, d, b, y) {
-    b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.src = n;y.parentNode.insertBefore(b, y);
+      b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.src = n;y.parentNode.insertBefore(b, y);
     })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
-    </script>
+  </script>
 
   {% include 'meta' %}
   <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
@@ -45,9 +45,10 @@
     {% endif %}
 
     {{ "add_product.js.liquid" | asset_url | script_tag }}
-    {{ "spritespin.js" | asset_url | script_tag }}
-    {{ "preventjump.js" | asset_url | script_tag }}
 
+    {% if template contains 'template-product' %}
+    {{ "spritespin.js" | asset_url | script_tag }}
+    {% endif %}
 
 
     {% if settings.custom-header-code != '' %}
@@ -57,23 +58,27 @@
     {{ content_for_header }}
 
 
-    {{ "jquery.screwdefaultbuttonsV2.min.js" | asset_url | script_tag }}
-
-    {{ "cart_hto.js" | asset_url | script_tag }}
-
-    {{ "cart_steps.js" | asset_url | script_tag }}
-
-    {{ "cart_hil.js" | asset_url | script_tag }}
 
     {{ "jquery.currency.js" | asset_url | script_tag }}
-
-
     {{ "jquery-1.11.1.js" | asset_url | script_tag }}
-    
     {{ "jquery.validate.js" | asset_url | script_tag }}
 
 
 
+    {{ "cart_hto.js" | asset_url | script_tag }}
+    {{ "cart_steps.js" | asset_url | script_tag }}
+    {{ "cart_hil.js" | asset_url | script_tag }}
+    {{ "cart_title.js" | asset_url | script_tag }}
+
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.11.min.js"></script>
+    <script type="text/javascript">
+     // See the Configuring section to configure credentials in the SDK
+     AWS.config.update({accessKeyId: 'AKIAIVERKOTB4NQB4GVQ', secretAccessKey: 'BrQQYoVN1l7bjRKbBavPz2sOyObeIX6w8EkY+m1e'});
+
+     // Configure your region
+     AWS.config.region = 'ap-southeast-1';
+    </script>
 
 
     <!-- Facebook login -->
@@ -163,19 +168,19 @@
   {% endif %}
 
 
-<!-- Limiter -->
+  <!-- Limiter -->
 
-{% unless settings.limit == 'No limit' %}
-{{ 'jquery.limit.min.js' | asset_url | script_tag }}
-<script type="text/javascript" charset="utf-8">
+  {% unless settings.limit == 'No limit' %}
+  {{ 'jquery.limit.min.js' | asset_url | script_tag }}
+  <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 Shopify.Cart.setProductHandle('{{ product.handle }}');
 Shopify.Cart.limit( { 
-    limitPer: '{{ settings.limit_per }}', 
-    limitQuantity: {{ settings.limit_quantity }}{% if settings.limit == 'Enabled for products listed' %},
-    limitProductHandles: jQuery.trim("{{ settings.limit_product_handles }}").split(/[\s,;]+/){% endif %}{% if settings.limit_per == 'cart' and settings.limit_quantity == '1' %},
-    limitSkipCartPage: {% if settings.limit_skip_cart_page %}true{% else %}false{% endif %}{% endif %}
-    } );
+  limitPer: '{{ settings.limit_per }}', 
+  limitQuantity: {{ settings.limit_quantity }}{% if settings.limit == 'Enabled for products listed' %},
+  limitProductHandles: jQuery.trim("{{ settings.limit_product_handles }}").split(/[\s,;]+/){% endif %}{% if settings.limit_per == 'cart' and settings.limit_quantity == '1' %},
+  limitSkipCartPage: {% if settings.limit_skip_cart_page %}true{% else %}false{% endif %}{% endif %}
+} );
 //]]>
 </script>
 {% endunless %}
@@ -187,7 +192,7 @@ Shopify.Cart.limit( {
 {{ 'jquery.products.min.js' | asset_url | script_tag }}
 {% if template contains 'product' %}
 <script>
-Shopify.Products.recordRecentlyViewed();
+  Shopify.Products.recordRecentlyViewed();
 </script>
 {% endif %}
 <!-- End Recently Viewed Products -->

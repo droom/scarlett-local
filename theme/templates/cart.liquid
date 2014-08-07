@@ -6,7 +6,7 @@
 
 
 
-  <form action="/cart" method="post" id="cartform1" novalidate="novalidate">
+  <form action="/cart" method="post" id="cartform1">
 
     {% include '__cart-breadcrumb' %}
     <div class="checkout_main">
@@ -22,7 +22,7 @@
           <p><a href="#" id="REQ-REMOVE">REMOVE ATTR</a></p>
         </section> 
      
- -->
+      -->
 
       <div class="checkout_stage1">
 
@@ -39,6 +39,10 @@
         {% endif %}
         {% endif %}
       </div>
+
+
+<a id="details"></a>
+
 
       <div class="checkout_stage2">
         <h2>Details</h2>
@@ -76,7 +80,6 @@
 
         </div>
 
-
         <div class="radioOptions clearfix stage2question2">
           <fieldset>
             <legend class="clearfix">How would you like to send us your prescription?</legend>
@@ -109,9 +112,66 @@
         <div class="radioOptions clearfix prescription-secondary">
 
           <div class="prescription-upload">
+
             <p>Upload a digital copy of your most recent optical prescription.</p>
             <p>Select a file from your computer.</p>
-            <input type="file" name="attributes[prescription]" value="{{ cart.attributes.prescription }}" />
+
+
+            <input  id = "presc_url" type="hidden" name="attributes[prescription]" value="hidden"/>
+            
+
+            <input type="file" id="file-chooser" /> 
+            <button id="upload-button">Upload to S3</button>
+            <div id="results"></div>
+
+
+
+
+            <script type="text/javascript">
+              var result;
+              var obj_params = {};
+              var bucket = new AWS.S3({params: {Bucket: 'supahands'}});
+
+              var fileChooser = document.getElementById('file-chooser');
+              var button = $("#upload-button");
+              var results = document.getElementById('results');
+              
+              button.click(function(e) {
+                e.preventDefault();
+                var file = fileChooser.files[0];
+                if (file) {
+                  results.innerHTML = '';
+
+                  var params = {Key: file.name, ContentType: file.type, Body: file};
+                  obj_params = {Bucket: 'supahands', Key: file.name, Expires: 100000};
+                  result = bucket.putObject(params, function (err, data) {
+
+                      results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
+                      bucket.getSignedUrl('getObject', obj_params, function (err, url) {
+                       console.log("The URL is", url); 
+                       $("#presc_url").attr("value", url);
+                      })
+                  });
+                } else {
+                  results.innerHTML = 'Nothing to upload.';
+                }
+              })
+
+
+
+              
+
+              var url = bucket.getSignedUrl('getObject', obj_params, function (err, url) {
+                 if (url) contactsole.log("The URL is", url);
+                });
+              </script>
+
+
+
+
+
+
+
           </div>
 
           <div class="prescription-doctor">

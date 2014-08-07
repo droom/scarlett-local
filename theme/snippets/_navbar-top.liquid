@@ -29,140 +29,140 @@
           {% endif %}
 
 
-
-          <h4>Shopping Cart</h4>
-          <hr />                        
-
+          {% if has_cart %}
+          {% if cart.item_count > 0 %}
 
 
-          <div class="checkout_buy_wrap">
-            {% for item in cart.items %}
-            {% if item.variant.title contains 'prescription' %}
+          <div class="navCart-title-buy">
+
+              <h4>Shopping Cart</h4>
+              <hr />      
+
+          </div>
+
+          {% for item in cart.items %}
+          {% if item.variant.title contains 'prescription' %}
+          <div class="checkout_buy_wrap navCart-item-buy">
 
             <div class="checkout_buy clearfix">
-
                 <div class="checkout_cell1">
                     <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
                 </div>
-
                 <div class="checkout_cell2">
                     <h5><strong>{{ item.product.title }}</strong></h5>
                     {% if item.product.variants.size > 1 %}
                     <p>{{ item.variant.title }}</p>
                     {% endif %}
                 </div>
-
                 <div class="checkout_cell3">
-
                     <small>QTY {{ item.quantity }}</small>
                     <p><strong>{{ item.line_price | money }}</strong></p>
                 </div>
-
                 <div class="checkout_cell4">
                     <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
                 </div>
-
             </div>
-            {% endif %}
-            {% endfor %}
+            
         </div>
-
-
-
-        <h4>Home Try-On</h4>
-        <hr />
-
-
-        <div class="checkout_buy_wrap">
-            {% for item in cart.items %}
-            {% if item.variant.title contains 'Home Try-On' %}
-
-            <div class="checkout_buy clearfix">
-
-                <div class="checkout_cell1">
-                    <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
-                </div>
-
-                <div class="checkout_cell2">
-                    <h5><strong>{{ item.product.title }}</strong></h5>
-                    {% if item.product.variants.size > 1 %}
-                    <p>{{ item.variant.title }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="checkout_cell3">
-
-                    <small>QTY {{ item.quantity }}</small>
-                    <p><strong>{{ item.line_price | money }}</strong></p>
-                </div>
-
-                <div class="checkout_cell4">
-                    <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
-                </div>
-
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-
-
-
-
-        <h4>Accessories</h4>
-        <hr /> 
-
-        <div class="checkout_buy_wrap">
-            {% for item in cart.items %}
-            {% if item.variant.title contains 'High-Index' %}
-
-            <div class="checkout_buy clearfix">
-
-                <div class="checkout_cell1">
-                    <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
-                </div>
-
-                <div class="checkout_cell2">
-                    <h5><strong>{{ item.product.title }}</strong></h5>
-                    {% if item.product.variants.size > 1 %}
-                    <p>{{ item.variant.title }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="checkout_cell3">
-
-                    <small>QTY {{ item.quantity }}</small>
-                    <p><strong>{{ item.line_price | money }}</strong></p>
-                </div>
-
-                <div class="checkout_cell4">
-                    <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
-                </div>
-
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-
-
-
-        {% if has_cart %}
-        {% if cart.item_count > 0 %}
-
-        <div class="priceTotal">
-            <hr />
-            <h4><strong>Cart Subtotal:</strong> {{ cart.total_price | money }}</h4>
-
-        </div>
-        <a href="/cart" class="btn btn-primary">Checkout &#x2192;</a>
-
         {% endif %}
-        {% endif %}
+        {% endfor %}
+
+
+        <div class="navCart-title-hto">
+           <h4>Home Try-On</h4>
+           <hr />
+       </div>
+
+
+       {% for item in cart.items %}
+       {% if item.variant.title contains 'Home Try-On' %}
+
+       <div class="checkout_buy_wrap navCart-item-hto">
+
+
+
+        <div class="checkout_buy clearfix">
+            <div class="checkout_cell1">
+                <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
+            </div>
+            <div class="checkout_cell2">
+                <h5><strong>{{ item.product.title }}</strong></h5>
+                {% if item.product.variants.size > 1 %}
+                <p>{{ item.variant.title }}</p>
+                {% endif %}
+            </div>
+            <div class="checkout_cell3">
+                <small>QTY {{ item.quantity }}</small>
+                <p><strong>{{ item.line_price | money }}</strong></p>
+            </div>
+            <div class="checkout_cell4">
+                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+            </div>
+        </div>
 
     </div>
 
+    {% endif %}
+    {% endfor %}
 
+
+    <div class="navCart-title-acc">
+        <h4>Accessories</h4>
+        <hr /> 
+    </div>
+
+    {% for item in cart.items %}
+    {% if item.variant.title contains 'High-Index' %}
+    <div class="checkout_buy_wrap navCart-item-acc">
+      
+        <div class="checkout_buy clearfix">
+            <div class="checkout_cell1">
+                <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
+            </div>
+            <div class="checkout_cell2">
+                <h5><strong>{{ item.product.title }}</strong></h5>
+                {% if item.product.variants.size > 1 %}
+                <p>{{ item.variant.title }}</p>
+                {% endif %}
+            </div>
+            <div class="checkout_cell3">
+                <small>QTY {{ item.quantity }}</small>
+                <p><strong>{{ item.line_price | money }}</strong></p>
+            </div>
+            <div class="checkout_cell4">
+                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+            </div>
+        </div>
+        
+    </div>
+    {% endif %}
+    {% endfor %}
 
     {% endif %}
+    {% endif %}
+
+
+    <!-- end cart -->
+
+
+    {% if has_cart %}
+    {% if cart.item_count > 0 %}
+
+    <div class="priceTotal">
+        <hr />
+        <h4><strong>Cart Subtotal:</strong> {{ cart.total_price | money }}</h4>
+
+    </div>
+    <a href="/cart" class="btn btn-primary">Checkout &#x2192;</a>
+
+    {% endif %}
+    {% endif %}
+
+</div>
+
+
+
+{% endif %}
 </ul>
 </li>
 {% endif %}

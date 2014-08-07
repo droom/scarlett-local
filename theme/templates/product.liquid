@@ -13,131 +13,86 @@
 	<div class="visible-xs">
 		<small class="product-section">
 			<strong>{{ collection.title | upcase }}</strong> {% if collection.description != blank %}&mdash; {{ collection.description }}{% endif %}</small>
-		<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
-	</div>
-	<form id="product-form" action="/cart/add" method="post" role="form">
-		<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
-			<!-- images col -->
-			<div class="col-sm-8 {% if settings.product-page-image-placement == 'right' %}col-sm-push-4{% endif %}">
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 centreCopy" >
-
-						<div class="thumbnail product-main-image">
-							<div class="productHero-feature">
-								<img src="{{ product.featured_image | product_img_url: "original" }}" />
-							</div>
-							
-							<div class="productHero-360">
-								<div class="spritespin360">
-									
-
-
-								</div>
-							</div>
-
-							<div class="productHero-life">
-								<div id="imageStack">
-									{% for image in product.images %}
-									{% if image contains '_Life_' %}
-									<img class="lifecycleImage" src="{{ image.src | product_img_url: 'original' }}" data-index="{{ forloop.index }}" />
-									{% endif %} 
-									{% endfor %}
-								</div>
-							</div>
-						</div> 
-
-						<p>Views: 
-							<a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image</a>
-							|
-							<a href="javascript:void(0);" class="productSwitch productSwitch-360">360°</a>
-
-
-							{% for image in product.images %}
-							{% if image contains '_Life_01' %}
-							| 
-							<a href="javascript:void(0);" class="productSwitch productSwitch-life">Model</a>
-							{% endif %} 
-							{% endfor %}
-						</p>
-
-
-
-						<hr/>
-
-						<div id="threeSixtyStack">
-							{% for image in product.images %}
-							{% if image contains '_360_' %}
-							<img class="threeSixtyCycle" src="{{ image.src | product_img_url: 'original' }}" data-index="{{ forloop.index }}" />
-							{% endif %} 
-							{% endfor %}
-						</div>
-
-
-						<hr />
-
-					</div>
-
-				</div>
-			</div> 
-
-
-			<div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
-
-				<small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
-				
-				<h1 class="hidden-xs" itemprop="name" id="productTitle">{{ page_title }}</h1>
-
-				<!-- {% if has_prices %} -->
-
-				{% include '__cart-social' %}
-
-				<div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-
-					<del id="compare-at-price-field" class="text-muted"></del>
-					<span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-					<meta itemprop="currency" content="{{ shop.currency }}" />
-					<meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
-				</div>
-				{% endif %}
-				<p itemprop="description">{% include '__formatted-content' with product.description %}</p>
-
-				{% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-
-				<div class="centreCopy">
-					<p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
-				</div>	
-
-			</div>
-
-
-			<div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
-				<h3>Scarlett of Soho Design Hallmarks</h3>
-				<p>Explore the little details that distinguish our frames from the rest of the pack</p>
-			</div>
-			<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-				{% for image in product.images %}
-				{% if image contains '_Info_01' %}
-				<img src="{{ image.src | product_img_url: 'original' }}" />
-				{% endif %} 
-				{% endfor %}
-			</div>
-			<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-				{% for image in product.images %}
-				{% if image contains '_Info_02' %}
-				<img src="{{ image.src | product_img_url: 'original' }}" />
-				{% endif %} 
-				{% endfor %}
-			</div>
-			<div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
-				{% for image in product.images %}
-				{% if image contains '_Info_03' %}
-				<img src="{{ image.src | product_img_url: 'original' }}" />
-				{% endif %} 
-				{% endfor %}
-			</div>
+			<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
 		</div>
-	</form>
-</section>
+		<form id="product-form" action="/cart/add" method="post" role="form">
+			<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
+				<!-- images col -->
+				<div class="col-sm-8 {% if settings.product-page-image-placement == 'right' %}col-sm-push-4{% endif %}">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 centreCopy" >
+
+							<div class="thumbnail product-main-image">
+
+        <div class="productHero-feature">
+         <img src="{{ product.featured_image | product_img_url: "original" }}" />
+        </div>
+
+        <div class="productHero-360">
+         <div class="spritespin360">
+         </div>
+        </div>
+
+        <div class="productHero-life">
+         <div id="imageStack">
+          {% for image in product.images %}
+          {% if image contains '_Life_' %}
+          <img class="lifecycleImage" src="{{ image.src | product_img_url: 'original' }}" data-index="{{ forloop.index }}" />
+          {% endif %} 
+          {% endfor %}
+         </div>
+        </div>
+       </div> 
+
+       <p>Views: 
+        <a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image</a>
+        |
+        <a href="javascript:void(0);" class="productSwitch productSwitch-360">360°</a>
+
+
+        {% for image in product.images %}
+        {% if image contains '_Life_01' %}
+        | 
+        <a href="javascript:void(0);" class="productSwitch productSwitch-life">Model</a>
+        {% endif %} 
+        {% endfor %}
+       </p>
+
+
+
+       <hr />
+
+       <div id="available">
+
+        <h5>Available colours</h5>
+
+
+
+        {% assign currentProduct = {{product.title}} %}
+        {% assign currentTags = {{product.tags}} %}
+        {% for product in collection.products %}
+
+    
+
+        {% if product.tags == currentTags and currentProduct != product.title %}
+
+
+
+
+        <div class="available-unit {{ product.title | handleize }} ">
+         <a href="{{ product.product_url }}">
+          <img src="{{ product | img_url: 'compact' }}"  alt="{{ product.title | escape }}" />
+         </a>
+         <p>{{ product.title }}</p>
+        </div>
+        {% endif %}
+
+
+ 
+        
+        {% endfor %}
+
+       </div>
 
 
 
@@ -145,86 +100,172 @@
 
 
 
-{% for image in product.images %}
-{% if image contains '_Life_' %}
-<p class="spinLife">{{ image.src | product_img_url: 'original' }}</p>
-{% endif %} 
-{% endfor %}
+
+
+       <hr/>
 
 
 
-{% for image in product.images %}
-{% if image contains '_360_' %}
-<p class="spin360">{{ image.src | product_img_url: 'original' }}</p>
-{% endif %} 
-{% endfor %}
+       <div id="threeSixtyStack">
+        {% for image in product.images %}
+        {% if image contains '_360_' %}
+        <img class="threeSixtyCycle" src="{{ image.src | product_img_url: 'original' }}" data-index="{{ forloop.index }}" />
+        {% endif %} 
+        {% endfor %}
+       </div>
+
+
+
+      </div>
+
+     </div>
+    </div> 
+
+
+    <div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
+
+     <small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
+
+     <h1 class="hidden-xs" itemprop="name" id="productTitle">{{ page_title }}</h1>
+
+     <!-- {% if has_prices %} -->
+
+     {% include '__cart-social' %}
+
+     <div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+
+      <del id="compare-at-price-field" class="text-muted"></del>
+      <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+      <meta itemprop="currency" content="{{ shop.currency }}" />
+      <meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
+     </div>
+     {% endif %}
+     <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+
+     {% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
+
+     <div class="centreCopy">
+      <p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
+     </div>	
+
+    </div>
+
+
+    <div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+     <h3>Scarlett of Soho Design Hallmarks</h3>
+     <p>Explore the little details that distinguish our frames from the rest of the pack</p>
+    </div>
+    <div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
+     {% for image in product.images %}
+     {% if image contains '_Info_01' %}
+     <img src="{{ image.src | product_img_url: 'original' }}" />
+     {% endif %} 
+     {% endfor %}
+    </div>
+    <div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
+     {% for image in product.images %}
+     {% if image contains '_Info_02' %}
+     <img src="{{ image.src | product_img_url: 'original' }}" />
+     {% endif %} 
+     {% endfor %}
+    </div>
+    <div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+     {% for image in product.images %}
+     {% if image contains '_Info_03' %}
+     <img src="{{ image.src | product_img_url: 'original' }}" />
+     {% endif %} 
+     {% endfor %}
+    </div>
+   </div>
+  </form>
+ </section>
 
 
 
 
 
-<div> 
-	<script>
-
-		$( document ).ready(function() {
 
 
-			var listItems = $('.spin360');
-			var listItemsLength = listItems.length;
-			var listString = ($.trim(listItems[0].innerHTML));
-			var position360 = listString.indexOf("360");
-
-			var url_part1 = listString.slice(0, position360+4);
-			var url_part2 = listString.slice(position360+4, position360+6);
-			var url_part3 = listString.slice(position360+6, listString.length);
+ {% for image in product.images %}
+ {% if image contains '_Life_' %}
+ <p class="spinLife">{{ image.src | product_img_url: 'original' }}</p>
+ {% endif %} 
+ {% endfor %}
 
 
-			var listItemsLife = $('.spinLife');
-			var listItemsLifeLength = listItemsLife.length;
-			var listStringLife = ($.trim(listItemsLife[0].innerHTML));
-			var positionLife = listStringLife.indexOf("Life");
 
-			var url_Life_part1 = listStringLife.slice(0, positionLife+5);
-			var url_Life_part2 = listStringLife.slice(positionLife+5, positionLife+7);
-			var url_Life_part3 = listStringLife.slice(positionLife+7, listStringLife.length);
+ {% for image in product.images %}
+ {% if image contains '_360_' %}
+ <p class="spin360">{{ image.src | product_img_url: 'original' }}</p>
+ {% endif %} 
+ {% endfor %}
 
 
-			var productGrab = $('#productTitle').text();
-			var productIndex = productGrab.indexOf(" in ");
-			var productSnatchModel = productGrab.slice(0, productIndex)
-			var productSnatchColour = productGrab.slice(productIndex, productIndex.length)
-
-			console.log("productGrab", productGrab);
-			console.log("productIndex", productIndex);
-			console.log("productSnatchModel", productSnatchModel);
-			console.log("productSnatchColour", productSnatchColour);
-
-			$('#productTitle').replaceWith("<h1 class=\"hidden-xs\" itemprop=\"name\" id=\"productTitle\">"+productSnatchModel+" <span class=\"productColor\">"+productSnatchColour+"</span></h1>");
-
-			$('.spritespin360').spritespin({
-				source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
-				width: 553,
-				height: 315,
-				sense: -1,
-				renderer: 'image'
-			});
 
 
-			console.log("listItemsLifeLength: " + listItemsLifeLength);
+
+ <div> 
+  <script>
+
+   $( document ).ready(function() {
 
 
-			$("#imageStack img:nth-child(3)").show();
+    var listItems = $('.spin360');
+    var listItemsLength = listItems.length;
+    var listString = ($.trim(listItems[0].innerHTML));
+    var position360 = listString.indexOf("360");
 
-			$("#imageStack").mousemove(function(e){
-				var parentOffset = $(this).parent().offset(); 
-				var relX = e.pageX - parentOffset.left;
-				var tWidth = $(this).width();  
-				var pos = (relX/tWidth) * 100;
+    var url_part1 = listString.slice(0, position360+4);
+    var url_part2 = listString.slice(position360+4, position360+6);
+    var url_part3 = listString.slice(position360+6, listString.length);
 
-				$('.lifecycleImage').hide();
 
-				switch(true){
-					case (pos < 20):
+    var listItemsLife = $('.spinLife');
+    var listItemsLifeLength = listItemsLife.length;
+    var listStringLife = ($.trim(listItemsLife[0].innerHTML));
+    var positionLife = listStringLife.indexOf("Life");
+
+    var url_Life_part1 = listStringLife.slice(0, positionLife+5);
+    var url_Life_part2 = listStringLife.slice(positionLife+5, positionLife+7);
+    var url_Life_part3 = listStringLife.slice(positionLife+7, listStringLife.length);
+
+
+    var productGrab = $('#productTitle').text();
+    var productIndex = productGrab.indexOf(" in ");
+    var productSnatchModel = productGrab.slice(0, productIndex)
+    var productSnatchColour = productGrab.slice(productIndex, productIndex.length)
+
+
+    $('#productTitle').replaceWith("<h1 class=\"hidden-xs\" itemprop=\"name\" id=\"productTitle\">"+productSnatchModel+" <span class=\"productColor\">"+productSnatchColour+"</span></h1>");
+
+
+    console.log("listItemsLifeLength: " + listItemsLifeLength);
+
+
+
+    var availableGrab = $('.available-unit').text();
+
+    console.log(availableGrab);
+
+    // $('.friendbuy-4H-cGa a.img').hide();
+
+// $('.friendbuy-4H-cGa').append("HEY");
+
+
+
+
+$("#imageStack img:nth-child(3)").show();
+
+$("#imageStack").mousemove(function(e){
+	var parentOffset = $(this).parent().offset(); 
+	var relX = e.pageX - parentOffset.left;
+	var tWidth = $(this).width();  
+	var pos = (relX/tWidth) * 100;
+
+	$('.lifecycleImage').hide();
+
+	switch(true){
+		case (pos < 20):
 					// $("#imageStack").children("img[data-index=" + 6 + "]").show();
 					$("#imageStack img:nth-child(5)").show();
 					break;
@@ -338,6 +379,17 @@ hide_rest('.productSwitch-life' );
 hide_rest('.productSwitch-feature' );
 
 
+
+
+$('.spritespin360').spritespin({
+	source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
+	width: 553,
+	height: 315,
+	sense: -1,
+	renderer: 'image'
+});
+
+
 var selectCallback = function(variant, selector){
 			// set vars so we dont need to call the elements repeatedly
 			var purchaseButton = jQuery(document.getElementById('purchase'));
@@ -366,34 +418,34 @@ var selectCallback = function(variant, selector){
 			    var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
 			    compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
 			    saleField.show();
-			}
+      }
 
-			if(variant.available){
+      if(variant.available){
 			    // the variant is available for purchase so enable the button
 			    purchaseButton.removeAttr('disabled').removeClass('disabled').addClass('btn-primary').val(addToCartStr);
 			    priceField.removeClass('text-muted');
-			} else {
+      } else {
 			    // sold out
 			    purchaseButton.val(soldOutStr);
-			}
+      }
 
 
-			$("input[value='Try it']").click(function(e){
-				$("input[value='Try it']").parents('form').attr('id', "add-item-form");
-				$("input[value='Add to cart']").parents('form').attr('id', "add-item-form-100");
-			});
+      $("input[value='Try it']").click(function(e){
+       $("input[value='Try it']").parents('form').attr('id', "add-item-form");
+       $("input[value='Add to cart']").parents('form').attr('id', "add-item-form-100");
+      });
 
-			$("input[value='Add to cart']").click(function(e){
-				$("input[value='Try it']").parents('form').attr('id', "add-item-form-100");
-				$("input[value='Add to cart']").parents('form').attr('id', "add-item-form");
-			});
+      $("input[value='Add to cart']").click(function(e){
+       $("input[value='Try it']").parents('form').attr('id', "add-item-form-100");
+       $("input[value='Add to cart']").parents('form').attr('id', "add-item-form");
+      });
 
-		}
-	}
-
-
-});
+     }
+    }
 
 
+   });
 
-</script>
+
+
+  </script>
