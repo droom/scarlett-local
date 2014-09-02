@@ -1,5 +1,4 @@
 .template-product {
-
 	.product-section{
 		margin: 1.5em 0 3em 0;
 		display: block;
@@ -7,10 +6,24 @@
 
 	.productHero-feature{
 		display: block;
+		max-height: 350px;
+		overflow: hidden;
+		border: none;
 	}
 
 	.productHero-360{
 		display: none;
+		overflow: hidden;
+		max-height: 350px;
+		border:none;
+	}
+
+	.imageStack2{
+		min-height: 350px;
+	}
+
+	.heroOffset{
+		min-height: 350px;
 	}
 
 	.productHero-life{
@@ -73,7 +86,6 @@
 
 	.product-main-image img{
 		margin: auto;
-		text-align: center;
 	}
 
 	.spritespin-instance{
@@ -93,11 +105,6 @@
 		margin: auto;
 		padding:10px;
 		width: 100%;
-	}
-
-	p.spinLife,
-	p.spin360{
-		display: none;
 	}
 
 
@@ -138,7 +145,6 @@
 		}
 
 		.friendbuy-4H-cGa{
-
 			img {
 				position: absolute;
 				top: 0;
@@ -341,7 +347,17 @@
 
 /*  <Tablet>  */
 @media (min-width: $screen-xs-min) {
+
+
+
+
+
 	.template-product {
+
+		.heroOffset{
+			margin-top: -15px;
+		}
+
 
 		.page-header {
 			padding: 0.1em 0 0.4em 0;
@@ -365,7 +381,14 @@
 
 /*  <Desktop Small>  */
 @media (min-width: $screen-sm-min) {
+
+
 	.template-product {
+
+		.heroOffset{
+			margin-top: -45px;
+		}
+
 		.product-section{
 			margin: 1.5em 0 2em 0;
 			display: block;
@@ -383,17 +406,27 @@
 
 /*  <Desktop Large>  */
 @media (min-width: $screen-md-min) {
-	.container {
-		width: 1000px;
-	}
 
-	.col-sm-8{
-		width: 65%;
-		padding: 18px 30px 0 0;
-	}
 
-	.col-sm-4{
-		width: 35%;
+	.template-product {
+
+		.heroOffset{
+			margin-top: -45px;
+		}
+
+
+		.container {
+			width: 1000px;
+		}
+
+		.col-sm-8{
+			width: 65%;
+			padding: 18px 30px 0 0;
+		}
+
+		.col-sm-4{
+			width: 35%;
+		}
 	}
 
 }

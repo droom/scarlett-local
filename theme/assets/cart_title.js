@@ -5,18 +5,6 @@
     	var navCartItemBuy = $('.navCart-item-buy');
 
 
-    	// var navCartTitleHTO = $('.navCart-title-hto');
-    	// var navCartTitleAcc = $('.navCart-title-acc');
-    	// var navCartTitleBuy = $('.navCart-title-buy');
-
-
-
-    	console.log("navCartItemHTO", navCartItemHTO.length);
-    	// console.log("navCartTitleHTO", navCartTitleHTO);
-    	console.log("navCartItemAcc", navCartItemAcc.length);
-    	// console.log("navCartTitleAcc", navCartTitleAcc);
-    	console.log("navCartItemBuy", navCartItemBuy.length);
-    	// console.log("navCartTitleBuy", navCartTitleBuy);
 
 
     	if (navCartItemHTO.length == 0) {
