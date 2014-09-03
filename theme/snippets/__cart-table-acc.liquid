@@ -1,16 +1,40 @@
 
-<div class="checkout_buy_wrap">
 
 
+<div class="checkout_titles checkout_titles_buy_acc clearfix">
   <h2>Accessories</h2>
 
 
-  {% include '__cart-table-titles' %}
+  <div class="checkout_cell1">
+    <p>Item</p>
+  </div>
+
+  <div class="checkout_cell3">
+    <p>QTY</p>
+  </div>
+
+  <div class="checkout_cell4">
+    <p>Price</p>
+  </div>
+
+  <div class="checkout_cell5">
+    <p>Total</p>
+  </div>
+  <div class="checkout_cell6">
+    <p class="cellHide">&#215;</p>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 {% for item in cart.items %}
 {% if item.variant.title contains 'High-Index' %}
-<div class="checkout_acc {{ item.product.title | handleize }} clearfix">
+<div class="checkout_table_acc {{ item.product.title | handleize }} clearfix checkout_buy_acc_item">
 
 
   <div class="checkout_cell1">
@@ -51,6 +75,6 @@
 {% endif %}
 {% endfor %}
 
-<div class="generate_hto_cells"></div>
 
-</div>
+<!-- <div class="generate_hto_cells"></div> -->
+

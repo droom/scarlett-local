@@ -26,7 +26,7 @@
   <!--[if lt IE 9]>
     {% assign respond_js_secret_key = (shop.domain | md5) %}
     {{ 'respond.min.js' | asset_url | script_tag }}
-    
+
     <link href="{{ 'respond-proxy.html' | asset_url | split: '?' | first }}" id="respond-proxy" rel="respond-proxy" />
     <link href="{{ shop.url }}/search?q={{ respond_js_secret_key }}" id="respond-redirect" rel="respond-redirect" />
     <script src="{{ shop.url }}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
@@ -62,6 +62,7 @@
 
 
 
+    {{ "cart_labels.js" | asset_url | script_tag }}
     {{ "cart_hto.js" | asset_url | script_tag }}
     {{ "cart_steps.js" | asset_url | script_tag }}
     {{ "cart_hil.js" | asset_url | script_tag }}
@@ -79,7 +80,7 @@
 
 
     <!-- Facebook login -->
-    {% include 'hull' %} 
+    {% include 'hull' %}
 
 
   </head>
@@ -93,15 +94,15 @@
       {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
 
       {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
-      
+
       <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
 
         {% if has_main_menu %}{% include 'navbar' with 'main' %}{% endif %}
-        
+
         {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
-        
+
         {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
-        
+
         <div{% unless settings.site-wide-thumbnail-container %} class="row"{% endunless %}>
         <div class="main-content {% include '__main-span' %}">
           {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
@@ -134,7 +135,7 @@
     {% unless current_handle == blank %}
     $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
     {% endunless %}
-    
+
     {% if thumbnail_layout == 'masonry' %}
     $('.masonry-collection').isotope({
       itemSelector: '.masonry',
@@ -149,7 +150,7 @@
       $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
     });
     {% endif %}
-    
+
     $(document).ready(function(){
       $('.search-bar').typeahead({
         name: 'Products',
@@ -172,8 +173,8 @@
   <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 Shopify.Cart.setProductHandle('{{ product.handle }}');
-Shopify.Cart.limit( { 
-  limitPer: '{{ settings.limit_per }}', 
+Shopify.Cart.limit( {
+  limitPer: '{{ settings.limit_per }}',
   limitQuantity: {{ settings.limit_quantity }}{% if settings.limit == 'Enabled for products listed' %},
   limitProductHandles: jQuery.trim("{{ settings.limit_product_handles }}").split(/[\s,;]+/){% endif %}{% if settings.limit_per == 'cart' and settings.limit_quantity == '1' %},
   limitSkipCartPage: {% if settings.limit_skip_cart_page %}true{% else %}false{% endif %}{% endif %}

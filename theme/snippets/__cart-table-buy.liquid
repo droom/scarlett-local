@@ -1,18 +1,35 @@
-
-<div class="checkout_buy_wrap">
-
-
-
-
   <h2>Shopping Cart</h2>
 
 
-  {% include '__cart-table-titles' %}
-  
+  <div class="checkout_titles checkout_buy_prescription_title clearfix">
+
+    <div class="checkout_cell1">
+      <p>Glasses with a prescription</p>
+    </div>
+
+    <div class="checkout_cell3">
+      <p>QTY</p>
+    </div>
+
+    <div class="checkout_cell4">
+      <p>Price</p>
+    </div>
+
+    <div class="checkout_cell5">
+      <p>Total</p>
+    </div>
+    <div class="checkout_cell6">
+      <p class="cellHide">&#215;</p>
+    </div>
+  </div>
+
+
+
+
 
   {% for item in cart.items %}
   {% if item.variant.title contains 'With ' %}
-  <div class="checkout_buy {{ item.product.title | handleize }} clearfix shoppingItem">
+  <div class="checkout_buy {{ item.product.title | handleize }} clearfix checkout_buy_prescription_item">
 
 
     <div class="checkout_cell1">
@@ -55,81 +72,70 @@
 
 
 
-
-
-
-  <div class="checkout_titles clearfix">
+  <div class="checkout_titles checkout_titles_buy_frames clearfix">
     <div class="checkout_cell1">
       <p>Glasses, just frames</p>
     </div>
 
-  <!-- 
-  <div class="checkout_cell2">
-    <p class="cellHide">&#215;</p>
-  </div>
--->
-<div class="checkout_cell3">
-  <p>QTY</p>
-</div>
+    <div class="checkout_cell3">
+      <p>QTY</p>
+    </div>
 
-<div class="checkout_cell4">
-  <p>Price</p>
-</div>
+    <div class="checkout_cell4">
+      <p>Price</p>
+    </div>
 
-<div class="checkout_cell5">
-  <p>Total</p>
-</div>
-<div class="checkout_cell6">
-  <p class="cellHide">&#215;</p>
-</div>
-</div>
-
-
-{% for item in cart.items %}
-{% if item.variant.title contains 'Without' %}
-<div class="checkout_buy {{ item.product.title | handleize }} clearfix shoppingItem">
-
-
-  <div class="checkout_cell1">
-    <a href="{{ item.url }}">
-      <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
-    </a>
+    <div class="checkout_cell5">
+      <p>Total</p>
+    </div>
+    <div class="checkout_cell6">
+      <p class="cellHide">&#215;</p>
+    </div>
   </div>
 
-  <div class="checkout_cell2">
-    <h5>
-      <strong>{{ item.product.title }}</strong>
-    </h5>
-    {% if item.product.variants.size > 1 %}
-    <p>{{ item.variant.title }}</p>
-    {% endif %}
+
+  {% for item in cart.items %}
+  {% if item.variant.title contains 'Without' %}
+  <div class="checkout_buy {{ item.product.title | handleize }} clearfix checkout_buy_frame_item">
+
+
+    <div class="checkout_cell1">
+      <a href="{{ item.url }}">
+        <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
+      </a>
+    </div>
+
+    <div class="checkout_cell2">
+      <h5>
+        <strong>{{ item.product.title }}</strong>
+      </h5>
+      {% if item.product.variants.size > 1 %}
+      <p>{{ item.variant.title }}</p>
+      {% endif %}
+    </div>
+
+    <div class="checkout_cell3">
+      <p>{{ item.quantity }}</p>
+    </div>
+
+    <div class="checkout_cell4">
+      <p>{{ item.line_price | money }}</p>
+    </div>
+
+    <div class="checkout_cell5">
+      <p><strong>{{ item.line_price | money }}</strong></p>
+    </div>
+
+    <div class="checkout_cell6">
+      <p>
+        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a>
+      </p>
+    </div>
+
   </div>
 
-  <div class="checkout_cell3">
-    <p>{{ item.quantity }}</p>
-  </div>
-
-  <div class="checkout_cell4">
-    <p>{{ item.line_price | money }}</p>
-  </div>
-
-  <div class="checkout_cell5">
-    <p><strong>{{ item.line_price | money }}</strong></p>
-  </div>
-
-  <div class="checkout_cell6">
-    <p>
-      <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a>
-    </p>
-  </div>
-
-</div>
-
-{% endif %}
-{% endfor %}
+  {% endif %}
+  {% endfor %}
 
 
 
-
-
-</div>

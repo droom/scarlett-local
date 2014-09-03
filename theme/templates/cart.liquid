@@ -2,10 +2,6 @@
 <section id="cart-wrap" class="section-wrap">
 
 
-
-
-
-
   <form action="/cart" method="post" id="cartform1">
 
     {% include '__cart-breadcrumb' %}
@@ -13,72 +9,76 @@
       <div class="col-cart-left">
 
 
-  <!--             
-        <section class="testing">
-          <H2>TESTING</H2>
-          <p><a href="#" id="HIL-ADD">ADD LENSES</a></p>
-          <p><a href="#" id="HIL-REMOVE">REMOVE LENSES</a></p>
-          <p><a href="#" id="REQ-ADD">ADD ATTR</a></p>
-          <p><a href="#" id="REQ-REMOVE">REMOVE ATTR</a></p>
-        </section> 
-     
-      -->
+        <div class="checkout_stage1">
 
-      <div class="checkout_stage1">
+          {% include '__formatted-content' %}
+          {% if has_cart %}
 
-        {% include '__formatted-content' %}
-        {% if has_cart %}
-        {% if cart.item_count == 0 %}
-        <h2>Your cart is empty!</h2>
-        <p>Please add some items.</p>
-        {% else %}
-        {% include '__cart-table-buy' %}
-        {% include '__cart-table-acc' %}
-        {% include '__cart-table-try' %}
-
-        {% endif %}
-        {% endif %}
-      </div>
-
-
-<a id="details"></a>
-
-
-      <div class="checkout_stage2">
-        <h2>Details</h2>
+          {% if cart.item_count == 0 %}
+          <h2>Your cart is empty!</h2>
+          <p>Please add some items.</p>
+          {% else %}
 
 
 
+          {% include '__cart-table-buy' %}
 
 
-
-        <div class="radioOptions clearfix stage2question1">
-          <fieldset>
-
-            <legend class="clearfix">What kind of glasses do you need?</legend>
-
-            {% assign attribute = 'glasses-type' %}
-            {% for i in (1..2) %}
-
-            <div class="radioWrap clearfix" id="{{ option | handleize }}">
-              {% capture option %}{% cycle 'Prescription', 'Non-RX' %}{% endcapture %}
-
-              <h4 class="radioTitle {{ option | handleize }}">{{ option }}</h4>
+          {% include '__cart-table-acc' %}
 
 
-              <input required class="radioNode nodeKind" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
+          {% include '__cart-table-try' %}
 
-
-              <label class="radioLabel nodeKind {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">
-                {{ option }}
-              </label>
-
-
-            </div>
-            {% endfor %}
-          </fieldset>
-
+          {% endif %}
+          {% endif %}
         </div>
+
+
+
+
+        <a id="details"></a>
+
+
+        <div class="checkout_stage2">
+          <h2>Details</h2>
+
+
+
+
+<!--
+
+          <div class="radioOptions clearfix stage2question1">
+            <fieldset>
+
+              <legend class="clearfix">What kind of glasses do you need?</legend>
+
+              {% assign attribute = 'glasses-type' %}
+              {% for i in (1..2) %}
+
+              <div class="radioWrap clearfix" id="{{ option | handleize }}">
+                {% capture option %}{% cycle 'Prescription', 'Non-RX' %}{% endcapture %}
+
+                <h4 class="radioTitle {{ option | handleize }}">{{ option }}</h4>
+
+
+                <input class="radioNode nodeKind" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
+
+
+                <label class="radioLabel nodeKind {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">
+                  {{ option }}
+                </label>
+
+
+              </div>
+              {% endfor %}
+            </fieldset>
+
+          </div>
+
+
+ -->
+
+
 
         <div class="radioOptions clearfix stage2question2">
           <fieldset>
@@ -91,11 +91,7 @@
               {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send later' %}{% endcapture %}
               <h4 class="radioTitle">{{ option }}</h4>
 
-               <!--    
-                <input class="radioNode" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}"{% if cart.attributes[attribute] == option %} checked="checked"{% endif %} /> 
-              -->
-
-              <input required class="radioNode addRequired nodeSend" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
+              <input class="radioNode addRequired nodeSend" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
 
 
               <label class="radioLabel nodeSend {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">
@@ -118,14 +114,15 @@
 
 
             <input  id = "presc_url" type="hidden" name="attributes[prescription]" value="hidden"/>
-            
 
-            <input type="file" id="file-chooser" /> 
-            <button id="upload-button">Upload to S3</button>
+
+            <input type="file" id="file-chooser" />
+            <button id="upload-button">Upload photo</button>
             <div id="results"></div>
 
 
 
+            <!-- File upload -->
 
             <script type="text/javascript">
               var result;
@@ -135,7 +132,7 @@
               var fileChooser = document.getElementById('file-chooser');
               var button = $("#upload-button");
               var results = document.getElementById('results');
-              
+
               button.click(function(e) {
                 e.preventDefault();
                 var file = fileChooser.files[0];
@@ -146,11 +143,11 @@
                   obj_params = {Bucket: 'supahands', Key: file.name, Expires: 100000};
                   result = bucket.putObject(params, function (err, data) {
 
-                      results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
-                      bucket.getSignedUrl('getObject', obj_params, function (err, url) {
-                       console.log("The URL is", url); 
-                       $("#presc_url").attr("value", url);
-                      })
+                    results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
+                    bucket.getSignedUrl('getObject', obj_params, function (err, url) {
+                     console.log("The URL is", url);
+                     $("#presc_url").attr("value", url);
+                   })
                   });
                 } else {
                   results.innerHTML = 'Nothing to upload.';
@@ -159,12 +156,12 @@
 
 
 
-              
+
 
               var url = bucket.getSignedUrl('getObject', obj_params, function (err, url) {
-                 if (url) contactsole.log("The URL is", url);
-                });
-              </script>
+               if (url) contactsole.log("The URL is", url);
+             });
+           </script>
 
 
 
@@ -172,132 +169,120 @@
 
 
 
-          </div>
+         </div>
 
-          <div class="prescription-doctor">
-            <p>Enter your doctor’s name and contact number.</p>
-            <label for="doctorName">Doctor's name</label>
-            <input type="text" id="doctorName" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
-            <label for="doctorNumber">Doctor's number</label>
-            <input type="text" id="doctorNumber" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
-          </div>
-
-          <div class="prescription-address">
-            <p>Once you have your prescription, send it to us at <a href="mailto:hello@scarlettofosoho.com">hello@scarlettofosoho.com</a>.</p>
-
-          </div>
+         <div class="prescription-doctor">
+          <p>Enter your doctor’s name and contact number.</p>
+          <label for="doctorName">Doctor's name</label>
+          <input type="text" id="doctorName" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
+          <label for="doctorNumber">Doctor's number</label>
+          <input type="text" id="doctorNumber" name="attributes[doctor]" value="{{ cart.attributes.doctor }}" />
         </div>
 
-
-
-        <div class="radioOptions clearfix stage2question3">
-          <fieldset>
-
-            <legend class="clearfix">Do you want ultra high-index lenses if necessary?</legend>
-
-            {% assign attribute = 'high-index' %}
-            {% for i in (1..2) %}
-            <div class="radioWrap clearfix">
-              {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
-              <h4 class="radioTitle">{{ option }}</h4>
-
-              <input required class="radioNode addRequired nodeHil" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
-
-              <label class="radioLabel nodeHil {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
-            </div>
-            {% endfor %}
-          </fieldset>
+        <div class="prescription-address">
+          <p>Once you have your prescription, send it to us at <a href="mailto:hello@scarlettofosoho.com">hello@scarlettofosoho.com</a>.</p>
 
         </div>
+      </div>
 
 
 
+      <div class="radioOptions clearfix stage2question3">
+        <fieldset>
 
-        <div class="radioOptions clearfix stage2question4">
-          <fieldset>
-            <legend class="clearfix">Do you want to measure your pupillary distance (PD)?</legend>
-            {% assign attribute = 'pd-tool' %}
-            {% for i in (1..2) %}
-            <div class="radioWrap clearfix">
+          <legend class="clearfix">Do you want ultra high-index lenses if necessary?</legend>
 
-              {% capture option %}{% cycle 'measure', 'dont-measure' %}{% endcapture %}
-              <h4 class="radioTitle {{ option }}">{{ option }}</h4>
+          {% assign attribute = 'high-index' %}
+          {% for i in (1..2) %}
+          <div class="radioWrap clearfix">
+            {% capture option %}{% cycle 'Yes', 'No' %}{% endcapture %}
+            <h4 class="radioTitle">{{ option }}</h4>
 
-              <input class="radioNode addRequired nodeMeasure" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
+            <input class="radioNode addRequired nodeHil" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
 
-              <label class="radioLabel nodeMeasure {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
-
-            </div>
-            {% endfor %}
-          </fieldset>
-        </div>
-
-
-        <div class="radioOptions clearfix">
-          <div class="pd-launch">
-            <p>Measuring your pupillary distance (PD) is important for us to process your order and ensure the right fit for your prescription lens. Click on the tool below and follow the quick steps to measure your PD. </p>
-            <p><a href="http://evening-oasis-1684.herokuapp.com/" class="launch">Launch tool</a></p>
-            <p><strong>Copy your measurements from the tool and paste it here.</strong></p>
-            <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
+            <label class="radioLabel nodeHil {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
           </div>
+          {% endfor %}
+        </fieldset>
+
+      </div>
+
+
+
+
+      <div class="radioOptions clearfix stage2question4">
+        <fieldset>
+          <legend class="clearfix">Do you want to measure your pupillary distance (PD)?</legend>
+          {% assign attribute = 'pd-tool' %}
+          {% for i in (1..2) %}
+          <div class="radioWrap clearfix">
+
+            {% capture option %}{% cycle 'measure', 'dont-measure' %}{% endcapture %}
+            <h4 class="radioTitle {{ option }}">{{ option }}</h4>
+
+            <input class="radioNode addRequired nodeMeasure" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
+
+            <label class="radioLabel nodeMeasure {{ option | handleize }}" for="{{ option | handleize }}-{{ i }}">{{ option }}</label>
+
+          </div>
+          {% endfor %}
+        </fieldset>
+      </div>
+
+
+      <div class="radioOptions clearfix">
+        <div class="pd-launch">
+          <p>Measuring your pupillary distance (PD) is important for us to process your order and ensure the right fit for your prescription lens. Click on the tool below and follow the quick steps to measure your PD. </p>
+          <p><a href="http://pd-tool.herokuapp.com" class="launch">Launch tool</a></p>
+          <p><strong>Copy your measurements from the tool and paste it here.</strong></p>
+          <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="col-cart-right">
-      {% include '__cart-price' %}
+  <div class="col-cart-right">
+    {% include '__cart-price' %}
 
-      <section class="cart-customer">
-        {% include '__cart-customer' %}
-      </section>
+    <section class="cart-customer">
+      {% include '__cart-customer' %}
+    </section>
 
-      <section class="cart-list">
-        {% include '__cart-item-list' %}
-      </section>
-
-    </div>
+    <section class="cart-list">
+      {% include '__cart-item-list' %}
+    </section>
 
   </div>
+
+</div>
 
 
 </form>
 
 
 
-</section>  
+</section>
 
 <script>
 
-  $('.launch').click(function(event) {
-    event.preventDefault();
-    window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
+
+  $(document).ready(function(){
+
+
+
+    $('.launch').click(function(event) {
+      event.preventDefault();
+      window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
+    });
+
+    function remove_item(id) {
+      document.getElementById('updates_'+id).value = 0;
+      document.getElementById('cart').submit();
+    }
+
+
+
   });
-
-  function remove_item(id) {
-    document.getElementById('updates_'+id).value = 0;
-    document.getElementById('cart').submit();
-  }
-
-//
-
-$("#cartform1").validate({
-
-  rules: {
-    nodeKind: "required",
-    nodeSend: "required",
-    nodeHil: "required",
-    nodeMeasure: "required"
-  },
-
-  messages: {
-    nodeKind: "Please select",
-    nodeSend: "Please select",
-    nodeHil: "Please select",
-    nodeMeasure: "Please select"
-  }
-
-
-});
 
 
 

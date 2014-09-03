@@ -7,8 +7,6 @@ $(document).ready(function(){
   var totalPrice = 0;
   var lensePrice = 3500;
 
-  // var test = 0;
-
 
   function initCallFunct(fToCall) {
 
@@ -23,7 +21,6 @@ $(document).ready(function(){
   } ,  function(data) {
 
    console.log("success empty");
-   //fCartAdd();
    fToCall();
 
  },   "json" );
@@ -46,7 +43,6 @@ $(document).ready(function(){
 
 
  function fPushPrice(){
-  console.log("Batman!");
   console.log("Change totalPrice to " + totalPrice);
   $("#priceFinal").text(totalPrice / 100);
   $("#priceFinal").currency();
@@ -72,7 +68,7 @@ function fUpdateCart(fToCall){
 
       if (element.title.indexOf("With ") >= 0) {
         prescriptionQTY += element.quantity;
-      }; 
+      };
 
     });
 
@@ -82,7 +78,7 @@ function fUpdateCart(fToCall){
     console.log("totalPrice", totalPrice);
     console.log("prescriptionQTY", prescriptionQTY);
     console.log("lensesQTY", lensesQTY);
-    console.log("totalPrice", totalPrice); 
+    console.log("totalPrice", totalPrice);
 
 
   });
@@ -105,7 +101,7 @@ function fAddToCart () {
  var update_n_print = function() { fUpdateCart(fPushPrice) }
  var add_n_print = function() { fCartAdd(update_n_print) }
  var empty_n_add = function() { fCartEmpty(add_n_print) }
- fUpdateCart(empty_n_add); 
+ fUpdateCart(empty_n_add);
 }
 
 
@@ -121,19 +117,6 @@ $("label[for='no-2']").click(function(e){
   fUpdateCart(fRemoveFromCart);
 });
 
-
-
-/*
-$("#HIL-ADD").click(function(e){
-  e.preventDefault();
-  fAddToCart();
-});
-
-$("#HIL-REMOVE").click(function(e){
-  e.preventDefault();
-  fUpdateCart(fRemoveFromCart);
-});
-*/
 
 
 

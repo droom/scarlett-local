@@ -1,6 +1,30 @@
 <h2>Home Try-Ons</h2>
 
-{% include '__cart-table-titles' %}
+
+<div class="checkout_titles checkout_titles_try_frames clearfix">
+  <div class="checkout_cell1">
+    <p>Glasses, just frames</p>
+  </div>
+
+  <div class="checkout_cell3">
+    <p>QTY</p>
+  </div>
+
+  <div class="checkout_cell4">
+    <p>Price</p>
+  </div>
+
+  <div class="checkout_cell5">
+    <p>Total</p>
+  </div>
+  <div class="checkout_cell6">
+    <p class="cellHide">&#215;</p>
+  </div>
+</div>
+
+
+
+
 
 {% for item in cart.items %}
 {% if item.variant.title contains 'Home Try-On' %}
@@ -32,7 +56,7 @@
   <div class="checkout_cell6">
     <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
   </div>
-  
+
 </div>
 {% endif %}
 {% endfor %}
