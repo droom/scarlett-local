@@ -12,7 +12,7 @@
 <section id="product-wrap" class="section-wrap">
 	<div class="visible-xs">
 		<small class="product-section">
-			<strong>{{ collection.title | upcase }}</strong> {% if collection.description %}&mdash; {{ collection.description }}{% endif %}</small>
+			<strong>{{ collection.title | upcase }}</strong></small>
 			<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
 		</div>
 		<form id="product-form" action="/cart/add" method="post" role="form">
@@ -27,7 +27,7 @@
 
 
                 <div class="productHero-feature">
-                 <img class="heroOffset" src="{{ product.featured_image | product_img_url: "grande" }}" />
+                 <img class="heroOffset" src="{{ product.featured_image | product_img_url: 'grande' }}" />
                </div>
 
 
@@ -37,7 +37,7 @@
                   {% for image in product.images %}
                   {% if image contains '_360_' %}
                   <img class="lifecycleImage2 heroOffset" src="{{ image.src | product_img_url: 'grande' }}" data-index="{{ forloop.index }}" />
-                  {% endif %} 
+                  {% endif %}
                   {% endfor %}
                 </div>
               </div>
@@ -45,38 +45,32 @@
 
 
 
-<!--               <div class="productHero-360">
-               <div class="spritespin360">
-               </div>
-             </div>
- -->
-
-
-             <div class="productHero-life">
+              <div class="productHero-life">
                <div id="imageStack">
                 {% for image in product.images %}
                 {% if image contains '_Life_' %}
-                <img class="lifecycleImage" src="{{ image.src | product_img_url: 'original' }}" data-index="{{ forloop.index }}" />
-                {% endif %} 
+                <img class="lifecycleImage" src="{{ image.src | product_img_url: 'grande' }}" data-index="{{ forloop.index }}" />
+                {% endif %}
                 {% endfor %}
               </div>
 
 
 
             </div>
-          </div> 
+          </div>
 
-          <p>Views: 
+          <p>Views:
             <a href="javascript:void(0);" class="productSwitch productSwitch-feature">Image</a>
             |
             <a href="javascript:void(0);" class="productSwitch productSwitch-360">360°</a>
 
 
+
             {% for image in product.images %}
             {% if image contains '_Life_01' %}
-            | 
+            |
             <a href="javascript:void(0);" class="productSwitch productSwitch-life">Model</a>
-            {% endif %} 
+            {% endif %}
             {% endfor %}
           </p>
 
@@ -96,10 +90,12 @@
 
 
             <div class="available-unit {{ product.title | handleize }} ">
+
              <a href="{{ product.url }}" class="relatedURL">
-              <img src="{{ product | img_url: 'compact' }}"  alt="{{ product.title | escape }}" />
+              <img class="available-image" src="{{ product | img_url: 'compact' }}"  alt="{{ product.title | escape }}" />
             </a>
-            <p>{{ product.title }}</p>
+
+            <p class="available-title">{{ product.title }}</p>
           </div>
           {% endif %}
 
@@ -118,12 +114,14 @@
       </div>
 
     </div>
-  </div> 
+  </div>
 
 
   <div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
 
-   <small class="product-section hidden-xs"><strong>{{ collection.title | upcase }}</strong> | {{ collection.description }}</small>
+   <small class="product-section hidden-xs">
+     <strong>{{ collection.title | upcase }}</strong>
+   </small>
 
    <h1 class="hidden-xs" itemprop="name" id="productTitle">{{ page_title }}</h1>
 
@@ -145,7 +143,7 @@
 
   <div class="centreCopy">
     <p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
-  </div>	
+  </div>
 
 </div>
 
@@ -182,404 +180,274 @@
 
 
 
-<div> 
+<div>
   <script>
 
    $( document ).ready(function() {
 
 
 
+    /* Style title and price */
+
     var productGrab = $('#productTitle').text();
     var productIndex = productGrab.indexOf(" in ");
-    var productSnatchModel = productGrab.slice(0, productIndex)
-    var productSnatchColour = productGrab.slice(productIndex, productIndex.length)
-    $('#productTitle').replaceWith("<h1 class=\"hidden-xs\" itemprop=\"name\" id=\"productTitle\">"+productSnatchModel+" <span class=\"productColor\">"+productSnatchColour+"</span></h1>");
+    if (productIndex > 0) {
+      var productSnatchModel = productGrab.slice(0, productIndex)
+      var productSnatchColour = productGrab.slice(productIndex, productIndex.length)
+      $('#productTitle').replaceWith("<h1 class=\"hidden-xs\" itemprop=\"name\" id=\"productTitle\">"+productSnatchModel+" <span class=\"productColor\">"+productSnatchColour+"</span></h1>");
+    }
 
 
-      // Reconstruct Related Item URL
-      
-      var relatedURL = $('a.relatedURL');
-      var urlAdd = "/collections/frontpage"
 
-      for ( var i = 0, l = relatedURL.length; i < l; i++ ) {
-        var thisURL = relatedURL[i];
-        var href = $(thisURL).attr('href');
-        var newURL = urlAdd+href;
-        console.log("newURL", newURL);
-        $(thisURL).attr("href", newURL);
+
+     // Reconstruct Related Item URL
+
+     var relatedItems = $('.relatedURL');
+     var pathName = window.location.pathname;
+     var pathPosition1 = parseInt(pathName.indexOf('/products/'));
+
+     var pathSegment1 = pathName.slice(0, pathPosition1);
+
+
+
+     console.log("pathName", pathName);
+     console.log("pathPosition1", pathPosition1);
+     console.log("relatedItems", relatedItems);
+     console.log("pathSegment1", pathSegment1);
+
+
+
+
+     for ( var i = 0, l = relatedItems.length; i < l; i++ ) {
+
+        // console.log("hey");
+
+        var thisURL = relatedItems[i];
+        var thisHREF = $(thisURL).attr("href");
+
+
+        var pathPosition2 = thisHREF.indexOf('/products/');
+        var pathSegment2 = thisHREF.slice(0 , thisHREF.length);
+
+
+
+
+        console.log("thisURL", thisURL);
+        console.log("thisHREF", thisHREF);
+
+        console.log("pathSegment1+pathSegment2", pathSegment1+pathSegment2);
+
+
+        $(thisURL).attr('href', pathSegment1+pathSegment2 );
+
+
       }
 
 
 
 
-     $("#imageStack img:nth-child(3)").show();
+
+
+
+      // 360
+
+
+      $("#imageStack img:nth-child(3)").show();
 
       $("#imageStack").mousemove(function(e){
-       var parentOffset = $(this).parent().offset(); 
+       var parentOffset = $(this).parent().offset();
        var relX = e.pageX - parentOffset.left;
-       var tWidth = $(this).width();  
+       var tWidth = $(this).width();
        var pos = (relX/tWidth) * 100;
 
        $('.lifecycleImage').hide();
 
        switch(true){
         case (pos < 20):
-					// $("#imageStack").children("img[data-index=" + 6 + "]").show();
-					$("#imageStack img:nth-child(5)").show();
-					break;
+        $("#imageStack img:nth-child(5)").show();
+        break;
 
-					case (pos < 40):
-					
-					// $("#imageStack").children("img[data-index=" + 5 + "]").show();
-					$("#imageStack img:nth-child(4)").show();
-					break;
+        case (pos < 40):
+        $("#imageStack img:nth-child(4)").show();
+        break;
 
-					case (pos < 60):
-					
-					// $("#imageStack").children("img[data-index=" + 4 + "]").show();
-					$("#imageStack img:nth-child(3)").show();
-					break;
+        case (pos < 60):
+        $("#imageStack img:nth-child(3)").show();
+        break;
 
-					case (pos < 80):
-					$("#imageStack img:nth-child(2)").show();
-					break;
+        case (pos < 80):
+        $("#imageStack img:nth-child(2)").show();
+        break;
 
-					case (pos < 100):
-					$("#imageStack img:nth-child(1)").show();
-					break;
-				}
-			});
+        case (pos < 100):
+        $("#imageStack img:nth-child(1)").show();
+        break;
+      }
+    });
 
 
 
 
 
-              $("#imageStack2 img:nth-child(1)").show();
+      $("#imageStack2 img:nth-child(1)").show();
 
-              $("#imageStack2").mousemove(function(e){
-               var parentOffset = $(this).parent().offset(); 
-               var relX = e.pageX - parentOffset.left;
-               var tWidth = $(this).width();  
-               var pos = (relX/tWidth) * 100;
+      $("#imageStack2").mousemove(function(e){
+       var parentOffset = $(this).parent().offset();
+       var relX = e.pageX - parentOffset.left;
+       var tWidth = $(this).width();
+       var pos = (relX/tWidth) * 100;
 
 
-               var divider = 2.85714285714286;
-               //var multiplier;
+       var divider = 2.85714285714286;
 
-               $('.lifecycleImage2').hide();
+       $('.lifecycleImage2').hide();
 
+       switch(true){
 
-              console.log(pos);
 
-               switch(true){
+        case (pos < divider):
+        $("#imageStack2 img:nth-child(9)").show();
+        break;
 
+        case (pos < (divider * 2)):
+        $("#imageStack2 img:nth-child(8)").show();
+        break;
 
-                case (pos < divider):
-                $("#imageStack2 img:nth-child(9)").show();
-                break;
+        case (pos < (divider * 3)):
+        $("#imageStack2 img:nth-child(7)").show();
+        break;
 
-                case (pos < (divider * 2)):
-                $("#imageStack2 img:nth-child(8)").show();
-                break;
+        case (pos < (divider * 4)):
+        $("#imageStack2 img:nth-child(6)").show();
+        break;
 
-                case (pos < (divider * 3)):
-                $("#imageStack2 img:nth-child(7)").show();
-                break;
+        case (pos < (divider * 5)):
+        $("#imageStack2 img:nth-child(5)").show();
+        break;
 
-                case (pos < (divider * 4)):
-                $("#imageStack2 img:nth-child(6)").show();
-                break;
+        case (pos < (divider * 6)):
+        $("#imageStack2 img:nth-child(4)").show();
+        break;
 
-                case (pos < (divider * 5)):
-                $("#imageStack2 img:nth-child(5)").show();
-                break;
+        case (pos < (divider * 7)):
+        $("#imageStack2 img:nth-child(1)").show();
+        break;
 
-                case (pos < (divider * 6)):
-                $("#imageStack2 img:nth-child(4)").show();
-                break;
+        case (pos < (divider * 8)):
+        $("#imageStack2 img:nth-child(3)").show();
+        break;
 
-                case (pos < (divider * 7)):
-                $("#imageStack2 img:nth-child(1)").show();
-                break;
+        case (pos < (divider * 9)):
+        $("#imageStack2 img:nth-child(2)").show();
+        break;
 
-                case (pos < (divider * 8)):
-                $("#imageStack2 img:nth-child(3)").show();
-                break;
+        case (pos < (divider * 10)):
+        $("#imageStack2 img:nth-child(35)").show();
+        break;
 
-                case (pos < (divider * 9)):
-                $("#imageStack2 img:nth-child(2)").show();
-                break;
+        case (pos < (divider * 11)):
+        $("#imageStack2 img:nth-child(34)").show();
+        break;
 
-                case (pos < (divider * 10)):
-                $("#imageStack2 img:nth-child(35)").show();
-                break;
+        case (pos < (divider * 12)):
+        $("#imageStack2 img:nth-child(33)").show();
+        break;
 
-                case (pos < (divider * 11)):
-                $("#imageStack2 img:nth-child(34)").show();
-                break;
+        case (pos < (divider * 13)):
+        $("#imageStack2 img:nth-child(32)").show();
+        break;
 
-                case (pos < (divider * 12)):
-                $("#imageStack2 img:nth-child(33)").show();
-                break;
+        case (pos < (divider * 14)):
+        $("#imageStack2 img:nth-child(31)").show();
+        break;
 
-                case (pos < (divider * 13)):
-                $("#imageStack2 img:nth-child(32)").show();
-                break;
+        case (pos < (divider * 15)):
+        $("#imageStack2 img:nth-child(30)").show();
+        break;
 
-                case (pos < (divider * 14)):
-                $("#imageStack2 img:nth-child(31)").show();
-                break;
+        case (pos < (divider * 16)):
+        $("#imageStack2 img:nth-child(29)").show();
+        break;
 
-                case (pos < (divider * 15)):
-                $("#imageStack2 img:nth-child(30)").show();
-                break;
+        case (pos < (divider * 17)):
+        $("#imageStack2 img:nth-child(28)").show();
+        break;
 
-                case (pos < (divider * 16)):
-                $("#imageStack2 img:nth-child(29)").show();
-                break;
+        case (pos < (divider * 18)):
+        $("#imageStack2 img:nth-child(27)").show();
+        break;
 
-                case (pos < (divider * 17)):
-                $("#imageStack2 img:nth-child(28)").show();
-                break;
+        case (pos < (divider * 19)):
+        $("#imageStack2 img:nth-child(26)").show();
+        break;
 
-                case (pos < (divider * 18)):
-                $("#imageStack2 img:nth-child(27)").show();
-                break;
+        case (pos < (divider * 20)):
+        $("#imageStack2 img:nth-child(25)").show();
+        break;
 
-                case (pos < (divider * 19)):
-                $("#imageStack2 img:nth-child(26)").show();
-                break;
+        case (pos < (divider * 21)):
+        $("#imageStack2 img:nth-child(24)").show();
+        break;
 
-                case (pos < (divider * 20)):
-                $("#imageStack2 img:nth-child(25)").show();
-                break;
+        case (pos < (divider * 22)):
+        $("#imageStack2 img:nth-child(23)").show();
+        break;
 
-                case (pos < (divider * 21)):
-                $("#imageStack2 img:nth-child(24)").show();
-                break;
+        case (pos < (divider * 23)):
+        $("#imageStack2 img:nth-child(22)").show();
+        break;
 
-                case (pos < (divider * 22)):
-                $("#imageStack2 img:nth-child(23)").show();
-                break;
+        case (pos < (divider * 24)):
+        $("#imageStack2 img:nth-child(21)").show();
+        break;
 
-                case (pos < (divider * 23)):
-                $("#imageStack2 img:nth-child(22)").show();
-                break;
+        case (pos < (divider * 25)):
+        $("#imageStack2 img:nth-child(20)").show();
+        break;
 
-                case (pos < (divider * 24)):
-                $("#imageStack2 img:nth-child(21)").show();
-                break;
+        case (pos < (divider * 26)):
+        $("#imageStack2 img:nth-child(19)").show();
+        break;
 
-                case (pos < (divider * 25)):
-                $("#imageStack2 img:nth-child(20)").show();
-                break;
+        case (pos < (divider * 27)):
+        $("#imageStack2 img:nth-child(18)").show();
+        break;
 
-                case (pos < (divider * 26)):
-                $("#imageStack2 img:nth-child(19)").show();
-                break;
+        case (pos < (divider * 28)):
+        $("#imageStack2 img:nth-child(17)").show();
+        break;
 
-                case (pos < (divider * 27)):
-                $("#imageStack2 img:nth-child(18)").show();
-                break;
+        case (pos < (divider * 29)):
+        $("#imageStack2 img:nth-child(16)").show();
+        break;
 
-                case (pos < (divider * 28)):
-                $("#imageStack2 img:nth-child(17)").show();
-                break;
+        case (pos < (divider * 30)):
+        $("#imageStack2 img:nth-child(15)").show();
+        break;
 
-                case (pos < (divider * 29)):
-                $("#imageStack2 img:nth-child(16)").show();
-                break;
+        case (pos < (divider * 31)):
+        $("#imageStack2 img:nth-child(14)").show();
+        break;
 
-                case (pos < (divider * 30)):
-                $("#imageStack2 img:nth-child(15)").show();
-                break;
+        case (pos < (divider * 32)):
+        $("#imageStack2 img:nth-child(13)").show();
+        break;
 
-                case (pos < (divider * 31)):
-                $("#imageStack2 img:nth-child(14)").show();
-                break;
+        case (pos < (divider * 33)):
+        $("#imageStack2 img:nth-child(12)").show();
+        break;
 
-                case (pos < (divider * 32)):
-                $("#imageStack2 img:nth-child(13)").show();
-                break;
+        case (pos < (divider * 34)):
+        $("#imageStack2 img:nth-child(11)").show();
+        break;
 
-                case (pos < (divider * 33)):
-                $("#imageStack2 img:nth-child(12)").show();
-                break;
+        case (pos < (divider * 35)):
+        $("#imageStack2 img:nth-child(10)").show();
+        break;
 
-                case (pos < (divider * 34)):
-                $("#imageStack2 img:nth-child(11)").show();
-                break;
 
-                case (pos < (divider * 35)):
-                $("#imageStack2 img:nth-child(10)").show();
-                break;
-
-
-
-
-
-
-
-
-
-
-
-                // case (pos < divider):
-                // $("#imageStack2 img:nth-child(9)").show();
-                // break;
-
-                // case (pos < (divider * 2)):
-                // $("#imageStack2 img:nth-child(8)").show();
-                // break;
-
-                // case (pos < (divider * 3)):
-                // $("#imageStack2 img:nth-child(7)").show();
-                // break;
-
-                // case (pos < (divider * 4)):
-                // $("#imageStack2 img:nth-child(6)").show();
-                // break;
-
-                // case (pos < (divider * 5)):
-                // $("#imageStack2 img:nth-child(5)").show();
-                // break;
-
-                // case (pos < (divider * 6)):
-                // $("#imageStack2 img:nth-child(4)").show();
-                // break;
-
-                // case (pos < (divider * 7)):
-                // $("#imageStack2 img:nth-child(3)").show();
-                // break;
-
-                // case (pos < (divider * 8)):
-                // $("#imageStack2 img:nth-child(2)").show();
-                // break;
-
-                // case (pos < (divider * 9)):
-                // $("#imageStack2 img:nth-child(1)").show();
-                // break;
-
-                // case (pos < (divider * 10)):
-                // $("#imageStack2 img:nth-child(35)").show();
-                // break;
-
-                // case (pos < (divider * 11)):
-                // $("#imageStack2 img:nth-child(34)").show();
-                // break;
-
-                // case (pos < (divider * 12)):
-                // $("#imageStack2 img:nth-child(33)").show();
-                // break;
-
-                // case (pos < (divider * 13)):
-                // $("#imageStack2 img:nth-child(32)").show();
-                // break;
-
-
-                // case (pos < (divider * 14)):
-                // $("#imageStack2 img:nth-child(31)").show();
-                // break;
-
-                // case (pos < (divider * 15)):
-                // $("#imageStack2 img:nth-child(30)").show();
-                // break;
-
-                // case (pos < (divider * 16)):
-                // $("#imageStack2 img:nth-child(29)").show();
-                // break;
-
-                // case (pos < (divider * 17)):
-                // $("#imageStack2 img:nth-child(28)").show();
-                // break;
-
-                // case (pos < (divider * 18)):
-                // $("#imageStack2 img:nth-child(27)").show();
-                // break;
-
-
-                // case (pos < (divider * 19)):
-                // $("#imageStack2 img:nth-child(26)").show();
-                // break;
-
-                // case (pos < (divider * 20)):
-                // $("#imageStack2 img:nth-child(25)").show();
-                // break;
-
-                // case (pos < (divider * 21)):
-                // $("#imageStack2 img:nth-child(24)").show();
-                // break;
-
-                // case (pos < (divider * 22)):
-                // $("#imageStack2 img:nth-child(23)").show();
-                // break;
-
-                // case (pos < (divider * 23)):
-                // $("#imageStack2 img:nth-child(22)").show();
-                // break;
-
-                // case (pos < (divider * 24)):
-                // $("#imageStack2 img:nth-child(21)").show();
-                // break;
-
-                // case (pos < (divider * 25)):
-                // $("#imageStack2 img:nth-child(20)").show();
-                // break;
-
-                // case (pos < (divider * 26)):
-                // $("#imageStack2 img:nth-child(19)").show();
-                // break;
-
-                // case (pos < (divider * 27)):
-                // $("#imageStack2 img:nth-child(18)").show();
-                // break;
-
-                // case (pos < (divider * 28)):
-                // $("#imageStack2 img:nth-child(17)").show();
-                // break;
-
-                // case (pos < (divider * 29)):
-                // $("#imageStack2 img:nth-child(16)").show();
-                // break;
-
-                // case (pos < (divider * 30)):
-                // $("#imageStack2 img:nth-child(15)").show();
-                // break;
-
-                // case (pos < (divider * 31)):
-                // $("#imageStack2 img:nth-child(14)").show();
-                // break;
-
-
-
-                // case (pos < (divider * 32)):
-                // $("#imageStack2 img:nth-child(13)").show();
-                // break;
-
-
-                // case (pos < (divider * 33)):
-                // $("#imageStack2 img:nth-child(12)").show();
-                // break;
-
-
-                // case (pos < (divider * 34)):
-                // $("#imageStack2 img:nth-child(11)").show();
-                // break;
-
-
-                // case (pos < (divider * 35)):
-                // $("#imageStack2 img:nth-child(10)").show();
-                // break;
-
-
-    
-
-              }
-              });
-
-
-
-
+      }
+    });
 
 
 var anchors_and_divs = {
@@ -604,10 +472,6 @@ hide_rest('.productSwitch-life' );
 hide_rest('.productSwitch-feature' );
 
 
-
-
-console.log("product_spriteSpin called")
-
 var listItems = $('.spin360');
 var listItemsLength = listItems.length;
 var listString = ($.trim(listItems[0].innerHTML));
@@ -616,16 +480,6 @@ var position360 = listString.indexOf("360");
 var url_part1 = listString.slice(0, position360+4);
 var url_part2 = listString.slice(position360+4, position360+6);
 var url_part3 = listString.slice(position360+6, listString.length);
-
-
-
-console.log(listItems);
-console.log(listItemsLength);
-console.log(listString);
-console.log(position360);
-console.log(url_part1);
-console.log(url_part2);
-console.log(url_part3);
 
 
 
@@ -660,12 +514,12 @@ var selectCallback = function(variant, selector){
 			if(variant){
 			  // we have a variant so update the price
 			  var moneyFormat = "{% if settings.show-currency-with-prices %}{{ shop.money_with_currency_format }}{% else %}{{ shop.money_format }}{% endif %}"; // we still need the correct money format if the currency converter is off
-			  var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat); 
+			  var formattedMoney = Shopify.formatMoney(variant.price, moneyFormat);
 			  priceField.html('<span class="money">'+formattedMoney+'</span>'); // we need to refresh the the money span to invoke the currency converter if it is on
-			  
+
 			  if(variant.compare_at_price > 0){
 			    // variant is on sale
-			    var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat); 
+			    var compareAtFormattedMoney = Shopify.formatMoney(variant.compare_at_price, moneyFormat);
 			    compareAtPriceField.html('<span class="money">'+compareAtFormattedMoney+'</span>').show();
 			    saleField.show();
         }
