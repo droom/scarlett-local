@@ -44,9 +44,7 @@
     {{ "customer_area.js"  | shopify_asset_url | script_tag }}
     {% endif %}
 
-    {{ "add_product.js.liquid" | asset_url | script_tag }}
 
-    {{ "spritespin.js" | asset_url | script_tag }}
 
 
     {% if settings.custom-header-code != '' %}
@@ -69,6 +67,7 @@
     {{ "cart_title.js" | asset_url | script_tag }}
 
 
+
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.11.min.js"></script>
     <script type="text/javascript">
      // See the Configuring section to configure credentials in the SDK
@@ -76,101 +75,105 @@
 
      // Configure your region
      AWS.config.region = 'ap-southeast-1';
-    </script>
+   </script>
 
 
-    <!-- Facebook login -->
-    {% include 'hull' %}
+   <!-- Facebook login -->
+   {% if template contains 'template-product' %}
+       {{ "add_product.js.liquid" | asset_url | script_tag }}
+
+   {% include 'hull' %}
+   {% endif %}
 
 
-  </head>
+ </head>
 
-  {% include '__has-variables' %}
-  <body class="{% include '__body-classes' %}">
+ {% include '__has-variables' %}
+ <body class="{% include '__body-classes' %}">
 
-    <div id="wrap">
-      {% include 'navbar' with 'top' %}
+  <div id="wrap">
+    {% include 'navbar' with 'top' %}
 
-      {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
+    {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
 
-      {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
+    {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
 
-      <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
+    <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
 
-        {% if has_main_menu %}{% include 'navbar' with 'main' %}{% endif %}
+      {% if has_main_menu %}{% include 'navbar' with 'main' %}{% endif %}
 
-        {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
+      {% if settings.slider-width == "site-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "site-width" %}{% include 'banner' %}{% endif %}
 
-        {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
+      {% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}
 
-        <div{% unless settings.site-wide-thumbnail-container %} class="row"{% endunless %}>
-        <div class="main-content {% include '__main-span' %}">
-          {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
-          {{ content_for_layout }}
-        </div>
-        {% include 'sidebar' %}
+      <div{% unless settings.site-wide-thumbnail-container %} class="row"{% endunless %}>
+      <div class="main-content {% include '__main-span' %}">
+        {% if settings.slider-width == "main-content-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "main-content-width" %}{% include 'banner' %}{% endif %}
+        {{ content_for_layout }}
       </div>
+      {% include 'sidebar' %}
     </div>
   </div>
+</div>
 
-  {% include 'footer' %}
-  {% include 'currencies' %}
+{% include 'footer' %}
+{% include 'currencies' %}
 
-  {{ '_base.js' | asset_url | script_tag }}
-  {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
-  {{ 'jquery.orderly.min.js' | asset_url | script_tag }}
-  {{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
-  {{ 'transition.js' | asset_url | script_tag }}
-  {{ 'button.js' | asset_url | script_tag }}
-  {{ 'carousel.js' | asset_url | script_tag }}
-  {{ 'collapse.js' | asset_url | script_tag }}
-  {{ 'dropdown.js' | asset_url | script_tag }}
-  {{ 'modal.js' | asset_url | script_tag }}
-  {{ 'tooltip.js' | asset_url | script_tag }}
-  {{ 'popover.js' | asset_url | script_tag }}
-  {{ 'typeahead.js' | asset_url | script_tag }}
-  {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
+{{ '_base.js' | asset_url | script_tag }}
+{{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
+{{ 'jquery.orderly.min.js' | asset_url | script_tag }}
+{{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
+{{ 'transition.js' | asset_url | script_tag }}
+{{ 'button.js' | asset_url | script_tag }}
+{{ 'carousel.js' | asset_url | script_tag }}
+{{ 'collapse.js' | asset_url | script_tag }}
+{{ 'dropdown.js' | asset_url | script_tag }}
+{{ 'modal.js' | asset_url | script_tag }}
+{{ 'tooltip.js' | asset_url | script_tag }}
+{{ 'popover.js' | asset_url | script_tag }}
+{{ 'typeahead.js' | asset_url | script_tag }}
+{{ 'jquery.instagram.min.js' | asset_url | script_tag }}
 
-  <script type="text/javascript">
-    {% unless current_handle == blank %}
-    $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
-    {% endunless %}
+<script type="text/javascript">
+  {% unless current_handle == blank %}
+  $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
+  {% endunless %}
 
-    {% if thumbnail_layout == 'masonry' %}
-    $('.masonry-collection').isotope({
-      itemSelector: '.masonry',
-      layoutMode: 'masonry'
-    });
-    {% else %}
-    var uniformThumbnailsOpts = {};
-    {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
-    {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
-    {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
-    $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
-      $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
-    });
-    {% endif %}
-
-    $(document).ready(function(){
-      $('.search-bar').typeahead({
-        name: 'Products',
-        local: [{% include 'search-typeahead' %}]
-      }).on('typeahead:selected', function (object, datum) {
-        $(this).closest('form').submit();
-      });
-    });
-  </script>
-
-  {% if settings.custom-footer-code != '' %}
-  {{ settings.custom-footer-code }}
+  {% if thumbnail_layout == 'masonry' %}
+  $('.masonry-collection').isotope({
+    itemSelector: '.masonry',
+    layoutMode: 'masonry'
+  });
+  {% else %}
+  var uniformThumbnailsOpts = {};
+  {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
+  {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
+  {% if settings.thumbnails-cropped == blank %} uniformThumbnailsOpts.fit = 'scale'; {% endif %}
+  $('.thumbnail-image, .product-main-thumb').uniform_thumbnails(uniformThumbnailsOpts).on('ut_complete', function(){
+    $('.product-thumbnail .caption, .collection-thumbnail .caption').orderly({ method: 'children' });
+  });
   {% endif %}
 
+  $(document).ready(function(){
+    $('.search-bar').typeahead({
+      name: 'Products',
+      local: [{% include 'search-typeahead' %}]
+    }).on('typeahead:selected', function (object, datum) {
+      $(this).closest('form').submit();
+    });
+  });
+</script>
 
-  <!-- Limiter -->
+{% if settings.custom-footer-code != '' %}
+{{ settings.custom-footer-code }}
+{% endif %}
 
-  {% unless settings.limit == 'No limit' %}
-  {{ 'jquery.limit.min.js' | asset_url | script_tag }}
-  <script type="text/javascript" charset="utf-8">
+
+<!-- Limiter -->
+
+{% unless settings.limit == 'No limit' %}
+{{ 'jquery.limit.min.js' | asset_url | script_tag }}
+<script type="text/javascript" charset="utf-8">
 //<![CDATA[
 Shopify.Cart.setProductHandle('{{ product.handle }}');
 Shopify.Cart.limit( {

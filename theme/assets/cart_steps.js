@@ -28,7 +28,10 @@ if (itemQtyPrescription > 0){
 } else {
   $(".checkout_buy_prescription_title").hide();
   $('.checkout_breadcrumb li.step2').remove();
-  $('.checkout_breadcrumb li.step3').html($('.checkout_breadcrumb li.step3').html().replace('3.', '2.'));
+  if ( $('.checkout_breadcrumb li.step3').length == 1) {
+    $('.checkout_breadcrumb li.step3').html($('.checkout_breadcrumb li.step3').html().replace('3.', '2.'));
+  }
+
 
   prescriptionNeeded = false;
   $('#continue').hide();
@@ -171,10 +174,9 @@ $('.stage2question4 .radioWrap .radioLabel').click(function() {
 });
 
 
-
 // SHOW AND HIDE
-
 // Section 2
+
 
 $('.upload-a-picture').click(function() {
   stage2question2_hideSecondary();
@@ -193,6 +195,7 @@ $('.send-later').click(function() {
   stage2question2_hideSecondary();
   $('.prescription-address').show();
 });
+
 
 
 // Section 3
