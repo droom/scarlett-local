@@ -13,7 +13,7 @@
 	<div class="visible-xs">
 		<small class="product-section">
 			<strong>{{ collection.title | upcase }}</strong></small>
-			<h1 class="page-header" itemprop="name">{{ page_title }}</h1>
+			<h1 itemprop="name">{{ page_title }}</h1>
 		</div>
 		<form id="product-form" action="/cart/add" method="post" role="form">
 			<div class="row" itemscope itemtype="http://data-vocabulary.org/Product">
@@ -96,10 +96,6 @@
             <p class="available-title">{{ product.title }}</p>
           </div>
           {% endif %}
-
-
-
-
           {% endfor %}
 
         </div>
