@@ -1,0 +1,8 @@
+
+@font-face {
+  font-family: 'Goudy-BoldOsF';
+  src: url('Goudy-BoldOsF.eot?#iefix') format('embedded-opentype'),  url('Goudy-BoldOsF.otf')  format('opentype'),
+	     url('Goudy-BoldOsF.woff') format('woff'), url('Goudy-BoldOsF.ttf')  format('truetype'), url('Goudy-BoldOsF.svg#Goudy-BoldOsF') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -22,9 +22,9 @@
 
           {% if has_cart %}
           {% if cart.item_count == 0 %}
-          <h3>Your cart is empty!</h3>
+          <h4>Your cart is empty.</h4>
           <hr />
-          <p>Please add some items.</p>
+          <p class="add-items">Please add some items to continue.</p>
           {% endif %}
           {% endif %}
 
@@ -36,7 +36,7 @@
           <div class="navCart-title-buy">
 
               <h4>Shopping Cart</h4>
-              <hr />      
+              <hr />
 
           </div>
 
@@ -62,7 +62,7 @@
                     <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
                 </div>
             </div>
-            
+
         </div>
         {% endif %}
         {% endfor %}
@@ -108,13 +108,13 @@
 
     <div class="navCart-title-acc">
         <h4>Accessories</h4>
-        <hr /> 
+        <hr />
     </div>
 
     {% for item in cart.items %}
     {% if item.variant.title contains 'High-Index' %}
     <div class="checkout_buy_wrap navCart-item-acc">
-      
+
         <div class="checkout_buy clearfix">
             <div class="checkout_cell1">
                 <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
@@ -133,7 +133,7 @@
                 <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
             </div>
         </div>
-        
+
     </div>
     {% endif %}
     {% endfor %}

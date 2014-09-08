@@ -21,10 +21,10 @@
 
 }
 
-.col-xs-12, 
+.col-xs-12,
 .col-sm-12,
 .col-sm-6,
-.col-xs-4{ 
+.col-xs-4{
 	padding: 0;
 }
 
@@ -110,7 +110,7 @@ hr {
 	padding: 0;
 	height:  1px;
 	border:  none;
-	background-color: $sosLightGrey;	
+	background-color: $sosLightGrey;
 }
 
 
@@ -186,7 +186,7 @@ footer {
 		padding: 0;
 
 		li{
-			margin-bottom: 10px; 
+			margin-bottom: 10px;
 			list-style: none;
 			padding-left: 70px;
 			background-repeat: no-repeat;
@@ -280,6 +280,7 @@ footer {
 	padding: 0 7%;
 }
 
+
 .col-md-8{
 	width: 100%;
 	padding: 0 0 7em 0;
@@ -290,11 +291,20 @@ footer {
 		line-height: 1.7em;
 	}
 }
+
+
 .col-md-4 {
 	width: 100%;
 	border-top: solid 1px $sosLightGrey ;
-	padding: 1.25em 0 7em;
-	line-height: 1.75em;
+	// padding: 1.25em 0 7em;
+	// line-height: 1.75em;
+
+  p, li {
+    padding: 0 0 0.7em 0;
+    font-size: 1.25em;
+    line-height: 1.7em;
+  }
+
 
 }
 
@@ -474,7 +484,8 @@ footer {
 		padding: 0;
 	}
 
-	.col-md-8{
+	.col-md-4,
+  .col-md-8{
 		padding: 0 5em 7em 0;
 		p, li {
 			padding: 0 0 0.7em 0;
@@ -482,16 +493,20 @@ footer {
 			line-height: 1.7em;
 		}
 
+  .col-md-4 {
+    border-top:none;
+    padding: 0;
+  }
+
+
+
 		h2{
 			margin: 0 0 1.3em 0;
 			padding: 0;
 		}
 	}
 
-	.col-md-4 {
-		border-top:none;
-		padding: 0;
-	}
+
 
 	#footer-content .row > div:nth-of-type(1),
 	#footer-content .row > div:nth-of-type(2),

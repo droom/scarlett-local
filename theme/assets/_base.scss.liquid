@@ -6677,10 +6677,6 @@ a.thumbnail.active {
 // --------------------------------------------------
 
 
-// Base class
-//
-// Easily usable on <ul>, <ol>, or <div>.
-
 .list-group {
   // No need to set list-style: none; since .list-group-item is block level
   margin-bottom: 20px;
@@ -6688,14 +6684,11 @@ a.thumbnail.active {
 }
 
 
-// Individual list items
-//
-// Use on `li`s or `div`s within the `.list-group` parent.
 
 .list-group-item {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 20px;
   // Place the border on the list items and negative margin up for better styling
   margin-bottom: -1px;
   background-color: $list-group-bg;
@@ -9384,73 +9377,88 @@ transition: all 200ms ease;
 
 
 
-h1, 
-h2, 
-h3, 
-h4, 
+body{
+  text-rendering: optimizeLegibility;
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
 h5,
-h6{
-	font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
-	color: $sosMidGrey;
-
-}
-
-
-h4{
-	font-weight: bold;
-	line-height: 1.6em;
-}
-
-#priceFinal{
-	font-weight: bold;
-
-}
-
-p, 
+h6,
+p,
 li,
 td,
 legend,
-label, 
-small, 
-input, 
+label,
+small,
+input,
 select,
 textarea,
 .money,
 .btn{
-	font-family: 'Avenir-Light', helvetica, arial, sans-serif;
-	color: $sosMidGrey;
+  font-family: 'Avenir Regular', Helvetica, Arial, sans-serif;
+  color: $sosMidGrey;
 }
 
-#navbar-top{
 
-	h1, 
-	h2, 
-	h3, 
-	h4, 
-	h5,
-	h6,
-	p{
-		font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
-		color: $sosMidGrey;
 
-	}
-}
-
+#navbar-top,
 #navbar-footer{
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p{
+    font-family: 'Avenir Regular', helvetica, arial, sans-serif;
+    color: $sosMidGrey;
+  }
+}
 
-	h1, 
-	h2, 
-	h3, 
-	h4, 
-	h5,
-	h6,
-	p{
-		font-family: 'Avenir-Medium', helvetica, arial, sans-serif;
-		color: $sosMidGrey;
 
-	}
+
+
+.page-header{
+  font-family: 'Goudy Old Style', Georgia, serif ;
+}
+
+
+#priceFinal{
+  font-weight: bold;
 
 }
+
+h4{
+  font-weight: bold;
+  line-height: 1.6em;
+}
+
+
+
+
+
+#navbar-main{
+
+  .dropdown-toggle{
+    // font-family: 'Avenir Regular', helvetica, arial, sans-serif;
+    // font-weight: 800;
+    color: #010101;
+  }
+
+
+  p, li {
+    font-size: 1.12em;
+    line-height: 1.7em;
+  }
+
+
+}
+
 
 
 
@@ -9474,7 +9482,7 @@ textarea,
 
 	display: none;
 
-}	
+}
 
 .masonary-tile .product-thumbnail{
 
@@ -9504,6 +9512,7 @@ textarea,
 		p{
 			margin: 0 0 10px 0;
 			padding: 0;
+      font-size: 1.3em;
 		}
 	}
 }
@@ -9529,7 +9538,7 @@ textarea,
 }
 
 @media (min-width: $screen-xs-min) {
-	
+
 	.template-collection{
 
 		.masonary-tile{
@@ -10438,6 +10447,11 @@ textarea,
 }
 
 
+.add-items{
+padding: 10px 0;
+
+}
+
 
 #register,
 #login-form{
@@ -10603,10 +10617,10 @@ textarea,
 
 }
 
-.col-xs-12, 
+.col-xs-12,
 .col-sm-12,
 .col-sm-6,
-.col-xs-4{ 
+.col-xs-4{
 	padding: 0;
 }
 
@@ -10692,7 +10706,7 @@ hr {
 	padding: 0;
 	height:  1px;
 	border:  none;
-	background-color: $sosLightGrey;	
+	background-color: $sosLightGrey;
 }
 
 
@@ -10768,7 +10782,7 @@ footer {
 		padding: 0;
 
 		li{
-			margin-bottom: 10px; 
+			margin-bottom: 10px;
 			list-style: none;
 			padding-left: 70px;
 			background-repeat: no-repeat;
@@ -10862,6 +10876,7 @@ footer {
 	padding: 0 7%;
 }
 
+
 .col-md-8{
 	width: 100%;
 	padding: 0 0 7em 0;
@@ -10872,11 +10887,20 @@ footer {
 		line-height: 1.7em;
 	}
 }
+
+
 .col-md-4 {
 	width: 100%;
 	border-top: solid 1px $sosLightGrey ;
-	padding: 1.25em 0 7em;
-	line-height: 1.75em;
+	// padding: 1.25em 0 7em;
+	// line-height: 1.75em;
+
+  p, li {
+    padding: 0 0 0.7em 0;
+    font-size: 1.25em;
+    line-height: 1.7em;
+  }
+
 
 }
 
@@ -11056,7 +11080,8 @@ footer {
 		padding: 0;
 	}
 
-	.col-md-8{
+	.col-md-4,
+  .col-md-8{
 		padding: 0 5em 7em 0;
 		p, li {
 			padding: 0 0 0.7em 0;
@@ -11064,16 +11089,20 @@ footer {
 			line-height: 1.7em;
 		}
 
+  .col-md-4 {
+    border-top:none;
+    padding: 0;
+  }
+
+
+
 		h2{
 			margin: 0 0 1.3em 0;
 			padding: 0;
 		}
 	}
 
-	.col-md-4 {
-		border-top:none;
-		padding: 0;
-	}
+
 
 	#footer-content .row > div:nth-of-type(1),
 	#footer-content .row > div:nth-of-type(2),

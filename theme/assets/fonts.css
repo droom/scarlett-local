@@ -1,0 +1,36 @@
+@font-face {
+
+  font-family: 'Avenir Regular';
+
+  src: url("avenir-regular.eot");
+  src: url("avenir-regular.eot?#iefix") format("embedded-opentype"),
+  url("avenir-regular.woff") format("woff"),
+  url("avenir-regular.ttf") format("truetype"),
+  url("avenir-regular.svg#webfont") format("svg");
+
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+@font-face {
+
+  font-family: 'Goudy Old Style';
+
+  src: url('goudosb-webfont.eot?#iefix') format('embedded-opentype'),
+  url('goudosb-webfont.otf')  format('opentype'),
+  url('goudosb-webfont.woff') format('woff'),
+  url('goudosb-webfont.ttf')  format('truetype'),
+  url('goudosb-webfont.svg#goudosb-webfont') format('svg');
+
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+

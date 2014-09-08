@@ -3,10 +3,6 @@
 // --------------------------------------------------
 
 
-// Base class
-//
-// Easily usable on <ul>, <ol>, or <div>.
-
 .list-group {
   // No need to set list-style: none; since .list-group-item is block level
   margin-bottom: 20px;
@@ -14,14 +10,11 @@
 }
 
 
-// Individual list items
-//
-// Use on `li`s or `div`s within the `.list-group` parent.
 
 .list-group-item {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 20px;
   // Place the border on the list items and negative margin up for better styling
   margin-bottom: -1px;
   background-color: $list-group-bg;
