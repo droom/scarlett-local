@@ -125,49 +125,34 @@ $("label[for='no-2']").click(function(e){
   var tryItems = $('.checkout_try .checkout_cell1');
   var htoa = $('.home-try-on-authorisation');
 
-  if (buyItemsFrame.length == 0  && buyItemsPresc.length == 0 && tryItems.length != 0  && htoa.length == 0) {
+   if(buyItemsPresc.length != 0 || (tryItems.length == 0 && htoa.length != 0)) {
+    console.log("no fee");
+    jQuery.post('/cart/change.js', {
+        quantity: 0,
+        id: 829744291
+    } , function(data) {
+           console.log("success empty");
+         },   "json" );
+    ammendTotal();
+   }
 
-   console.log("add fee");
-
-   // fToCall = fToCall || function(){}
-
-   jQuery.post('/cart/add.js', {
-    quantity: 1,
-    id: 829744291
-  } , function (data) {
-
-    console.log("success add");
-
-
-
-  }, "json");
-
- } else if(buyItemsPresc.length != 0 || (tryItems.length == 0 && htoa.length != 0)) {
-
-  console.log("no fee");
-
-
-  jQuery.post('/cart/change.js', {
-    quantity: 0,
-    id: 829744291
-  } ,  function(data) {
-
-   console.log("success empty");
-   // fToCall();
-
-var finalPrice = parseInt( $('#priceFinal').text().substring(1), 10);
-$("#priceFinal").text(finalPrice -1);
-
-$("#priceFinal").currency();
-
-
- },   "json" );
+   else if((tryItems.length != 0 && htoa.length != 0)) {
+    ammendTotal();
+   }
 
 
 
-}
-
-
+  $('#checkout').click(function(){
+      console.log("add fee");
+      if (buyItemsFrame.length == 0  && buyItemsPresc.length == 0 && tryItems.length != 0  && htoa.length == 0) {
+       jQuery.post('/cart/add.js', {
+          quantity: 1,
+          id: 829744291
+        } , function (data) {
+               console.log("success add");
+            }, "json");
+      }
+  });
 
 })();
 
@@ -177,10 +162,11 @@ $("#priceFinal").currency();
 
 
 
-
-
-
-
+function ammendTotal() {
+  var finalPrice = parseInt( $('#priceFinal').text().substring(1), 10);
+  $("#priceFinal").text(finalPrice -1);
+  $("#priceFinal").currency();
+}
 
 
 
