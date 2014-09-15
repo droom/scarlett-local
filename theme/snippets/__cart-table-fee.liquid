@@ -1,9 +1,8 @@
 <h2>Home Try-Ons</h2>
 
-
+<!--
 <div class="checkout_titles checkout_titles_try_frames clearfix">
   <div class="checkout_cell1">
-    <p>Glasses, just frames</p>
   </div>
 
   <div class="checkout_cell3">
@@ -21,7 +20,7 @@
     <p class="cellHide">&#215;</p>
   </div>
 </div>
-
+ -->
 
 
 
@@ -33,7 +32,7 @@
     <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
   </div>
   <div class="checkout_cell2">
-    <h5>{{ item.product.title }}</h5>
+    <h5><strong>{{ item.product.title }}</strong></h5>
     {% if item.product.variants.size > 1 %}
     <p>{{ item.variant.title }}</p>
     {% endif %}

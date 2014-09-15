@@ -148,7 +148,11 @@
 </div>
 
 <div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/Mens-Optical-Churchill-CrystalOmbre_Info_01_1024x1024.jpg" />
+
+
+ <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-product-technical-drawings-01.jpg" />
+
+
 
 
 </div>
@@ -156,12 +160,17 @@
 <div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
 
 
- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-product-technical-drawings-02_f56bd80b-5f3f-481d-8698-72c43aa4b615_grande.jpg" />
+ <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-product-technical-drawings-02.jpg" />
+
 
 </div>
 
 <div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/Mens-Optical-Churchill-CrystalOmbre_Info_03_1024x1024.jpg" />
+
+ <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-points-image.jpg" />
+
+
+ <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/Mens-Optical-Churchill-CrystalOmbre_Info_03_1024x1024.jpg" /> -->
 
 
 </div>
@@ -193,18 +202,12 @@
       $('#productTitle').replaceWith("<h1 class=\"hidden-xs\" itemprop=\"name\" id=\"productTitle\">"+productSnatchModel+" <span class=\"productColor\">"+productSnatchColour+"</span></h1>");
     }
 
-
-
-
      // Reconstruct Related Item URL
 
      var relatedItems = $('.relatedURL');
      var pathName = window.location.pathname;
      var pathPosition1 = parseInt(pathName.indexOf('/products/'));
-
      var pathSegment1 = pathName.slice(0, pathPosition1);
-
-
 
      console.log("pathName", pathName);
      console.log("pathPosition1", pathPosition1);
@@ -216,234 +219,241 @@
 
      for ( var i = 0, l = relatedItems.length; i < l; i++ ) {
 
-        // console.log("hey");
+      var thisURL = relatedItems[i];
+      var thisHREF = $(thisURL).attr("href");
+      var pathPosition2 = thisHREF.indexOf('/products/');
+      var pathSegment2 = thisHREF.slice(0 , thisHREF.length);
 
-        var thisURL = relatedItems[i];
-        var thisHREF = $(thisURL).attr("href");
+      console.log("thisURL", thisURL);
+      console.log("thisHREF", thisHREF);
+      console.log("pathSegment1+pathSegment2", pathSegment1+pathSegment2);
 
-
-        var pathPosition2 = thisHREF.indexOf('/products/');
-        var pathSegment2 = thisHREF.slice(0 , thisHREF.length);
-
-
-
-
-        console.log("thisURL", thisURL);
-        console.log("thisHREF", thisHREF);
-
-        console.log("pathSegment1+pathSegment2", pathSegment1+pathSegment2);
-
-
-        $(thisURL).attr('href', pathSegment1+pathSegment2 );
-
-
-      }
+      $(thisURL).attr('href', pathSegment1+pathSegment2 );
+    }
 
 
 
+    var imgs = $("#imageStack > img").not(function() { return this.complete; });
+    var count = imgs.length;
+
+    if (count) {
+      imgs.load(function() {
+        count--;
+        if (!count) {
+          console.log('all done');
+        }
+      });
+    } else {
+    }
 
 
 
 
-      // 360
+    $("#imageStack img:nth-child(3)").show();
+
+    $("#imageStack").mousemove(function(e){
 
 
+
+
+
+     var parentOffset = $(this).parent().offset();
+     var relX = e.pageX - parentOffset.left;
+     var tWidth = $(this).width();
+     var pos = (relX/tWidth) * 100;
+
+     $('.lifecycleImage').hide();
+
+     switch(true){
+      case (pos < 20):
+      $("#imageStack img:nth-child(5)").show();
+      break;
+
+      case (pos < 40):
+      $("#imageStack img:nth-child(4)").show();
+      break;
+
+      case (pos < 60):
       $("#imageStack img:nth-child(3)").show();
+      break;
 
-      $("#imageStack").mousemove(function(e){
-       var parentOffset = $(this).parent().offset();
-       var relX = e.pageX - parentOffset.left;
-       var tWidth = $(this).width();
-       var pos = (relX/tWidth) * 100;
+      case (pos < 80):
+      $("#imageStack img:nth-child(2)").show();
+      break;
 
-       $('.lifecycleImage').hide();
+      case (pos < 100):
+      $("#imageStack img:nth-child(1)").show();
+      break;
+    }
 
-       switch(true){
-        case (pos < 20):
-        $("#imageStack img:nth-child(5)").show();
-        break;
+  // };
 
-        case (pos < 40):
-        $("#imageStack img:nth-child(4)").show();
-        break;
 
-        case (pos < 60):
-        $("#imageStack img:nth-child(3)").show();
-        break;
-
-        case (pos < 80):
-        $("#imageStack img:nth-child(2)").show();
-        break;
-
-        case (pos < 100):
-        $("#imageStack img:nth-child(1)").show();
-        break;
-      }
-    });
+});
 
 
 
 
 
+    $("#imageStack2 img:nth-child(1)").show();
+
+    $("#imageStack2").mousemove(function(e){
+     var parentOffset = $(this).parent().offset();
+     var relX = e.pageX - parentOffset.left;
+     var tWidth = $(this).width();
+     var pos = (relX/tWidth) * 100;
+
+
+     var divider = 2.85714285714286;
+
+     $('.lifecycleImage2').hide();
+
+     switch(true){
+
+
+      case (pos < divider):
+      $("#imageStack2 img:nth-child(9)").show();
+      break;
+
+      case (pos < (divider * 2)):
+      $("#imageStack2 img:nth-child(8)").show();
+      break;
+
+      case (pos < (divider * 3)):
+      $("#imageStack2 img:nth-child(7)").show();
+      break;
+
+      case (pos < (divider * 4)):
+      $("#imageStack2 img:nth-child(6)").show();
+      break;
+
+      case (pos < (divider * 5)):
+      $("#imageStack2 img:nth-child(5)").show();
+      break;
+
+      case (pos < (divider * 6)):
+      $("#imageStack2 img:nth-child(4)").show();
+      break;
+
+      case (pos < (divider * 7)):
       $("#imageStack2 img:nth-child(1)").show();
+      break;
 
-      $("#imageStack2").mousemove(function(e){
-       var parentOffset = $(this).parent().offset();
-       var relX = e.pageX - parentOffset.left;
-       var tWidth = $(this).width();
-       var pos = (relX/tWidth) * 100;
+      case (pos < (divider * 8)):
+      $("#imageStack2 img:nth-child(3)").show();
+      break;
 
+      case (pos < (divider * 9)):
+      $("#imageStack2 img:nth-child(2)").show();
+      break;
 
-       var divider = 2.85714285714286;
+      case (pos < (divider * 10)):
+      $("#imageStack2 img:nth-child(35)").show();
+      break;
 
-       $('.lifecycleImage2').hide();
+      case (pos < (divider * 11)):
+      $("#imageStack2 img:nth-child(34)").show();
+      break;
 
-       switch(true){
+      case (pos < (divider * 12)):
+      $("#imageStack2 img:nth-child(33)").show();
+      break;
 
+      case (pos < (divider * 13)):
+      $("#imageStack2 img:nth-child(32)").show();
+      break;
 
-        case (pos < divider):
-        $("#imageStack2 img:nth-child(9)").show();
-        break;
+      case (pos < (divider * 14)):
+      $("#imageStack2 img:nth-child(31)").show();
+      break;
 
-        case (pos < (divider * 2)):
-        $("#imageStack2 img:nth-child(8)").show();
-        break;
+      case (pos < (divider * 15)):
+      $("#imageStack2 img:nth-child(30)").show();
+      break;
 
-        case (pos < (divider * 3)):
-        $("#imageStack2 img:nth-child(7)").show();
-        break;
+      case (pos < (divider * 16)):
+      $("#imageStack2 img:nth-child(29)").show();
+      break;
 
-        case (pos < (divider * 4)):
-        $("#imageStack2 img:nth-child(6)").show();
-        break;
+      case (pos < (divider * 17)):
+      $("#imageStack2 img:nth-child(28)").show();
+      break;
 
-        case (pos < (divider * 5)):
-        $("#imageStack2 img:nth-child(5)").show();
-        break;
+      case (pos < (divider * 18)):
+      $("#imageStack2 img:nth-child(27)").show();
+      break;
 
-        case (pos < (divider * 6)):
-        $("#imageStack2 img:nth-child(4)").show();
-        break;
+      case (pos < (divider * 19)):
+      $("#imageStack2 img:nth-child(26)").show();
+      break;
 
-        case (pos < (divider * 7)):
-        $("#imageStack2 img:nth-child(1)").show();
-        break;
+      case (pos < (divider * 20)):
+      $("#imageStack2 img:nth-child(25)").show();
+      break;
 
-        case (pos < (divider * 8)):
-        $("#imageStack2 img:nth-child(3)").show();
-        break;
+      case (pos < (divider * 21)):
+      $("#imageStack2 img:nth-child(24)").show();
+      break;
 
-        case (pos < (divider * 9)):
-        $("#imageStack2 img:nth-child(2)").show();
-        break;
+      case (pos < (divider * 22)):
+      $("#imageStack2 img:nth-child(23)").show();
+      break;
 
-        case (pos < (divider * 10)):
-        $("#imageStack2 img:nth-child(35)").show();
-        break;
+      case (pos < (divider * 23)):
+      $("#imageStack2 img:nth-child(22)").show();
+      break;
 
-        case (pos < (divider * 11)):
-        $("#imageStack2 img:nth-child(34)").show();
-        break;
+      case (pos < (divider * 24)):
+      $("#imageStack2 img:nth-child(21)").show();
+      break;
 
-        case (pos < (divider * 12)):
-        $("#imageStack2 img:nth-child(33)").show();
-        break;
+      case (pos < (divider * 25)):
+      $("#imageStack2 img:nth-child(20)").show();
+      break;
 
-        case (pos < (divider * 13)):
-        $("#imageStack2 img:nth-child(32)").show();
-        break;
+      case (pos < (divider * 26)):
+      $("#imageStack2 img:nth-child(19)").show();
+      break;
 
-        case (pos < (divider * 14)):
-        $("#imageStack2 img:nth-child(31)").show();
-        break;
+      case (pos < (divider * 27)):
+      $("#imageStack2 img:nth-child(18)").show();
+      break;
 
-        case (pos < (divider * 15)):
-        $("#imageStack2 img:nth-child(30)").show();
-        break;
+      case (pos < (divider * 28)):
+      $("#imageStack2 img:nth-child(17)").show();
+      break;
 
-        case (pos < (divider * 16)):
-        $("#imageStack2 img:nth-child(29)").show();
-        break;
+      case (pos < (divider * 29)):
+      $("#imageStack2 img:nth-child(16)").show();
+      break;
 
-        case (pos < (divider * 17)):
-        $("#imageStack2 img:nth-child(28)").show();
-        break;
+      case (pos < (divider * 30)):
+      $("#imageStack2 img:nth-child(15)").show();
+      break;
 
-        case (pos < (divider * 18)):
-        $("#imageStack2 img:nth-child(27)").show();
-        break;
+      case (pos < (divider * 31)):
+      $("#imageStack2 img:nth-child(14)").show();
+      break;
 
-        case (pos < (divider * 19)):
-        $("#imageStack2 img:nth-child(26)").show();
-        break;
+      case (pos < (divider * 32)):
+      $("#imageStack2 img:nth-child(13)").show();
+      break;
 
-        case (pos < (divider * 20)):
-        $("#imageStack2 img:nth-child(25)").show();
-        break;
+      case (pos < (divider * 33)):
+      $("#imageStack2 img:nth-child(12)").show();
+      break;
 
-        case (pos < (divider * 21)):
-        $("#imageStack2 img:nth-child(24)").show();
-        break;
+      case (pos < (divider * 34)):
+      $("#imageStack2 img:nth-child(11)").show();
+      break;
 
-        case (pos < (divider * 22)):
-        $("#imageStack2 img:nth-child(23)").show();
-        break;
-
-        case (pos < (divider * 23)):
-        $("#imageStack2 img:nth-child(22)").show();
-        break;
-
-        case (pos < (divider * 24)):
-        $("#imageStack2 img:nth-child(21)").show();
-        break;
-
-        case (pos < (divider * 25)):
-        $("#imageStack2 img:nth-child(20)").show();
-        break;
-
-        case (pos < (divider * 26)):
-        $("#imageStack2 img:nth-child(19)").show();
-        break;
-
-        case (pos < (divider * 27)):
-        $("#imageStack2 img:nth-child(18)").show();
-        break;
-
-        case (pos < (divider * 28)):
-        $("#imageStack2 img:nth-child(17)").show();
-        break;
-
-        case (pos < (divider * 29)):
-        $("#imageStack2 img:nth-child(16)").show();
-        break;
-
-        case (pos < (divider * 30)):
-        $("#imageStack2 img:nth-child(15)").show();
-        break;
-
-        case (pos < (divider * 31)):
-        $("#imageStack2 img:nth-child(14)").show();
-        break;
-
-        case (pos < (divider * 32)):
-        $("#imageStack2 img:nth-child(13)").show();
-        break;
-
-        case (pos < (divider * 33)):
-        $("#imageStack2 img:nth-child(12)").show();
-        break;
-
-        case (pos < (divider * 34)):
-        $("#imageStack2 img:nth-child(11)").show();
-        break;
-
-        case (pos < (divider * 35)):
-        $("#imageStack2 img:nth-child(10)").show();
-        break;
+      case (pos < (divider * 35)):
+      $("#imageStack2 img:nth-child(10)").show();
+      break;
 
 
-      }
-    });
+    }
+  });
 
 
 var anchors_and_divs = {
@@ -468,24 +478,27 @@ hide_rest('.productSwitch-life' );
 hide_rest('.productSwitch-feature' );
 
 
-var listItems = $('.spin360');
-var listItemsLength = listItems.length;
-var listString = ($.trim(listItems[0].innerHTML));
-var position360 = listString.indexOf("360");
-
-var url_part1 = listString.slice(0, position360+4);
-var url_part2 = listString.slice(position360+4, position360+6);
-var url_part3 = listString.slice(position360+6, listString.length);
 
 
 
-$('.spritespin360').spritespin({
-  source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
-  width: 553,
-  height: 415,
-  sense: -1,
-  renderer: 'image'
-});
+// var listItems = $('.spin360');
+// var listItemsLength = listItems.length;
+// var listString = ($.trim(listItems[0].innerHTML));
+// var position360 = listString.indexOf("360");
+
+// var url_part1 = listString.slice(0, position360+4);
+// var url_part2 = listString.slice(position360+4, position360+6);
+// var url_part3 = listString.slice(position360+6, listString.length);
+
+
+
+// $('.spritespin360').spritespin({
+//   source: SpriteSpin.sourceArray(url_part1+'{frame}'+url_part3, { frame: [01,listItemsLength], digits: 2 }),
+//   width: 553,
+//   height: 415,
+//   sense: -1,
+//   renderer: 'image'
+// });
 
 
 

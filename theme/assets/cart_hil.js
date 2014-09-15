@@ -1,15 +1,13 @@
-
 $(document).ready(function(){
 
   // var getTitles = [];
+
   var prescriptionQTY = 0;
   var lensesQTY = 0;
   var totalPrice = 0;
   var lensePrice = 3500;
 
-
   function initCallFunct(fToCall) {
-
   }
 
   function fCartEmpty(fToCall){
@@ -80,12 +78,10 @@ function fUpdateCart(fToCall){
     console.log("lensesQTY", lensesQTY);
     console.log("totalPrice", totalPrice);
 
-
   });
 
 
 
-  // Report
 };
 
 
@@ -116,6 +112,76 @@ $("label[for='no-2']").click(function(e){
   e.preventDefault();
   fUpdateCart(fRemoveFromCart);
 });
+
+
+
+
+
+// Add nominal charge HTO
+
+(function addNominal() {
+  var buyItemsPresc = $('.checkout_buy_prescription_item .checkout_cell1');
+  var buyItemsFrame = $('.checkout_buy_frame_item .checkout_cell1');
+  var tryItems = $('.checkout_try .checkout_cell1');
+  var htoa = $('.home-try-on-authorisation');
+
+  if (buyItemsFrame.length == 0  && buyItemsPresc.length == 0 && tryItems.length != 0  && htoa.length == 0) {
+
+   console.log("add fee");
+
+   // fToCall = fToCall || function(){}
+
+   jQuery.post('/cart/add.js', {
+    quantity: 1,
+    id: 829744291
+  } , function (data) {
+
+    console.log("success add");
+
+
+
+  }, "json");
+
+ } else if(buyItemsPresc.length != 0 || (tryItems.length == 0 && htoa.length != 0)) {
+
+  console.log("no fee");
+
+
+  jQuery.post('/cart/change.js', {
+    quantity: 0,
+    id: 829744291
+  } ,  function(data) {
+
+   console.log("success empty");
+   // fToCall();
+
+var finalPrice = parseInt( $('#priceFinal').text().substring(1), 10);
+$("#priceFinal").text(finalPrice -1);
+
+$("#priceFinal").currency();
+
+
+ },   "json" );
+
+
+
+}
+
+
+
+})();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

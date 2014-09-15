@@ -1,1 +1,16 @@
-{% capture items %}{% include '__localize' with 'items' %}{% endcapture %}{% capture item %}{% include '__localize' %}{% endcapture %}{{ cart.item_count }} {{ cart.item_count | pluralize: item, items }}
+{% capture items %}
+{% include '__localize' with 'items' %}
+{% endcapture %}{% capture item %}{% include '__localize' %}
+{% endcapture %}
+
+<span class="itemCount">{{ cart.item_count }}</span>
+
+
+<span class="itemPlural">{{ cart.item_count | pluralize: item, items }}</span>
+
+
+
+
+
+
+

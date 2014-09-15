@@ -39,54 +39,32 @@
      {% else %}
 
 
-     <!-- DIV -->
 
-<!--
- <section class="priceBox clearfix {{ variant.title | handleize }}">
+     <!-- TABLE -->
 
-      <div class="priceBox-price">
-        <h3>{{variant.price | money }}</h3>
-      </div>
+     <table class="priceBox {{ variant.title | handleize }}">
 
-      <div class="priceBox-title">
-        <p>{{ variant.title }}</p>
-      </div>
+      <tr>
 
-      <div class="priceBox-button">
-        <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
-      </div>
+        <td class="priceBox-price">
+          <h3>{{variant.price | money }}</h3>
+        </td>
 
-      <div class="priceBox-arrow">
-        <p>&rarr;</p>
-      </div>
-    </section>
-  -->
+        <td class="priceBox-title">
+          <p>{{ variant.title }}</p>
+        </td>
 
-  <!-- TABLE -->
+        <td class="priceBox-button">
+          <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
+        </td>
 
-  <table class="priceBox {{ variant.title | handleize }}">
+        <td class="priceBox-arrow">
+          <p>&rarr;</p>
+        </td>
 
-    <tr>
+      </tr>
 
-      <td class="priceBox-price">
-        <h3>{{variant.price | money }}</h3>
-      </td>
-
-      <td class="priceBox-title">
-        <p>{{ variant.title }}</p>
-      </td>
-
-      <td class="priceBox-button">
-        <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
-      </td>
-
-      <td class="priceBox-arrow">
-        <p>&rarr;</p>
-      </td>
-
-    </tr>
-
-  </table>
+    </table>
 
 
 
@@ -94,8 +72,8 @@
 
 
 
-  {% endunless %}
-</div>
+    {% endunless %}
+  </div>
 </form>
 {% endunless %}
 {% endfor %}
@@ -104,7 +82,7 @@
 
 
 
-
+<!-- if hto_count_total >= 4 -->
 
 {% for variant in product.variants %}
 {% if variant.title contains 'Home Try-On' %}
@@ -112,15 +90,27 @@
 
 {% if hto_count_total >= 4 %}
 
-<section class="priceBox-limit clearfix limit">
- <h5>There are 4 Try-on glasses in your cart</h5>
- <p>Please remove a pair to add <strong>{{ page_title }}</strong> to your basket. <a href="/cart">View your cart.</a></p>
-</section>
+
+<table class="priceBox HTOadded clearfix {{ variant.title | handleize }}">
+  <tr>
+    <td class="HTOadded">
+    There are 4 Try-on glasses in your cart.
+    <br/ >Please remove a pair to add {{ page_title }}.
+    </td>
+  </tr>
+</table>
+
+
+
+
 
 
 {% else %} <!-- if hto_count_total >= 4 -->
 
 {% if hto_count_unique == false %}
+
+
+
 
 <form id="add-item-form-{{variant.id}}" action="/cart/add" method="post" class="variants clearfix">
 
@@ -129,45 +119,24 @@
      <input type="hidden" name="id" value="{{variant.id}}">
    </div>
 
+   <table class="priceBox clearfix {{ variant.title | handleize }}">
+    <tr>
 
 
-<!--
-   <section class="priceBox clearfix {{ variant.title | handleize }}">
-    <div class="priceBox-price">
-      <h3>{{variant.price | money }}</h3>
-    </div>
-    <div class="priceBox-title">
-      <p>{{ variant.title }}</p>
-    </div>
-    <div class="priceBox-button">
-      <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
-    </div>
-    <div class="priceBox-arrow">
-      <p>&rarr;</p>
-    </div>
-  </section>
--->
+      <!-- <td class="priceBox-price"></td> -->
+
+      <!-- <td class="priceBox-title"><p>{{ variant.title }}</p></td> -->
 
 
-<table class="priceBox clearfix {{ variant.title | handleize }}">
+    <td class="HTOadded">
+        <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Try them on at home for free" />
+      </td>
 
-  <tr>
-    <td class="priceBox-price">
-      <h3>{{variant.price | money }}</h3>
-    </td>
-    <td class="priceBox-title">
-      <p>{{ variant.title }}</p>
-    </td>
-    <td class="priceBox-button">
-      <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
-    </td>
-    <td class="priceBox-arrow">
-      <p>&rarr;</p>
-    </td>
-  </tr>
+      <!-- <td class="priceBox-arrow"><p>&rarr;</p></td> -->
 
 
-</table>
+    </tr>
+  </table>
 
 
 
@@ -183,25 +152,15 @@
 
 
 
+<table class="priceBox HTOadded clearfix {{ variant.title | handleize }}">
+  <tr>
+    <td class="HTOadded">
+    Home Try-on already in basket
+    </td>
+  </tr>
+</table>
 
-<div class="product-options">
- <div class="select clearfix"{% if hide_default_title %} style="display:none"{% endif %}>
-   <input type="hidden" name="id" value="{{variant.id}}">
- </div>
 
- <section class="priceBox clearfix {{ variant.title | handleize }}">
-
-  <div class="priceBox-price">
-    <h3>{{variant.price | money }}</h3>
-  </div>
-
-  <div class="priceBox-title">
-    <p>{{ variant.title }}</p>
-  </div>
-
-  <div class="priceBox-button">
-    <p><strong>In cart</strong></p>
-  </div>
 
 
 

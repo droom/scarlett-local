@@ -2,30 +2,35 @@
 
 <div class="checkout_buy_wrap">
 	{% for item in cart.items %}
-	{% unless item.variant.title contains 'Home Try On' %}
+
+  {% if item.variant.title contains 'Authorisation' %}
+    <p class="home-try-on-authorisation">
+  {% endif %}
+
+	{% unless item.variant.title contains 'Authorisation' %}
 	<div class="checkout_buy clearfix">
 		<div class="checkout_cell1">
 			<img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
 		</div>
-		
-		<div class="checkout_cell2">
-			<h5><strong>{{ item.product.title }}</strong></h5>
+
+		<div class="checkout_cell2 {{ item.product.title | handleize }}">
+			<h5>{{ item.product.title }}</h5>
 			{% if item.product.variants.size > 1 %}
 			<p>{{ item.variant.title }}</p>
 			{% endif %}
 		</div>
-		
+
 		<div class="checkout_cell3">
 
 			<p>{{ item.quantity }}</p>
-			<p><strong>{{ item.line_price | money }}</strong></p>
+			<p>{{ item.line_price | money }}</p>
 		</div>
 
 		<div class="checkout_cell4">
 			<p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
 		</div>
 
-	
+
 	</div>
 	{% endunless %}
 	{% endfor %}
