@@ -470,7 +470,15 @@ function hide_rest(element_to_show) {
 					$('.productHero-360').hide();
 					$('.productHero-life').hide();
 					$(div_to_show).fadeIn(300);
-				});
+
+          if (element_to_show === '.productSwitch-360'){
+
+            $("#imageStack2 img").hide();
+            $("#imageStack2 img:nth-child(1)").show();
+
+          }
+
+        });
 }
 
 hide_rest('.productSwitch-360' );

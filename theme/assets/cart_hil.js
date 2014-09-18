@@ -125,7 +125,7 @@ $("label[for='no-2']").click(function(e){
   var tryItems = $('.checkout_try .checkout_cell1');
   var htoa = $('.home-try-on-authorisation');
 
-   if(buyItemsPresc.length != 0 || (tryItems.length == 0 && htoa.length != 0)) {
+   if((buyItemsPresc.length != 0 || buyItemsFrame.length != 0 || tryItems.length == 0 ) &&  htoa.length != 0) {
     console.log("no fee");
     jQuery.post('/cart/change.js', {
         quantity: 0,
@@ -133,6 +133,7 @@ $("label[for='no-2']").click(function(e){
     } , function(data) {
            console.log("success empty");
          },   "json" );
+    console.log("yahtzee");
     ammendTotal();
    }
 
