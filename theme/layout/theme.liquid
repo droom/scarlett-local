@@ -118,7 +118,14 @@
 
     {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
 
-    {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
+    {% if settings.slider-width == "window-width" and template == "index" %}
+    {% include 'slider' %}{% elsif settings.slider-width == "window-width" %}
+    {% include 'banner' %}
+    {% endif %}
+
+
+
+
 
     <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
 
@@ -137,6 +144,13 @@
     </div>
   </div>
 </div>
+
+
+    {% if template == "index" %}
+    <h2>Render</h2>
+    {% endif %}
+
+
 
 {% include 'footer' %}
 {% include 'currencies' %}
