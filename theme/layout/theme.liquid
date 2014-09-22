@@ -146,14 +146,48 @@
 </div>
 
 
-    {% if template == "index" %}
-    <h2>Render</h2>
-    {% endif %}
+
 
 
 
 {% include 'footer' %}
 {% include 'currencies' %}
+
+
+{% if template == "index" %}
+
+<section class="as-featured">
+
+  <h5>As featured on</h5>
+  <!-- <hr/> -->
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-cheshire_grande.gif" />
+      </div>
+      <div class="col-sm-3">
+        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-shortList_grande.gif" />
+      </div>
+      <div class="col-sm-3">
+        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-hyde_grande.gif" />
+      </div>
+      <div class="col-sm-3">
+        <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-marie_grande.gif" /> -->
+        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-claire_grande.gif?" />
+      </div>
+    </div>
+  </div>
+
+
+
+
+</section>
+{% endif %}
+
+
+
 
 {{ '_base.js' | asset_url | script_tag }}
 {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
