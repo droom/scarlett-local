@@ -91,11 +91,12 @@
               button.click(function(e) {
                 e.preventDefault();
                 var file = fileChooser.files[0];
+                var key = $.now() + file.name;
                 if (file) {
                   results.innerHTML = '';
 
-                  var params = {Key: file.name, ContentType: file.type, Body: file};
-                  obj_params = {Bucket: 'supahands', Key: file.name, Expires: 100000};
+                  var params = {Key: key, ContentType: file.type, Body: file};
+                  obj_params = {Bucket: 'supahands', Key: key, Expires: 10000000};
                   result = bucket.putObject(params, function (err, data) {
 
                     results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
