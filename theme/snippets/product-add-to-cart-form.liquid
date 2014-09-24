@@ -1,14 +1,11 @@
 <!-- Count how many HTO are in the cart -->
 <div class="hiddenLogic">
-
   {% for item in cart.items %}
   {% if item.variant.title contains 'Home Try-On' %}
   {% increment hto_count_total %}
   {% endif %}
   {% endfor %}
-
   {% assign hto_count_unique = false %}
-
   {% for variant in product.variants %}
   {% if variant.title contains 'Home Try-On' %}
   {% for item in cart.items %}
@@ -18,11 +15,7 @@
   {% endfor %}
   {% endif %}
   {% endfor %}
-
-
 </div>
-
-
 
 
 <div class="purchase">
@@ -39,9 +32,6 @@
      <p>Sold Out</p>
      {% else %}
 
-
-
-     <!-- TABLE -->
 
      <table class="priceBox {{ variant.title | handleize }}">
        <tr>
@@ -60,14 +50,8 @@
         <td class="priceBox-arrow">
           <p>&rarr;</p>
         </td>
-
       </tr>
-
     </table>
-
-
-
-
 
 
 
@@ -78,10 +62,6 @@
 {% endfor %}
 
 
-
-
-
-<!-- if hto_count_total >= 4 -->
 
 {% for variant in product.variants %}
 {% if variant.title contains 'Home Try-On' %}
@@ -99,11 +79,6 @@
   </tr>
 </table>
 
-
-
-
-
-
 {% else %} <!-- if hto_count_total >= 4 -->
 
 {% if hto_count_unique == false %}
@@ -117,9 +92,11 @@
      <input type="hidden" name="id" value="{{variant.id}}">
    </div>
 
-   <table class="priceBox clearfix {{ variant.title | handleize }}">
+
+
+   <table class="priceBox hto clearfix {{ variant.title | handleize }}">
      <tr>
-       <td class="HTOadded" id="{{variant.id}}">
+       <td id="{{variant.id}}">
         <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Try them on at home for free" />
       </td>
     </tr>
@@ -136,23 +113,18 @@
 
 {% else %} <!-- hto_count_unique == false -->
 
-
-
-<table class="priceBox HTOadded clearfix {{ variant.title | handleize }}">
-  <tr>
-    <td class="HTOadded">
-      Home Try-on already in basket
-    </td>
-  </tr>
+<table class="priceBox hto-added clearfix {{ variant.title | handleize }}">
+  <tbody>
+    <tr>
+      <td>
+        Home Try-on already in basket
+      </td>
+    </tr>
+  </tbody>
 </table>
-
-
-
-
 
 </section>
 </div>
-
 
 
 {% endif %} <!-- hto_count_unique == false -->
@@ -162,10 +134,4 @@
 
 
 
-
-
-
-
-
 </div>
-
