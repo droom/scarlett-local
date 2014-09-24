@@ -42,10 +42,10 @@
               <legend class="clearfix">How would you like to send us your prescription?</legend>
               {% assign attribute = 'prescription-method' %}
 
-              {% for i in (1..3) %}
+              {% for i in (1..2) %}
 
               <div class="radioWrap">
-                {% capture option %}{% cycle 'Upload a picture', 'Call my doctor', 'Send later' %}{% endcapture %}
+                {% capture option %}{% cycle 'Upload a picture', 'Send later' %}{% endcapture %}
                 <h4 class="radioTitle">{{ option }}</h4>
 
                 <input class="radioNode addRequired nodeSend" type="radio" id="{{ option | handleize }}-{{ i }}" name="attributes[{{ attribute }}]" value="{{ option }}" />
@@ -93,11 +93,12 @@
               button.click(function(e) {
                 e.preventDefault();
                 var file = fileChooser.files[0];
+                var key = $.now() + file.name;
                 if (file) {
                   results.innerHTML = '';
 
-                  var params = {Key: file.name, ContentType: file.type, Body: file};
-                  obj_params = {Bucket: 'supahands', Key: file.name, Expires: 100000};
+                  var params = {Key: key, ContentType: file.type, Body: file};
+                  obj_params = {Bucket: 'supahands', Key: key, Expires: 10000000};
                   result = bucket.putObject(params, function (err, data) {
 
                     results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
