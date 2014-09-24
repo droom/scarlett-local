@@ -76,26 +76,30 @@
 
 
 
-  <hr />
-  <div id="available">
-    <h5>Available colours</h5>
-
-    {% assign currentProduct = {{product.title}} %}
-    {% assign currentTags = {{product.tags}} %}
-    {% for product in collection.products %}
-
-    {% if product.tags == currentTags and currentProduct != product.title %}
 
 
-    <div class="available-unit {{ product.title | handleize }} ">
+<div id="available">
 
-     <a href="{{ product.url }}" class="relatedURL">
+  {% for product_collection in product.collections %}
+  <h5>Available colours</h5>
+
+  {% assign currentProduct = {{product.title}} %}
+  {% assign currentTags = {{product.tags}} %}
+  {% for product in product_collection.products %}
+
+  {% if product.tags == currentTags and currentProduct != product.title %}
+
+
+  <div class="available-unit {{ product.title | handleize }} ">
+
+    <a href="{{ product.url }}" class="relatedURL">
       <img class="available-image" src="{{ product | img_url: 'compact' }}"  alt="{{ product.title | escape }}" />
     </a>
 
     <p class="available-title">{{ product.title }}</p>
   </div>
   {% endif %}
+  {% endfor %}
   {% endfor %}
 
 </div>
@@ -197,24 +201,6 @@
     }
 
 
-    var relatedItems = $('.relatedURL');
-    var pathName = window.location.pathname;
-    var pathPosition1 = parseInt(pathName.indexOf('/products/'));
-    var pathSegment1 = pathName.slice(0, pathPosition1);
-
-
-    for ( var i = 0, l = relatedItems.length; i < l; i++ ) {
-
-      var thisURL = relatedItems[i];
-      var thisHREF = $(thisURL).attr("href");
-      var pathPosition2 = thisHREF.indexOf('/products/');
-      var pathSegment2 = thisHREF.slice(0 , thisHREF.length);
-
-
-      $(thisURL).attr('href', pathSegment1+pathSegment2 );
-    }
-
-
 
     var imgs = $("#imageStack > img").not(function() { return this.complete; });
     var count = imgs.length;
@@ -230,14 +216,9 @@
     }
 
 
-
-
     $("#imageStack img:nth-child(3)").show();
 
     $("#imageStack").mousemove(function(e){
-
-
-
 
 
      var parentOffset = $(this).parent().offset();
