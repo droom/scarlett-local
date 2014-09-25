@@ -75,27 +75,27 @@ body .group .disclaimer{
   }
 }
 
-
 h3[title="Home Try-On Authorisation"] + .plist-variant-title {
   display: block;
   width: 200px;
   margin: 10px 0 0 110px;
-
+  background: yellow;
 }
-
-
-
-h3[title="Home Try-On Authorisation"] + .plist-line-price{
-  // margin: 0 0 30px 110px;
-  // display: block;
-  // width: 200px;
-  display: none;
-}
-
 
 h3[title="Home Try-On Authorisation"] + .plist-variant-title:after {
   content: ' — This is only to validate your payment card; it is not an actual charge. However, if you do not return the frames, you will be charged full price per unreturned or damaged frame.';
 }
+
+h3[title="Home Try-On Authorisation"] ~ .plist-line-price{
+  // background: blue;
+  font-weight: bold;
+  display: block;
+  width: 200px;
+  margin: 0 0 10px 110px;
+}
+
+
+
 
 
 .plist-line-price{
