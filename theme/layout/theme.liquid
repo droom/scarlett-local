@@ -16,8 +16,7 @@
     })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
   </script>
 
-  <script>
-  (function() {
+  <script>(function() {
     var _fbq = window._fbq || (window._fbq = []);
     if (!_fbq.loaded) {
       var fbds = document.createElement('script');
@@ -76,16 +75,20 @@
 
     {{ content_for_header }}
 
+
+
     {{ "jquery.currency.js" | asset_url | script_tag }}
     {{ "jquery.validate.js" | asset_url | script_tag }}
 
+
     {{ "cart_title.js" | asset_url | script_tag }}
+
     {{ "cart_labels.js" | asset_url | script_tag }}
     {{ "cart_hto.js" | asset_url | script_tag }}
     {{ "cart_steps.js" | asset_url | script_tag }}
+
     {{ "cart_hil.js" | asset_url | script_tag }}
 
-    {{ "scripts.js" | asset_url | script_tag }}
 
 
 
@@ -119,14 +122,7 @@
 
     {% if settings.logo-placement == "above-main-content" %}{% include 'brand' %}{% endif %}
 
-    {% if settings.slider-width == "window-width" and template == "index" %}
-    {% include 'slider' %}{% elsif settings.slider-width == "window-width" %}
-    {% include 'banner' %}
-    {% endif %}
-
-
-
-
+    {% if settings.slider-width == "window-width" and template == "index" %}{% include 'slider' %}{% elsif settings.slider-width == "window-width" %}{% include 'banner' %}{% endif %}
 
     <div id="content"{% unless settings.site-wide-thumbnail-container %} class="container"{% endunless %}>
 
@@ -146,49 +142,8 @@
   </div>
 </div>
 
-
-
-
-
-
 {% include 'footer' %}
 {% include 'currencies' %}
-
-
-{% if template == "index" %}
-
-<section class="as-featured">
-
-  <h5>As featured on</h5>
-  <!-- <hr/> -->
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-cheshire_grande.gif" />
-      </div>
-      <div class="col-sm-3">
-        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-shortList_grande.gif" />
-      </div>
-      <div class="col-sm-3">
-        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-hyde_grande.gif" />
-      </div>
-      <div class="col-sm-3">
-        <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-marie_grande.gif" /> -->
-        <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-claire_grande.gif?" />
-      </div>
-    </div>
-  </div>
-
-
-
-
-</section>
-{% endif %}
-
-
-
 
 {{ '_base.js' | asset_url | script_tag }}
 {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
