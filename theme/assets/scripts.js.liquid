@@ -13,6 +13,21 @@ $(document).ready(function(){
     });
   }
 
+
+  function removeItemFromCart(item_id) {
+    var data = { id: item_id, quantity: 0}
+    $.ajax({
+      type: 'POST',
+      url: '/cart/change.js',
+      dataType: 'json',
+      data: data,
+      success: Shopify.onSuccess,
+      error: Shopify.onError
+    });
+  }
+
+
+
   $(".addtocart").click(function(e){
 
     console.log("addtocart triggered");
@@ -31,6 +46,13 @@ $(document).ready(function(){
 
   });
 
+
+
+  $(".checkout_remove").click(function(e) {
+     e.preventDefault();
+     var $this = $(this);
+     removeItemFromCart($this.data("id"));
+  })
 
 
 
