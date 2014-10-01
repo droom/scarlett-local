@@ -147,6 +147,56 @@
 {% include 'footer' %}
 {% include 'currencies' %}
 
+
+
+{% if template == "index" %}
+
+<section class="as-featured">
+
+  <h5>As featured on</h5>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+
+
+       <img src="{{ 'featured-cheshire_grande.gif' | asset_url }}" />
+       <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-cheshire_grande.gif" /> -->
+
+     </div>
+     <div class="col-sm-3">
+
+       <img src="{{ 'featured-shortList_grande.gif' | asset_url }}" />
+
+       <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-shortList_grande.gif" /> -->
+
+     </div>
+     <div class="col-sm-3">
+
+       <img src="{{ 'featured-hyde_grande.gif' | asset_url }}" />
+
+       <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-hyde_grande.gif" /> -->
+
+     </div>
+     <div class="col-sm-3">
+
+       <img src="{{ 'featured-claire_grande.gif' | asset_url }}" />
+
+       <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/featured-claire_grande.gif" /> -->
+
+     </div>
+   </div>
+ </div>
+
+
+
+
+</section>
+{% endif %}
+
+
+
+
 {{ '_base.js' | asset_url | script_tag }}
 {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
 {{ 'jquery.orderly.min.js' | asset_url | script_tag }}
