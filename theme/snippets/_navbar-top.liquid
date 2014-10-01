@@ -59,7 +59,7 @@
                     <p><strong>{{ item.line_price | money }}</strong></p>
                 </div>
                 <div class="checkout_cell4">
-                    <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+                    <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart" data-id = "{{item.id}}">&#215;</a></p>
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
                 <p><strong>{{ item.line_price | money }}</strong></p>
             </div>
             <div class="checkout_cell4">
-                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart" data-id= "{{item.id}}">&#215;</a></p>
             </div>
         </div>
 
@@ -130,7 +130,7 @@
                 <p><strong>{{ item.line_price | money }}</strong></p>
             </div>
             <div class="checkout_cell4">
-                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart">&#215;</a></p>
+                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart" data-id = "{{item.id}}">&#215;</a></p>
             </div>
         </div>
 
