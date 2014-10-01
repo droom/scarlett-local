@@ -35,135 +35,85 @@
 
           <div class="navCart-title-buy">
 
-              <h4>Shopping Cart</h4>
-              <hr />
+            <h4>Shopping Cart</h4>
+            <hr />
 
           </div>
 
           {% for item in cart.items %}
           {% if item.variant.title contains 'Prescription' %}
+
+
           <div class="checkout_buy_wrap navCart-item-buy">
 
-            <div class="checkout_buy clearfix">
-                <div class="checkout_cell1">
-                    <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
-                </div>
-                <div class="checkout_cell2">
-                    <h5><strong>{{ item.product.title }}</strong></h5>
-                    {% if item.product.variants.size > 1 %}
-                    <p>{{ item.variant.title }}</p>
-                    {% endif %}
-                </div>
-                <div class="checkout_cell3">
-                    <small>QTY {{ item.quantity }}</small>
-                    <p><strong>{{ item.line_price | money }}</strong></p>
-                </div>
-                <div class="checkout_cell4">
-                    <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart" data-id = "{{item.id}}">&#215;</a></p>
-                </div>
-            </div>
 
-        </div>
-        {% endif %}
-        {% endfor %}
+           {% include '__nav-cart' %}
 
 
-        <div class="navCart-title-hto">
+         </div>
+         {% endif %}
+         {% endfor %}
+
+
+         <div class="navCart-title-hto">
            <h4>Home Try-On</h4>
            <hr />
+         </div>
+
+
+         {% for item in cart.items %}
+         {% if item.variant.title contains 'Home Try-On' %}
+
+         <div class="checkout_buy_wrap navCart-item-hto">
+
+           {% include '__nav-cart' %}
+
+         </div>
+
+         {% endif %}
+         {% endfor %}
+
+
+
+         <div class="navCart-title-acc">
+          <h4>Accessories</h4>
+          <hr />
+        </div>
+
+        {% for item in cart.items %}
+        {% if item.variant.title contains 'High-Index' %}
+        <div class="checkout_buy_wrap navCart-item-acc">
+
+         {% include '__nav-cart' %}
+
        </div>
 
-
-       {% for item in cart.items %}
-       {% if item.variant.title contains 'Home Try-On' %}
-
-       <div class="checkout_buy_wrap navCart-item-hto">
+       {% endif %}
+       {% endif %}
 
 
-
-        <div class="checkout_buy clearfix">
-            <div class="checkout_cell1">
-                <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
-            </div>
-            <div class="checkout_cell2">
-                <h5><strong>{{ item.product.title }}</strong></h5>
-                {% if item.product.variants.size > 1 %}
-                <p>{{ item.variant.title }}</p>
-                {% endif %}
-            </div>
-            <div class="checkout_cell3">
-                <small>QTY {{ item.quantity }}</small>
-                <p><strong>{{ item.line_price | money }}</strong></p>
-            </div>
-            <div class="checkout_cell4">
-                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart" data-id= "{{item.id}}">&#215;</a></p>
-            </div>
-        </div>
-
-    </div>
-
-    {% endif %}
-    {% endfor %}
+       <!-- end cart -->
 
 
-    <div class="navCart-title-acc">
-        <h4>Accessories</h4>
-        <hr />
-    </div>
+       {% if has_cart %}
+       {% if cart.item_count > 0 %}
 
-    {% for item in cart.items %}
-    {% if item.variant.title contains 'High-Index' %}
-    <div class="checkout_buy_wrap navCart-item-acc">
-
-        <div class="checkout_buy clearfix">
-            <div class="checkout_cell1">
-                <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
-            </div>
-            <div class="checkout_cell2">
-                <h5><strong>{{ item.product.title }}</strong></h5>
-                {% if item.product.variants.size > 1 %}
-                <p>{{ item.variant.title }}</p>
-                {% endif %}
-            </div>
-            <div class="checkout_cell3">
-                <small>QTY {{ item.quantity }}</small>
-                <p><strong>{{ item.line_price | money }}</strong></p>
-            </div>
-            <div class="checkout_cell4">
-                <p><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="checkout_remove cart" data-id = "{{item.id}}">&#215;</a></p>
-            </div>
-        </div>
-
-    </div>
-    {% endif %}
-    {% endfor %}
-
-    {% endif %}
-    {% endif %}
-
-
-    <!-- end cart -->
-
-
-    {% if has_cart %}
-    {% if cart.item_count > 0 %}
-
-    <div class="priceTotal">
+       <div class="priceTotal">
         <hr />
         <h4><strong>Cart Subtotal:</strong> {{ cart.total_price | money }}</h4>
 
+      </div>
+      <a href="/cart" class="btn btn-primary">Checkout &#x2192;</a>
+
+      {% endif %}
+      {% endif %}
+
     </div>
-    <a href="/cart" class="btn btn-primary">Checkout &#x2192;</a>
+
+
 
     {% endif %}
-    {% endif %}
-
-</div>
-
-
-
-{% endif %}
-</ul>
+  </ul>
 </li>
 {% endif %}
 {% if shop.customer_accounts_enabled %}
@@ -177,7 +127,7 @@
     <li>{% capture register %}{% include '__localize' with 'Register' %}{% endcapture %}{{ register | customer_register_link }}</li>
     <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
     {% endif %}
-</ul>
+  </ul>
 </li>
 {% endif %}
 </ul>
@@ -198,7 +148,7 @@
     <li>{% capture login %}{% include '__localize' with 'Log in' %}{% endcapture %}{{ login | customer_login_link }}</li>
     {% endif %}
     {% endif %}
-</ul>
+  </ul>
 </div>
 {% if settings.currency-switcher-position == 'top-navbar' %}{% include 'currency-switcher' %}{% endif %}
 
