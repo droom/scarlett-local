@@ -77,103 +77,112 @@
 
 
           <hr />
+
+
+
+
+
           <div id="available">
+
+            {% for product_collection in product.collections %}
             <h5>Available colours</h5>
 
             {% assign currentProduct = {{product.title}} %}
             {% assign currentTags = {{product.tags}} %}
-            {% for product in collection.products %}
+            {% for product in product_collection.products %}
 
             {% if product.tags == currentTags and currentProduct != product.title %}
 
 
             <div class="available-unit {{ product.title | handleize }} ">
 
-             <a href="{{ product.url }}" class="relatedURL">
-              <img class="available-image" src="{{ product | img_url: 'compact' }}"  alt="{{ product.title | escape }}" />
-            </a>
+              <a href="{{ product.url }}" class="relatedURL">
+                <img class="available-image" src="{{ product | img_url: 'compact' }}"  alt="{{ product.title | escape }}" />
+              </a>
 
-            <p class="available-title">{{ product.title }}</p>
+              <p class="available-title">{{ product.title }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+
           </div>
-          {% endif %}
-          {% endfor %}
+
+
+
+
+
+
 
         </div>
 
-
-
-
-
-
       </div>
-
     </div>
+
+
+    <div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
+
+     <small class="product-section hidden-xs">
+       <strong>{{ collection.title | upcase }}</strong>
+     </small>
+
+     <h1 class="hidden-xs" itemprop="name" id="productTitle">{{ page_title }}</h1>
+
+     <!-- {% if has_prices %} -->
+
+     {% include '__cart-social' %}
+
+     <div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+
+      <del id="compare-at-price-field" class="text-muted"></del>
+      <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
+      <meta itemprop="currency" content="{{ shop.currency }}" />
+      <meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
+    </div>
+    {% endif %}
+    <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
+
+    {% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
+
+    <div class="centreCopy">
+      <p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
+    </div>
+
   </div>
 
 
-  <div class="col-sm-4 {% if settings.product-page-image-placement == 'right' %}col-sm-pull-8{% endif %}">
+  <div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+   <h3>Scarlett of Soho Design Hallmarks</h3>
+   <p>Explore the little details that distinguish our frames from the rest of the pack</p>
+ </div>
 
-   <small class="product-section hidden-xs">
-     <strong>{{ collection.title | upcase }}</strong>
-   </small>
-
-   <h1 class="hidden-xs" itemprop="name" id="productTitle">{{ page_title }}</h1>
-
-   <!-- {% if has_prices %} -->
-
-   {% include '__cart-social' %}
-
-   <div class="product-price" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
-
-    <del id="compare-at-price-field" class="text-muted"></del>
-    <span id="sale-field" class="label label-success" style="display: none;">{% include '__localize' with 'On sale' %}</span>
-    <meta itemprop="currency" content="{{ shop.currency }}" />
-    <meta itemprop="identifier" content="sku:{{ product.variants.first.sku }}" />
-  </div>
-  {% endif %}
-  <p itemprop="description">{% include '__formatted-content' with product.description %}</p>
-
-  {% if has_cart %}{% include 'product-add-to-cart-form' %}{% endif %}
-
-  <div class="centreCopy">
-    <p><a href="https://sos-test-2.myshopify.com/pages/take-us-for-a-spin">What are Home Try-Ons?</a><br />3-5 Business Days Shipping | Free Shipping | Free Returns</p>
-  </div>
-
-</div>
+ <div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
 
 
-<div class="hallmarks col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
- <h3>Scarlett of Soho Design Hallmarks</h3>
- <p>Explore the little details that distinguish our frames from the rest of the pack</p>
-</div>
-
-<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-
-
- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-product-technical-drawings-01.jpg" />
+   <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-product-technical-drawings-01.jpg" />
 
 
 
 
-</div>
+ </div>
 
-<div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
-
-
- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-product-technical-drawings-02.jpg" />
+ <div class="center col-sm-6 {% if settings.product-page-image-placement == 'right' %}col-sm-push-6{% endif %}">
 
 
-</div>
-
-<div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
-
- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-points-image.jpg" />
+   <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-product-technical-drawings-02.jpg" />
 
 
- <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/Mens-Optical-Churchill-CrystalOmbre_Info_03_1024x1024.jpg" /> -->
+ </div>
+
+ <div class="center hidden-xs col-sm-12 {% if settings.product-page-image-placement == 'right' %}col-sm-push-0{% endif %}">
+
+   <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/sos-points-image.jpg" />
 
 
-</div>
+   <!-- <img src="https://cdn.shopify.com/s/files/1/0538/0205/products/Mens-Optical-Churchill-CrystalOmbre_Info_03_1024x1024.jpg" /> -->
+
+
+ </div>
 
 </div>
 </form>
@@ -204,15 +213,15 @@
 
      // Reconstruct Related Item URL
 
-     var relatedItems = $('.relatedURL');
-     var pathName = window.location.pathname;
-     var pathPosition1 = parseInt(pathName.indexOf('/products/'));
-     var pathSegment1 = pathName.slice(0, pathPosition1);
+     // var relatedItems = $('.relatedURL');
+     // var pathName = window.location.pathname;
+     // var pathPosition1 = parseInt(pathName.indexOf('/products/'));
+     // var pathSegment1 = pathName.slice(0, pathPosition1);
 
-     console.log("pathName", pathName);
-     console.log("pathPosition1", pathPosition1);
-     console.log("relatedItems", relatedItems);
-     console.log("pathSegment1", pathSegment1);
+     // console.log("pathName", pathName);
+     // console.log("pathPosition1", pathPosition1);
+     // console.log("relatedItems", relatedItems);
+     // console.log("pathSegment1", pathSegment1);
 
 
 
