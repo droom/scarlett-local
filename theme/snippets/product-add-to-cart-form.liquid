@@ -1,11 +1,14 @@
 <!-- Count how many HTO are in the cart -->
 <div class="hiddenLogic">
+
   {% for item in cart.items %}
   {% if item.variant.title contains 'Home Try-On' %}
   {% increment hto_count_total %}
   {% endif %}
   {% endfor %}
+
   {% assign hto_count_unique = false %}
+
   {% for variant in product.variants %}
   {% if variant.title contains 'Home Try-On' %}
   {% for item in cart.items %}
@@ -15,13 +18,16 @@
   {% endfor %}
   {% endif %}
   {% endfor %}
+
+
 </div>
+
+
 
 
 <div class="purchase">
   {% for variant in product.variants %}
   {% unless variant.title contains 'Home Try-On' %}
-
   <form id="add-item-form-{{variant.id}}" action="/cart/add" method="post" class="variants clearfix">
 
     <div class="product-options">
@@ -33,8 +39,13 @@
      {% else %}
 
 
+
+     <!-- TABLE -->
+
      <table class="priceBox {{ variant.title | handleize }}">
-       <tr>
+
+      <tr>
+
         <td class="priceBox-price">
           <h3>{{variant.price | money }}</h3>
         </td>
@@ -43,15 +54,21 @@
           <p>{{ variant.title }}</p>
         </td>
 
-        <td class="priceBox-button" id="{{variant.id}}">
+        <td class="priceBox-button">
           <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Add to cart" />
         </td>
 
         <td class="priceBox-arrow">
           <p>&rarr;</p>
         </td>
+
       </tr>
+
     </table>
+
+
+
+
 
 
 
@@ -63,6 +80,10 @@
 
 
 
+
+
+<!-- if hto_count_total >= 4 -->
+
 {% for variant in product.variants %}
 {% if variant.title contains 'Home Try-On' %}
 
@@ -73,15 +94,21 @@
 <table class="priceBox HTOadded clearfix {{ variant.title | handleize }}">
   <tr>
     <td class="HTOadded">
-      There are 4 Try-on glasses in your cart.
-      <br/ >Please remove a pair to add {{ page_title }}.
+    There are 4 Try-on glasses in your cart.
+    <br/ >Please remove a pair to add {{ page_title }}.
     </td>
   </tr>
 </table>
 
+
+
+
+
+
 {% else %} <!-- if hto_count_total >= 4 -->
 
 {% if hto_count_unique == false %}
+
 
 
 
@@ -92,15 +119,25 @@
      <input type="hidden" name="id" value="{{variant.id}}">
    </div>
 
+   <table class="priceBox clearfix {{ variant.title | handleize }}">
+    <tr>
 
 
-   <table class="priceBox hto clearfix {{ variant.title | handleize }}">
-     <tr>
-       <td id="{{variant.id}}">
+      <!-- <td class="priceBox-price"></td> -->
+
+      <!-- <td class="priceBox-title"><p>{{ variant.title }}</p></td> -->
+
+
+    <td class="HTOadded">
         <input type="submit" id="add-to-cart" class="addtocart {{ variant.title | handleize }}" name="add" value="Try them on at home for free" />
       </td>
+
+      <!-- <td class="priceBox-arrow"><p>&rarr;</p></td> -->
+
+
     </tr>
   </table>
+
 
 
 
@@ -113,25 +150,47 @@
 
 {% else %} <!-- hto_count_unique == false -->
 
-<table class="priceBox hto-added clearfix {{ variant.title | handleize }}">
-  <tbody>
-    <tr>
-      <td>
-        Home Try-on already in basket
-      </td>
-    </tr>
-  </tbody>
+
+
+<table class="priceBox HTOadded clearfix {{ variant.title | handleize }}">
+  <tr>
+    <td class="HTOadded">
+    Home Try-on already in basket
+    </td>
+  </tr>
 </table>
+
+
+
+
 
 </section>
 </div>
 
 
+
+
+
+
+
+
+
+
 {% endif %} <!-- hto_count_unique == false -->
+
+
+
 {% endif %} <!-- if hto_count_total >= 4 -->
+
 {% endif %} <!-- if variant.title contains 'Home Try-On' -->
 {% endfor %} <!-- for variant in product.variants -->
 
 
 
+
+
+
+
+
 </div>
+

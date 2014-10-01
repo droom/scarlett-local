@@ -68,16 +68,14 @@
 
           <div class="prescription-upload">
 
-            <p>
-              Upload a digital copy of your most recent optical prescription.<br />
-              Select a file from your computer.
-            </p>
+            <p>Upload a digital copy of your most recent optical prescription.</p>
+            <p>Select a file from your computer.</p>
 
 
             <input id="presc_url" type="hidden" name="attributes[prescription]" value="hidden"/>
 
-            <input type="file" id="file-chooser" class="btn float-l"/>
-            <button id="upload-button" class="btn btn-green float-l">Upload photo</button>
+            <input type="file" id="file-chooser" />
+            <button id="upload-button">Upload photo</button>
             <div id="results"></div>
 
 
@@ -93,12 +91,11 @@
               button.click(function(e) {
                 e.preventDefault();
                 var file = fileChooser.files[0];
-                var key = $.now() + file.name;
                 if (file) {
                   results.innerHTML = '';
 
-                  var params = {Key: key, ContentType: file.type, Body: file};
-                  obj_params = {Bucket: 'supahands', Key: key, Expires: 10000000};
+                  var params = {Key: file.name, ContentType: file.type, Body: file};
+                  obj_params = {Bucket: 'supahands', Key: file.name, Expires: 100000};
                   result = bucket.putObject(params, function (err, data) {
 
                     results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
@@ -178,7 +175,7 @@
         <div class="radioOptions clearfix">
           <div class="prescription-pd">
             <p>Measuring your pupillary distance (PD) is important for us to process your order and ensure the right fit for your prescription lens. Click on the tool below and follow the quick steps to measure your PD. </p>
-            <p><a href="http://pd-tool.herokuapp.com" class="launch btn-green">Launch tool</a></p>
+            <p><a href="http://pd-tool.herokuapp.com" class="launch">Launch tool</a></p>
             <p><strong>Copy your measurements from the tool and paste it here.</strong></p>
             <input type="text" name="attributes[pd]" value="{{ cart.attributes.pd }}" />
           </div>
@@ -214,6 +211,7 @@
   $(document).ready(function(){
 
 
+
     $('.launch').click(function(event) {
       event.preventDefault();
       window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
@@ -229,7 +227,7 @@
   });
 
 
-
+ console.log('Yaoza!')
 
 </script>
 

@@ -1,0 +1,76 @@
+
+
+
+{% if customer %} {% assign digest = customer.id | append:customer.email | append:'552d5554-9e5d-4213-85ad-827018e1bfe5' | md5 %} {% endif %}
+
+<script type="text/javascript">
+window.sloyalty = window.sloyalty || {};
+window.sloyalty.shop = 'sos-test-2.myshopify.com';
+
+window.sloyalty.customer_id = '{% if customer %}{{ customer.id }}{% endif %}';
+window.sloyalty.digest = '{% if customer %}{{ digest }}{% endif %}';
+
+</script>
+
+
+
+
+  
+
+
+{% if customer %}
+{% assign digest = customer.id | append:customer.email | append:'552d5554-9e5d-4213-85ad-827018e1bfe5' | md5 %}
+
+<div class="sloyalty-loyalty-widget"
+     data-digest="{{ digest }}"
+     data-shop="sos-test-2.myshopify.com"
+     data-version="2"
+     data-widget-css="bottom:0px;right:20px;"
+     data-overlay-css=""
+     data-customer="{{ customer.id }}"></div>
+{% else %}
+<div class="sloyalty-loyalty-widget"
+     data-shop="sos-test-2.myshopify.com"
+     data-version="2"
+     data-widget-css="bottom:0px;right:20px;"
+     data-overlay-css=""></div>
+{% endif %}
+
+
+
+
+
+<div class="sloyalty-referral-widget"
+     data-shop="sos-test-2.myshopify.com"
+     data-customer="{% if customer %}{{ customer.id }}{% endif %}"></div>
+
+
+
+
+
+
+{% if customer %}
+{% assign digest = customer.id | append:customer.email | append:'552d5554-9e5d-4213-85ad-827018e1bfe5' | md5 %}
+
+<div class="sloyalty-standalone-share-widget"
+     data-shop="sos-test-2.myshopify.com"
+     data-customer="{{ customer.id }}"
+     data-digest="{{ digest }}"></div>
+{% else %}
+<div class="sloyalty-standalone-share-widget"
+     data-shop="sos-test-2.myshopify.com"
+     data-customer=""></div>
+{% endif %}
+
+
+
+
+
+
+<div class="sloyalty-fans-widget"
+     data-shop="sos-test-2.myshopify.com"
+     data-customer="{% if customer %}{{ customer.id }}{% endif %}"></div>
+
+
+
+<script src="//s.sloyalty.com/site_media/static/dist/js/shopify-storefront.js"></script>

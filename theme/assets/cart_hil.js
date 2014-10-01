@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  // var getTitles = [];
+
   var prescriptionQTY = 0;
   var lensesQTY = 0;
   var totalPrice = 0;
@@ -53,11 +55,14 @@ function fUpdateCart(fToCall){
 
     $.each(data.items, function(index, element) {
 
+      // Get Lenses
 
       if ( element.variant_id == 763367271 ){
         lensesQTY = element.quantity;
         lensePrice = element.price;
       }
+
+      // Get Frames with Prescription
 
       if (element.title.indexOf("With ") >= 0) {
         prescriptionQTY += element.quantity;

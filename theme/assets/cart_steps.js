@@ -210,6 +210,6 @@ $('.dont-measure').click(function() {
 
 
 
-
+console.log('yaoza!');
 
 });

@@ -1,0 +1,36 @@
+  <script src="https://d3f5pyioow99x0.cloudfront.net/0.8/hull.js"></script>
+
+<script>
+  (function() {
+    var customerId = false;
+    var customerAccessToken;
+
+    {% if customer %}
+      customerId = '{{ customer.id }}';
+      {% if customer.metafields.hull.access_token %}
+        customerAccessToken = '{{ customer.metafields.hull.access_token }}';
+      {% endif %}
+    {% endif %}
+
+    function ensureCustomerHasUser() {
+      if (customerId && !customerAccessToken) {
+        Hull.api('services/shopify/customers/' + customerId, 'put').then(function() {
+          document.location.reload();
+        });
+      }
+    }
+
+    function logout() {
+      document.location = '/account/logout';
+    }
+
+    Hull.on('hull.auth.logout', logout);
+
+    Hull.init({
+      callbackUrl: document.location.origin + '/a/hull-callback',
+      orgUrl: 'https://986aad35.hullapp.io',
+      appId: '53c8ec98b904a1ed240017c1',
+      accessToken: customerAccessToken || 'false'
+    }, ensureCustomerHasUser);
+  }());
+</script>
