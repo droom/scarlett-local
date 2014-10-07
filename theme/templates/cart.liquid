@@ -96,7 +96,7 @@
                   results.innerHTML = '';
 
                   var params = {Key: key, ContentType: file.type, Body: file};
-+                 obj_params = {Bucket: 'supahands', Key: key, Expires: 10000000};
+                  obj_params = {Bucket: 'supahands', Key: key, Expires: 10000000};
                   result = bucket.putObject(params, function (err, data) {
 
                     results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
