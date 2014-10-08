@@ -9103,17 +9103,17 @@ $sosGreen: #4ea87a;
 		a:hover {
 			text-decoration: none;
 		}
-	}	
+	}
 
 
 	.carousel-indicators {
 
   li{
-   border: 1px solid $sosMidGrey; 
+   border: 1px solid $sosMidGrey;
   }
 
   li.active{
-   background: $sosMidGrey; 
+   background: $sosMidGrey;
 
   }
 
@@ -9150,7 +9150,7 @@ $sosGreen: #4ea87a;
 	.template-index{
 
 		.carousel-caption{
-			
+
 			h2{
 				font-size: 20px;
 			}
@@ -9170,7 +9170,7 @@ $sosGreen: #4ea87a;
 			width: 100%;
 
 			h2{
-				padding: 15px 0 5px 0;	
+				padding: 15px 0 5px 0;
 			}
 
 		}
@@ -9207,7 +9207,7 @@ $sosGreen: #4ea87a;
 			width: 100%;
 
 			h2{
-				padding: 15px 0 5px 0;	
+				padding: 17px 0 10px 0;
 			}
 
 		}
@@ -9221,9 +9221,9 @@ $sosGreen: #4ea87a;
 
 		.carousel-indicators .active,
 		.carousel-indicators li {
-			width: 20px;
-			height: 20px;
-			margin: 7px;
+			width: 15px;
+			height: 15px;
+			margin: 10px;
 		}
 	}
 }
@@ -9267,7 +9267,7 @@ $sosGreen: #4ea87a;
 
 			h2{
 				padding: 0;
-				margin: 10px 0 10px 0;	
+				margin: 10px 0 10px 0;
 			}
 			p{
 				width: 40%;
@@ -9275,7 +9275,7 @@ $sosGreen: #4ea87a;
 			}
 		}
 		.carousel-indicators{
-			bottom: -42px;
+			bottom: -48px;
 		}
 
 		.carousel-indicators .active,
@@ -11095,54 +11095,53 @@ footer {
 
 
 
-.as-featured{
-  padding: 20px 20px 30px 20px;
-  display: block;
-  min-height: 120px;
-  background: $sosLightGrey;
-  text-align: center;
-
-  img{
-    padding: 40px 20px 30px 20px;
-    max-width: 170px;
-    // text-align: center;
-  }
-
-  h5 {
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-  }
-
-  hr{
-    background-color: darken($sosLightGrey, 15%);
-  }
-}
-
-
-@media (max-width: $screen-xs-min) {
-
-  .as-featured{
-    padding: 20px 20px 30px 20px;
+ #footer-content {
+  .as-seen{
+    border-top: 1px solid $sosLightGrey;
+    margin:40px 0 70px 0;
     display: block;
-    min-height: 120px;
     text-align: center;
-
-    img{
-      padding: 40px 20px 30px 20px;
-      // text-align: center;
-      margin: auto;
-    }
-
-    h5 {
+    h6 {
       text-transform: uppercase;
       letter-spacing: 0.09em;
+      text-align: center;
+      font-weight: bold;
+      margin: 20px 0 15px 0;
     }
-
     hr{
       background-color: darken($sosLightGrey, 15%);
     }
+    div:nth-of-type(1),
+    div:nth-of-type(2),
+    div:nth-of-type(3),
+    div:nth-of-type(4),
+    div:nth-of-type(5){
+      padding: 0;
+    }
+    .col-sm-5{
+      margin: 0;
+      padding: 0;
+      width: 20%;
+      float: left;
+    }
   }
+}
+@media (max-width: $screen-xs-min) {
+ #footer-content {
+  .as-seen{
+    h6 {
+      margin-bottom: 20px;
+    }
+    .col-sm-5{
+      width: 100%;
+      img{
+        margin: auto;
+        width: 70%;
+      }
 
+    }
+  }
+}
 
 }
 
