@@ -1,7 +1,7 @@
 <footer id="footer-content" class="footer">
   {% if template == "index" %}
   <section class="as-seen">
-    <h6>As featured on</h6>
+    <h6>As seen on</h6>
     <div class="container">
       <div class="row">
         <div class="col-sm-5">
@@ -22,13 +22,13 @@
      </div>
    </div>
  </section>
+
  {% endif %}
 
  <div class="container">
   {% if has_footer %}
   <div class="row">
    <hr />
-
    {% assign cols = '' %}
    {% for i in (i..3) %}
    {% assign c = i | plus: 1 %}
@@ -47,17 +47,6 @@
    {% endfor %}
  </div>
  {% endif %}
-
-    <!--
-    <p class="text-center footer-credits">
-      <small>
-        &copy;{{ 'now' | date: '%Y' }}&nbsp;<a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a>. <br class="visible-sm">
-        Design&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid&nbsp;Design</a>. <br class="visible-sm">
-        Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
-      </small>
-    </p>
-  -->
 </div>
-
 {% if has_footer_navbar %}{% include 'navbar' with 'footer' %}{% endif %}
 </footer>
