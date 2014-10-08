@@ -2,6 +2,7 @@
 :api_key: 5cb88fc27c59ae7aed95d3e8a3f4ff2f
 :password: dd1e853aa5a42954d61b690816ffa47a
 :store: sos-test-2.myshopify.com
+# Stage
 :theme_id: 11002935
-
+# Live
 # :theme_id: 8894743
