@@ -21,8 +21,8 @@
 </section>
   {% include 'products-list' %}
 {% endunless %}
-{% include 'homepage-blog-overview' with 'blog' %}
-{% include 'index-testimonials' %}
+
+
 {% assign album_set = false %}
 {% for fb in blogs[settings.facebook-album-blog].articles %}
   {% if fb.metafields.social-feed.facebook-album != blank and album_set != true %}
