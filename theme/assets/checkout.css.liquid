@@ -6186,13 +6186,17 @@ body .group .disclaimer {
 h3[title="Home Try-On Authorisation"] + .plist-variant-title, #pay-with h3[title="Home Try-On Authorisation"] + .plist-variant-title, #thumbs [title="Home Try-On Authorisation"].plisthead + .plist-variant-title, #email label[title="Home Try-On Authorisation"] + .plist-variant-title, #email td[title="Home Try-On Authorisation"].label + .plist-variant-title {
   display: block;
   width: 200px;
-  margin: 10px 0 0 110px; }
-
-h3[title="Home Try-On Authorisation"] + .plist-line-price, #pay-with h3[title="Home Try-On Authorisation"] + .plist-line-price, #thumbs [title="Home Try-On Authorisation"].plisthead + .plist-line-price, #email label[title="Home Try-On Authorisation"] + .plist-line-price, #email td[title="Home Try-On Authorisation"].label + .plist-line-price {
-  display: none; }
+  margin: 10px 0 0 110px;
+  background: yellow; }
 
 h3[title="Home Try-On Authorisation"] + .plist-variant-title:after, #pay-with h3[title="Home Try-On Authorisation"] + .plist-variant-title:after, #thumbs [title="Home Try-On Authorisation"].plisthead + .plist-variant-title:after, #email label[title="Home Try-On Authorisation"] + .plist-variant-title:after, #email td[title="Home Try-On Authorisation"].label + .plist-variant-title:after {
   content: ' — This is only to validate your payment card; it is not an actual charge. However, if you do not return the frames, you will be charged full price per unreturned or damaged frame.'; }
+
+h3[title="Home Try-On Authorisation"] ~ .plist-line-price, #pay-with h3[title="Home Try-On Authorisation"] ~ .plist-line-price, #thumbs [title="Home Try-On Authorisation"].plisthead ~ .plist-line-price, #email label[title="Home Try-On Authorisation"] ~ .plist-line-price, #email td[title="Home Try-On Authorisation"].label ~ .plist-line-price {
+  font-weight: bold;
+  display: block;
+  width: 200px;
+  margin: 0 0 10px 110px; }
 
 .plist-line-price {
   font-family: helvetica, arial, sans-serif; }

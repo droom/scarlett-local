@@ -113,6 +113,8 @@
 
    {% include 'hull' %}
 
+   {% include 'mixpanel_script' %}
+
 
  </head>
 
@@ -162,6 +164,37 @@
 {{ 'popover.js' | asset_url | script_tag }}
 {{ 'typeahead.js' | asset_url | script_tag }}
 {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
+
+{% if template == "product" %}
+  <script type="text/javascript">
+    mixpanel.track(
+    “Product Viewed”,
+    {“name”: “{{product.title}}”,
+    “price”: “{{ product.price | money_without_currency }}”,
+    “brand”: “{{product.vendor}}”,
+    “category”: “{{ collection.title }}”,
+    “variant”: “{% for variant in product.variants %}{{ variant.sku }}{% endfor %}”
+    });
+
+    $(document).ready(function(){
+    $(“#add-to-cart”).click(function(){
+    mixpanel.track(
+    “Added to Cart”, {“name”: “{{product.title}}”});
+    });
+    });
+  </script>
+{% endif %}
+
+{% if template == "cart" %}
+  <script type="text/javascript">
+    $(document).ready(function(){
+    $(“.cart”).click(function(){
+    mixpanel.track(
+    “Remove from Cart”, {“name”: {% for item in cart.items %}”{{item.product.title}}”{% endfor %}});
+    });
+    });
+  </script>
+{% endif %}
 
 <script type="text/javascript">
   {% unless current_handle == blank %}
